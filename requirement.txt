@@ -1,0 +1,7 @@
+pyenchant
+nltk
+textmining
+scipy
+numpy
+scikit-learn
+pandas
