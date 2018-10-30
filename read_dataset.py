@@ -1,7 +1,7 @@
 import pandas as pd
 # import os
 import textmining
-from utils import write_csv, filter_document, create_data_dir
+from utils import create_data_dir
 
 df = pd.read_excel('dataset/training_set_rel3.xls')
 sets, essays = df['essay_set'], df['essay']

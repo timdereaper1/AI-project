@@ -1,5 +1,6 @@
 import os
 import enchant
+import pandas as pd
 from nltk import pos_tag
 from enchant.checker import SpellChecker
 from utils import filter_document
@@ -34,18 +35,6 @@ for dirpath, dirnames, filenames in os.walk(DATA_DIR):
         if file.endswith('txt'):
             # path to the essay file, which will be used to read the file
             path = os.path.join(dirpath, file)
-            # the name of the directory which gives the essay, its label
-            label = os.path.basename(os.path.dirname(path))
-
-            # this code section checks whether the label does not exist in the
-            # labels dictionary, where it will create a new item in the dictionary
-            # with the key as the label and value as the id_
-            if not label in labels:
-                labels[label] = id_
-                id_ += 1
-
-            # get the value of the label in the labels dictionary
-            val = labels[label]
 
             # read the essay written in the file
             essay = open(path, 'r').read()

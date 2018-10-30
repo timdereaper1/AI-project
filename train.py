@@ -1,85 +1,95 @@
 import os
 import enchant
+import pandas as pd
+import textmining
 from nltk import pos_tag
 from enchant.checker import SpellChecker
-from utils import filter_document
+from utils import tokenize_text
 
-# saving the absolute directory path to the train.py file
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# retrieving the path to the data directory from the current dir
-DATA_DIR = os.path.join(BASE_DIR, 'data')
+df = pd.read_excel('dataset/training_set_rel3.xls')
+sets, essays, scores = df['essay_set'], df['essay'], df['domain1_score']
 
+# Initialize class to create term-document matrix which is used in
+# determining the content of the essay
+tdm = textmining.TermDocumentMatrix()
+
+# using the UK and the US dictionaries for checking misspelt words
 spell_checker = SpellChecker('en_UK', 'en_US')
 
-# the id_ is used as a counter for the total number of essay sets
-id_ = 0
+# the labels list holds the scores given by the raters - examiners of the
+# essays. which will be used in the linear regression model mapping to
+# the extracted features for an essay stored in the train list
+labels = []
 
-# dictionary to store the essay sets ids
-labels = {}
+# the train list holds the numerical values of the extracted features from
+# each essay stored as a list of lists i.e. [[1, 2, 6, 7], [9, 0, 2, 4]]
+# which is used to train the linear regression model
+train = []
 
-# the data with the extracted features used for the training
-train_data = []
+# the index is used to get the current index of the essay from the essays
+# list
+index = 0
 
-# list matching each value to an item in the train_data having its value
-# as the set id of the essay
-y_labels = []
+# iterating through the essays for each given set. then extracting the
+# features need to train the model with and getting the resolved score
+# between the raters - examiners of the essays - which is the
+# domain1_score column in the xls sheet
+for essay in essays:
 
-# move through the data directory folder to retrieve the files
-# and their directory name as label for the different essay sets
-for dirpath, dirnames, filenames in os.walk(DATA_DIR):
-    # taking the files returned from the directory walkthrough, and
-    # iterating through to get the file path and label from its
-    # directory name
-    for file in filenames:
-        if file.endswith('txt'):
-            # path to the essay file, which will be used to read the file
-            path = os.path.join(dirpath, file)
+    # filter the essay removing the stopwords which are unnecessay in the
+    # training model since they do not provide much significance to the
+    # essay. using the tokenize_text util function to generate the tokenized
+    # words and the sentences from the essay
+    tokens, sents = tokenize_text(essay)
 
-            # read the essay written in the file
-            essay = open(path, 'r').read()
+    # extracting the word count feature from the essay by counting the total
+    # number of words written in the essay
+    word_count = len(tokens)
 
-            # filter the essay, to remove unnecessay words such as the stopwords
-            # and also tokenizing the essay words
-            doc = filter_document(essay)
-            text = ' '.join(doc)
+    # extracting the sentence count feature from essay that's the total
+    # number of sentences written
+    sentence_count = sents.count('.')
 
-            # extracting the word count feature from the essay by counting the total
-            # number of words written in the essay
-            word_count = len(doc)
+    # extracting the character count feature involving the total number of
+    # individual letters written in the essay
+    character_count = sum(len(word) for word in tokens)
 
-            # extracting the sentence count feature from essay that's the total
-            # number of sentences written
-            sentence_count = text.count('.')
+    # extracting the parts of speech from the essay as a proxy for vocabulary
+    vocabulary = {}
+    for tags in pos_tag(tokens):
+        vocabulary[tags[1]] = vocabulary.get(tags[1], 0) + 1
 
-            # extracting the character count feature involving the total number of
-            # individual letters written in the essay
-            character_count = sum(len(word) for word in doc)
+    # using PyEnchant to extract the total number of mispelt words in the essay
+    # to determine the orthography or command over the language
+    spell_checker.set_text(sents)
+    misspelt_words = len([err.word for err in spell_checker])
 
-            # extracting the parts of speech from the essay as a proxy for vocabulary
-            vocabulary = {}
-            for tags in pos_tag(doc):
-                word, tag = tags
-                if not tag in vocabulary:
-                    vocabulary[tag] = 1
-                else:
-                    vocabulary[tag] += 1
+    # TODO: extract punctuation features using various RegExp
 
-            # using PyEnchant to extract the total number of mispelt words in the essay
-            # to determine the orthography or command over the language
-            spell_checker.set_text(text)
-            misspelt_words = len([err.word for err in spell_checker])
+    # extract the bag of words from the essay
+    tdm.add_doc(sents)
 
-            # TODO: extract punctuation features using various RegExp
+    # a list of the numerical values of the extracted features from the essay
+    # to be used to train the model. adding the vocabulary to the list
+    features = list(vocabulary.values())
 
-            # dictionary detailing the extract features values matching to each key
-            analysis = {
-                'word_count': word_count,
-                'sentence_count': sentence_count,
-                'character_count': character_count,
-                'vocabulary': vocabulary,
-                'misspelt_words': misspelt_words
-            }
+    # adding total word count for the essay
+    features.append(word_count)
+    # add total sentence count for the essay
+    features.append(sentence_count)
+    # adding character count from the essay
+    features.append(character_count)
+    # adding the total number of misspelt words
+    features.append(misspelt_words)
 
-            print(analysis)
+    # store the numerical values in the train list as a list
+    train.append(features)
 
-            break
+    # store the raters resolved score value for the current essay in the labels list
+    # by using the index variable
+    labels.append(scores[index])
+
+    print(train)
+    print(labels)
+    index += 1
+    break

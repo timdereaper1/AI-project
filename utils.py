@@ -27,17 +27,20 @@ def write_csv(filename, matrix, cutoff=2):
         file.writerow(row)
 
 
-def filter_document(document):
+def tokenize_text(doc):
     # tokenize the essays into words such as ['this', 'as'] etc
-    tokenize_document = word_tokenize(document)
+    words = word_tokenize(doc)
 
     # remove the stopwords from the essay using the english dictionary version
     # since the essays were written in english
-    filter_document = [
-        word for word in tokenize_document if word not in stop_words]
+    tokenized = [
+        word for word in words if word not in stop_words]
+
+    # reconstructing the sentences in the doc
+    sentence = ' '.join(tokenized)
 
     # return the filtered document
-    return filter_document
+    return tokenized, sentence
 
 
 def write_txt(filename, text):
