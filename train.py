@@ -2,6 +2,9 @@ import os
 import enchant
 import pandas as pd
 import textmining
+import string
+import operator
+import functools
 from nltk import pos_tag
 from enchant.checker import SpellChecker
 from utils import tokenize_text, write_csv
@@ -66,7 +69,10 @@ for essay in essays:
     spell_checker.set_text(sents)
     misspelt_words = len([err.word for err in spell_checker])
 
-    # TODO: extract punctuation features using various RegExp
+    # extract punctuation features by counting the total number of punctuations used
+    # in the essay
+    punc_count = len(list(filter(functools.partial(
+        operator.contains, string.punctuation), sents)))
 
     # extract the bag of words from the essay
     tdm.add_doc(sents)
@@ -83,6 +89,8 @@ for essay in essays:
     features.append(character_count)
     # adding the total number of misspelt words
     features.append(misspelt_words)
+    # adding the punctuation count
+    features.append(punc_count)
 
     # store the numerical values in the train list as a list
     train.append(features)
@@ -91,15 +99,15 @@ for essay in essays:
     # by using the index variable
     labels.append(scores[index])
 
-    # print(train)
-    # print(labels)
+    print(train)
+    print(labels)
 
     # if sets[index] not in setIds:
     #     setIds[sets[index]] = index
     #     write_csv('analysis/tdm-' +
     #               str(setIds[sets[index]]) + '.csv', tdm, cutoff=2)
     #     tdm = textmining.TermDocumentMatrix()
-    if index == 10:
+    if index == 1:
         break
 
     index += 1
