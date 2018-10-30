@@ -4,7 +4,7 @@ import pandas as pd
 import textmining
 from nltk import pos_tag
 from enchant.checker import SpellChecker
-from utils import tokenize_text
+from utils import tokenize_text, write_csv
 
 df = pd.read_excel('dataset/training_set_rel3.xls')
 sets, essays, scores = df['essay_set'], df['essay'], df['domain1_score']
@@ -29,6 +29,8 @@ train = []
 # the index is used to get the current index of the essay from the essays
 # list
 index = 0
+
+setIds = {}
 
 # iterating through the essays for each given set. then extracting the
 # features need to train the model with and getting the resolved score
@@ -89,7 +91,15 @@ for essay in essays:
     # by using the index variable
     labels.append(scores[index])
 
-    print(train)
-    print(labels)
+    # print(train)
+    # print(labels)
+
+    # if sets[index] not in setIds:
+    #     setIds[sets[index]] = index
+    #     write_csv('analysis/tdm-' +
+    #               str(setIds[sets[index]]) + '.csv', tdm, cutoff=2)
+    #     tdm = textmining.TermDocumentMatrix()
+    if index == 10:
+        break
+
     index += 1
-    break
