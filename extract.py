@@ -1,6 +1,7 @@
 import string
 import operator
 import functools
+import math
 from enchant.checker import SpellChecker
 from utils import tokenize_text, vocab
 
@@ -54,5 +55,12 @@ class Extract():
         features.append(self.chars)
         features.append(self.misspelt)
         features.append(self.puncs)
+
+        index = 0
+        for val in features:
+            if math.isnan(val) or math.isinf(val):
+                features[index] = 0
+
+            index += 1
 
         return features
