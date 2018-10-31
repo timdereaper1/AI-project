@@ -1,11 +1,16 @@
 import csv
 import os
+import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
 # setting the english dictionary to filter out the stopwords such as
 # off, the, to, etc. from the essays as a set
 stop_words = set(stopwords.words('english'))
+
+# list of parts of speech in nltk
+POS = ['CC', 'CD', 'DT', 'EX', 'FW', 'IN', 'JJ', 'JJR', 'JJS', 'LS', 'MD', 'NN', 'NNS', 'NNP', 'NNPS', 'PDT', 'POS',
+       'PRP', 'PRP$', 'RB', 'RBR', 'RBS', 'RP', 'TO', 'UH', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'WDT', 'WP', 'WP$', 'WRB']
 
 
 def get_key(obj):
@@ -82,3 +87,22 @@ def create_data_dir(sets, essays, dir_name='/data'):
             pass
         write_txt(directory + '/' + str(i), essays[i])
         i = i + 1
+
+
+# the function takes a text tokenized into its words, then tags the
+# various words with the appropriate part of speech such as nouns,
+# pronouns etc. It gets the count for each POS in the text, the POS
+# which are not found in the text are assigned a value of 0 to maintain
+# a fixed length for the vocabulary when training the model
+def vocab(tokenizedText):
+    voc = {}
+    for tag in nltk.pos_tag(tokenizedText):
+        voc[tag[1]] = voc.get(tag[1], 0) + 1
+
+    # iterate through the POS list, checking which of the POS is not
+    # found in the voc and assigning a value of 0 to it
+    for tag in POS:
+        if tag not in voc:
+            voc[tag] = 0
+
+    return voc
