@@ -97,7 +97,8 @@ def create_data_dir(sets, essays, dir_name='/data'):
 def vocab(tokenizedText):
     voc = {}
     for tag in nltk.pos_tag(tokenizedText):
-        voc[tag[1]] = voc.get(tag[1], 0) + 1
+        if tag[1] in POS:
+            voc[tag[1]] = voc.get(tag[1], 0) + 1
 
     # iterate through the POS list, checking which of the POS is not
     # found in the voc and assigning a value of 0 to it
