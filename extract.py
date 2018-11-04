@@ -3,7 +3,7 @@ import operator
 import functools
 import math
 from enchant.checker import SpellChecker
-from utils import tokenize_text, vocab
+from utils import tokenize_text, vocab, extract_paragraphs, preprocess_paragraph, prepare_corpus,compute_coherence_value
 
 # using the UK and the US dictionaries for checking misspelt words
 spell_checker = SpellChecker('en_UK', 'en_US')
@@ -46,6 +46,12 @@ class Extract():
         # extracting the parts of speech from the essay as a proxy for vocabulary
         self.voca = vocab(self.tokens)
 
+        # evaluating coherence
+        paragraph_set = extract_paragraphs(doc)
+        paragrapg_set_clean = preprocess_paragraph(paragraph_set)
+        self.coherence = compute_coherence_value(paragrapg_set_clean, 12)
+
+
     # the method returns the numerical values of the features extracted from the essay
     # in a list
     def get_features(self):
@@ -55,6 +61,7 @@ class Extract():
         features.append(self.chars)
         features.append(self.misspelt)
         features.append(self.puncs)
+        features.append(self.coherence)
 
         index = 0
         for val in features:
