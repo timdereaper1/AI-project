@@ -1,7 +1,8 @@
 import pandas as pd
 import pickle
 from sklearn.linear_model import LinearRegression
-from extract import Extract, standard
+from utils.extract import Extract, standard
+# from extract import Extract, standard
 
 # load the validation set from the dataset valic_set.xls file using
 # pandas
