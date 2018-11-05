@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 import math
 from sklearn.linear_model import LinearRegression
-from extract import Extract
+from extract import Extract, standard
 
 df = pd.read_excel('dataset/training_set_rel3.xls')
 sets, essays, scores = df['essay_set'], df['essay'], df['domain1_score']
@@ -28,14 +28,13 @@ train = []
 # list
 index = 0
 
-
 # iterating through the essays for each given set. then extracting the
 # features need to train the model with and getting the resolved score
 # between the raters - examiners of the essays - which is the
 # domain1_score column in the xls sheet
 for essay in essays:
     # Extract the needed features from the essay
-    features = Extract(essay).get_features()
+    features = Extract(essay, standard).get_features()
 
     # add the features to the training data
     train.append(features)
