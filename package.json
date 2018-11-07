@@ -5,8 +5,7 @@
     "description": "an AI project for scoring essays",
     "main": "src/index.js",
     "scripts": {
-        "test": "jest",
-        "start": "webpack --mode development --config webpack.config.js --watch",
+        "dev": "webpack --mode development --config webpack.config.js --watch",
         "build": "webpack --mode production --config webpack.config.js"
     },
     "repository": {
