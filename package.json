@@ -19,8 +19,10 @@
     },
     "homepage": "https://github.com/timdereaper1/AI-project#readme",
     "dependencies": {
+        "apexcharts": "^2.2.1",
         "prop-types": "^15.6.2",
         "react": "^16.6.0",
+        "react-apexcharts": "^1.0.10",
         "react-dom": "^16.6.0",
         "react-router-dom": "^4.3.1",
         "semantic-ui-css": "^2.4.1",
