@@ -26,14 +26,16 @@ index = 0
 # validate the model with the validation set of essays
 for essay in essays:
     # extract the features needed by the model from the essay
-    features = Extract(essay, standard).get_features()
+    features = Extract(essay, standard)
 
     # predict score of the essay
-    score = model.predict([features])
+    score = model.predict([features.get_features()])
+    print(model.score())
+    print(features.get_raw_extract_values())
     print(score)
 
     # predict the score of the first 11 essays
-    if index == 10:
+    if index == 0:
         break
 
     index += 1

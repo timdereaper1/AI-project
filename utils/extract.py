@@ -26,6 +26,7 @@ class Extract():
     # essay
     def __init__(self, doc, standard):
         self.doc = doc
+        self.limits = standard
 
         # filter the essay removing the stopwords which are unnecessay in the
         # training model since they do not provide much significance to the
@@ -64,10 +65,9 @@ class Extract():
         self.coherence = LatentSemanticAnalysis(
             self.doc, stop=12).get_coherence()
 
-    # the method returns the numerical values of the features extracted from the essay
-    # in a list
-
     def get_features(self):
+        # the method returns the numerical values of the features extracted from the essay
+        # in a list
         features = self.voca
         features.append(self.words)
         features.append(self.sentences)
@@ -83,3 +83,17 @@ class Extract():
 
             index += 1
         return features
+
+    def get_raw_extract_values(self):
+        # the method returns the raw extracted values used to mark the essay
+        scores = {
+            'words': self.words * self.limits['words'],
+            'sencs': self.sentences * self.limits['sentences'],
+            'chars': self.chars * self.limits['chars'],
+            'misspelt_words': self.misspelt * self.limits['wrongs'],
+            'puncts': self.puncs * self.limits['puncs'],
+            'vocabs': vocab(self.tokens),
+            'analysis': self.coherence
+        }
+
+        return scores
