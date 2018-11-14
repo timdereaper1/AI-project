@@ -7,3 +7,5 @@ scikit-learn
 pandas
 flask
 gensim
+flask-restful
+xlrd

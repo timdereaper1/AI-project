@@ -1,7 +1,7 @@
 import pandas as pd
 import pickle
 from sklearn.linear_model import LinearRegression
-from utils.extract import Extract, standard
+from src.utils.extract import Extract, standard
 # from extract import Extract, standard
 
 # load the validation set from the dataset valic_set.xls file using
@@ -26,14 +26,15 @@ index = 0
 # validate the model with the validation set of essays
 for essay in essays:
     # extract the features needed by the model from the essay
-    features = Extract(essay, standard).get_features()
+    features = Extract(essay, standard)
 
     # predict score of the essay
-    score = model.predict([features])
+    score = model.predict([features.get_features()])
+    print(features.get_raw_extract_values())
     print(score)
 
     # predict the score of the first 11 essays
-    if index == 10:
+    if index == 0:
         break
 
     index += 1

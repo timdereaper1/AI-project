@@ -1,0 +1,86 @@
+{
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true,
+		"jest": true
+	},
+	"extends": "airbnb",
+	"parser": "babel-eslint",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true,
+			"jsx": true,
+			"sourceType": "module",
+			"allowImportExportEverywhere": true
+		}
+	},
+	"plugins": ["flowtype", "flowtype-errors", "import", "promise", "compat", "react"],
+	"rules": {
+		"arrow-body-style": "off",
+		"arrow-parens": ["warn", "as-needed"],
+		"block-spacing": "warn",
+		"camelcase": "warn",
+		"class-methods-use-this": "off",
+		"comma-spacing": "warn",
+		"dot-notation": "warn",
+		"no-console": [
+			"warn",
+			{
+				"allow": ["warn", "error"]
+			}
+		],
+		"no-mixed-operators": "warn",
+		"no-fallthrough": "warn",
+		"no-unused-vars": "warn",
+		"no-underscore-dangle": 0,
+		"comma-dangle": 0,
+		"eol-last": 1,
+		"flowtype-errors/show-errors": 2,
+		"function-paren-newline": 0,
+		"import/no-extraneous-dependencies": 0,
+		"import/prefer-default-export": 0,
+		"import/no-named-as-default": "off",
+		"indent": 0,
+		"no-else-return": 0,
+		"no-trailing-spaces": 0,
+		"no-use-before-define": 0,
+		"no-nested-ternary": 0,
+		"no-plusplus": 0,
+		"no-tabs": 0,
+		"no-mixed-spaces-and-tabs": "warn",
+		"brace-style": 0,
+		"curly": 0,
+		"no-lonely-if": 0,
+		"padded-blocks": 0,
+		"promise/always-return": 2,
+		"promise/catch-or-return": 2,
+		"prefer-const": "warn",
+		"prefer-destructuring": 0,
+		"jsx-quotes": 0,
+		"radix": 0,
+		"react/jsx-closing-bracket-location": 0,
+		"react/jsx-filename-extension": [
+			"warn",
+			{
+				"extensions": [".js", ".jsx"]
+			}
+		],
+		"react/sort-comp": "off",
+		"react/jsx-indent-props": "off",
+		"react/jsx-indent": "off",
+		"react/jsx-tag-spacing": "warn",
+		"react/no-unused-prop-types": "warn",
+		"react/prefer-stateless-function": "warn",
+		"react/require-default-props": "warn",
+		"react/no-did-mount-set-state": "warn",
+		"react/destructuring-assignment": "off",
+		"react/no-access-state-in-setstate": "off",
+		"react/jsx-one-expression-per-line": "off",
+		"semi": "warn",
+		"space-before-blocks": "warn",
+		"space-before-function-paren": "off",
+		"object-curly-newline": "off",
+		"import/no-useless-path-segments": "off"
+	}
+}

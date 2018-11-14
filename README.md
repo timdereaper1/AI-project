@@ -10,13 +10,20 @@ Install the python modules need for the project by running the command
 pip install -r requirement.txt
 ```
 
-After, installing the needed modules, run the command
+After, installing the needed modules, open up the terminal and run the command
 
 ```bash
-python read_dataset.py
+python
 ```
 
-Which creates a data folder of the extracted essays from the excel file placing them in their set folders
+Which will run python in the terminal. The system makes use of the nltk modules which needs to be installed on your pc. A few of its modules were used but due to the likely updates to be done on the system, it is recommended to install all of the nltk modules by running the code in the terminal whilst the python shell is running
+
+```python
+import nltk
+nltk.download()
+```
+
+A window will popup and select all to install all of nltk modules. Read more on python's nltk library for natural language processing [here](https://www.nltk.org)
 
 ---
 
