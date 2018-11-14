@@ -1,7 +1,7 @@
 import pandas as pd
 import pickle
 from sklearn.linear_model import LinearRegression
-from utils.extract import Extract, standard
+from src.utils.extract import Extract, standard
 # from extract import Extract, standard
 
 # load the validation set from the dataset valic_set.xls file using
@@ -30,7 +30,6 @@ for essay in essays:
 
     # predict score of the essay
     score = model.predict([features.get_features()])
-    print(model.score())
     print(features.get_raw_extract_values())
     print(score)
 

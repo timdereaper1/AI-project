@@ -1,4 +1,5 @@
-from app import Server
+from src.server import Server
+from flask import render_template
 
 # create a new instance of the Server
 server = Server().app

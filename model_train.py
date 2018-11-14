@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 import math
 from sklearn.linear_model import LinearRegression
-from utils.extract import Extract, standard
+from src.utils.extract import Extract, standard
 
 df = pd.read_excel('dataset/training_set_rel3.xls')
 sets, essays, scores = df['essay_set'], df['essay'], df['domain1_score']

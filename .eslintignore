@@ -37,6 +37,7 @@ flow-typed/npm/*
 # App packaged
 app/static
 app/static/main.entry.js
+webpack.config.js
 
 
 .idea
