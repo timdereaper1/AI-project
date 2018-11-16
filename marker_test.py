@@ -2,7 +2,6 @@ import pandas as pd
 import pickle
 from sklearn.linear_model import LinearRegression
 from src.utils.extract import Extract, standard
-# from extract import Extract, standard
 
 # load the validation set from the dataset valic_set.xls file using
 # pandas
@@ -16,7 +15,7 @@ model = LinearRegression()
 
 # load the trained model from the pickle file and initialize
 # the model variable with the loaded model from the file
-with open('model.pickle', 'rb') as f:
+with open('models/marker-model.pickle', 'rb') as f:
     model = pickle.load(f)
 
 # an index counter to count the total number of essays whose scores
@@ -30,7 +29,6 @@ for essay in essays:
 
     # predict score of the essay
     score = model.predict([features.get_features()])
-    print(features.get_raw_extract_values())
     print(score)
 
     # predict the score of the first 11 essays

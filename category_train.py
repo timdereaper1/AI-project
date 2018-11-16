@@ -10,13 +10,8 @@ sets, essays, scores = df['essay_set'], df['essay'], df['domain1_score']
 
 max_val = len(essays)
 
-# Initialize class to create term-document matrix which is used in
-# determining the content of the essay
-# tdm = textmining.TermDocumentMatrix()
-
-# the labels list holds the scores given by the raters - examiners of the
-# essays. which will be used in the linear regression model mapping to
-# the extracted features for an essay stored in the train list
+# labels stores the category for each essay which is used to determine
+# the essay's category
 labels = []
 
 # the train list holds the numerical values of the extracted features from
@@ -29,22 +24,14 @@ train = []
 index = 0
 
 # iterating through the essays for each given set. then extracting the
-# features need to train the model with and getting the resolved score
-# between the raters - examiners of the essays - which is the
-# domain1_score column in the xls sheet
+# features need to train the model with and getting the set of the essay
 for essay in essays:
     # Extract the needed features from the essay
     features = Extract(essay, standard).get_features()
-
     # add the features to the training data
     train.append(features)
-
-    # raters resolved score value for the current essay used to supervise the learning
-    score = scores[index]
-    if math.isinf(score) or math.isnan(score):
-        labels.append(0)
-    else:
-        labels.append(score)
+    # add the essay's set or category to the labels
+    labels.append(sets[index])
 
     if index >= max_val:
         break
@@ -57,5 +44,5 @@ model = LinearRegression().fit(train, labels)
 
 # save the trained model in a pickle file for faster loading of the model during
 # testing or using it in an application
-with open('model.pickle', 'wb') as f:
+with open('models/category-model.pickle', 'wb') as f:
     pickle.dump(model, f)
