@@ -29,17 +29,17 @@ A window will popup and select all to install all of nltk modules. Read more on 
 
 ## Model Training
 
-The model for the system has already been trained with the downloaded dataset from kaggle challenge. The model object was saved in the model.pickle file and loaded into the system for faster predictions and resolving memory issues to always re-train the model for any new input essay.
+The model for the system has already been trained with the downloaded dataset from kaggle challenge. The model object was saved in the marker.joblib file in the models folder and loaded into the system for faster predictions and resolving memory issues to always re-train the model for any new input essay. The model outputs to values, the first which is the score of the essay and the second is the category of the essay
 
 To re-train the nlp model for the automated essay grading, run the following command in the terminal
 
 ```bash
-python model_train.py
+python train_marker.py
 ```
 
-After the model is trained, the object model is saved in the model.pickle file which can then be loaded back into the system using pickle.
+After the model is trained, the object model is saved in the marker.joblib file in the models folder which can then be loaded back into the system using sklearn joblib module.
 
-In adding more feature selection and extraction for the model. It is recommended to use the extract class found in the utils/extract.py file. The extracted value must be added to the list of features such as
+In adding more feature selection and extraction for the model. It is recommended to use the extract class found in the src/utils/extract.py file. The extracted value must be added to the list of features such as
 
 ```python
 class Extract():
@@ -58,7 +58,7 @@ class Extract():
 To test the trained model, run the model_test.py file in the terminal which has the code to test the model from the test dataset of essays
 
 ```bash
-python model_test.py
+python test_marker.py
 ```
 
 ---
@@ -77,9 +77,9 @@ Which starts the server running on port 4000. For the database setup, configurat
 
 ### Frontend application
 
-The frontend is built with react and es6, all the code is stored in the src folder and compiled to es5 then stored in the app/static folder, which is the build folder for the frontend. The system has already been configured to load the javascript files into the index.html when the home route is being served by the server.
+The frontend is built with react 16.6.0, all the code is stored in the src/client folder and compiled to src/server/static folder, which is the build folder for the frontend. The system has already been configured to load the javascript files into the index.html when the home route is being served by the server.
 
-To start with the app development, first must have node installed on your machine which you can follow the download link to [here](https://nodejs.org/). After installing node, install the node packages for the app by running the command
+To start with the app development, first must have node installed on your machine which you can follow the download link [here](https://nodejs.org/). After installing node, install the node packages for the app by running the command
 
 ```bash
 npm install
@@ -91,9 +91,9 @@ Inside the root directory of the project. This will install all the dependencies
 npm run dev
 ```
 
-Which start the webpack bundler to bundle up the code and save it in the app/static folder.
+Which start the webpack bundler to bundles the code into src/server/static folder.
 
-For production application, run the script, which bundles the code for a production server.
+For production application, run the command in the terminal.
 
 ```bash
 npm run build

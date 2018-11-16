@@ -10,23 +10,12 @@ from src.utils.latent import LatentSemanticAnalysis
 # using the UK and the US dictionaries for checking misspelt words
 spell_checker = SpellChecker('en_UK', 'en_US')
 
-# dictionary of standard values used to train the model
-standard = {
-    'words': 300,
-    'sentences': 100,
-    'chars': 1000,
-    'wrongs': 10,
-    'puncs': 30,
-    'voca': 100
-}
-
 
 class Extract():
     # the Extract class is used to extract the various features from the
     # essay
-    def __init__(self, doc, standard):
+    def __init__(self, doc):
         self.doc = doc
-        self.limits = standard
 
         # filter the essay removing the stopwords which are unnecessay in the
         # training model since they do not provide much significance to the
@@ -36,30 +25,28 @@ class Extract():
 
         # extracting the word count feature from the essay by counting the total
         # number of words written in the essay
-        self.words = len(self.tokens) / standard['words']
+        self.words = len(self.tokens)
 
         # extracting the sentence count feature from essay that's the total
         # number of sentences written
-        self.sentences = self.text.count('.') / standard['sentences']
+        self.sentences = self.text.count('.')
 
         # extracting the character count feature involving the total number of
         # individual letters written in the essay
-        self.chars = sum(len(w) for w in self.tokens) / standard['chars']
+        self.chars = sum(len(w) for w in self.tokens)
 
         # using PyEnchant to extract the total number of mispelt words in the essay
         # to determine the orthography or command over the language
         spell_checker.set_text(self.text)
-        self.misspelt = len(
-            [err.word for err in spell_checker]) / standard['wrongs']
+        self.misspelt = len([err.word for err in spell_checker])
 
         # extract punctuation features by counting the total number of punctuations used
         # in the essay
         self.puncs = len(list(filter(functools.partial(
-            operator.contains, string.punctuation), self.text))) / standard['puncs']
+            operator.contains, string.punctuation), self.text)))
 
         # extracting the parts of speech from the essay as a proxy for vocabulary
-        self.voca = [val / standard['voca']
-                     for val in vocab(self.tokens).values()]
+        self.voca = [val for val in vocab(self.tokens).values()]
 
         # evaluating coherence
         self.coherence = LatentSemanticAnalysis(
@@ -87,11 +74,11 @@ class Extract():
     def get_raw_extract_values(self):
         # the method returns the raw extracted values used to mark the essay
         scores = {
-            'words': self.words * self.limits['words'],
-            'sencs': self.sentences * self.limits['sentences'],
-            'chars': self.chars * self.limits['chars'],
-            'misspelt_words': self.misspelt * self.limits['wrongs'],
-            'puncts': self.puncs * self.limits['puncs'],
+            'words': self.words,
+            'sencs': self.sentences,
+            'chars': self.chars,
+            'misspelt_words': self.misspelt,
+            'puncts': self.puncs,
             'vocabs': vocab(self.tokens),
             'analysis': self.coherence
         }
