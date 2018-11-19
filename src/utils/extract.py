@@ -75,11 +75,11 @@ class Extract():
         # the method returns the raw extracted values used to mark the essay
         scores = {
             'words': self.words,
-            'sencs': self.sentences,
-            'chars': self.chars,
+            'sentences': self.sentences,
+            'characters': self.chars,
             'misspelt_words': self.misspelt,
-            'puncts': self.puncs,
-            'vocabs': vocab(self.tokens),
+            'punctuations': self.puncs,
+            'vocabulary': vocab(self.tokens),
             'analysis': self.coherence
         }
 

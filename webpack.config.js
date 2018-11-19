@@ -1,5 +1,7 @@
 const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const webpack = require('webpack');
+const webpackLiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
 	target: 'web',
@@ -92,5 +94,6 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.js', '.jsx', '.json']
-	}
+	},
+	plugins: [new webpack.HotModuleReplacementPlugin(), new webpackLiveReloadPlugin()]
 };
