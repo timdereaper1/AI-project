@@ -5,7 +5,7 @@ export default class App extends Component<{}> {
 	render(): React.ReactNode {
 		return (
 			<div>
-				<Button primary>button</Button>
+				<Button primary>bton</Button>
 			</div>
 		);
 	}
