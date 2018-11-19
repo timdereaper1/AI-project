@@ -45,7 +45,7 @@ export default class HomePage extends React.Component {
                 <div style={{marginTop: '55px', }}>
 
 
-                    <CKEditor style ={{border: '1px solid #AEAEAE',}}
+                    <CKEditor style ={{}}
                          editor = {ClassicEditor}
                          data = "<p> Content</p>"
                          onInit ={editor=>{

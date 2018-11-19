@@ -19,5 +19,5 @@ class EssayGrader(Resource):
         # features = Extract(essay_data['essay'])
         # scores = marker.predict([features.get_features()])[0]
         # the method marks the essay and returns the results as a json
-        # return jsonify({'score': scores[0], 'category': scores[1]})
+        # return jsonify({'score': scores[0], 'category': scores[1], 'raw': features.get_raw_extract_values()})
         return 'marked'
