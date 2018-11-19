@@ -6,7 +6,8 @@
     "main": "src/index.js",
     "scripts": {
         "dev": "webpack --mode development --config webpack.config.js --watch",
-        "build": "webpack --mode production --config webpack.config.js"
+        "build": "webpack --mode production --config webpack.config.js",
+        "serve": "python app.py | npm run dev"
     },
     "repository": {
         "type": "git",
@@ -19,6 +20,8 @@
     },
     "homepage": "https://github.com/timdereaper1/AI-project#readme",
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^11.1.1",
+        "@ckeditor/ckeditor5-react": "^1.0.0",
         "apexcharts": "^2.2.1",
         "prop-types": "^15.6.2",
         "react": "^16.6.0",
