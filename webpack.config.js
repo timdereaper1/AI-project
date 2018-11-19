@@ -2,6 +2,8 @@ const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
 const webpackLiveReloadPlugin = require('webpack-livereload-plugin');
+const webpackBar = require('webpackbar');
+const webpackLoggerPlugin = require('webpack-logger-plugin');
 
 module.exports = {
 	target: 'web',
@@ -95,5 +97,11 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx', '.json']
 	},
-	plugins: [new webpack.HotModuleReplacementPlugin(), new webpackLiveReloadPlugin()]
+	plugins: [
+		new webpack.HotModuleReplacementPlugin(),
+		new webpackLiveReloadPlugin(),
+		new webpackBar(),
+		new webpackLoggerPlugin()
+	],
+	stats: 'errors-only'
 };
