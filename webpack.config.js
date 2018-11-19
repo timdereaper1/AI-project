@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const webpackLiveReloadPlugin = require('webpack-livereload-plugin');
 const webpackBar = require('webpackbar');
 const webpackLoggerPlugin = require('webpack-logger-plugin');
+const openBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
 	target: 'web',
@@ -101,7 +102,8 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin(),
 		new webpackLiveReloadPlugin(),
 		new webpackBar(),
-		new webpackLoggerPlugin()
+		new webpackLoggerPlugin(),
+		new openBrowserPlugin({ url: 'http://localhost:4000' })
 	],
 	stats: 'errors-only'
 };

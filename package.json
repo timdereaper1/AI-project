@@ -21,6 +21,8 @@
 	},
 	"homepage": "https://github.com/timdereaper1/AI-project#readme",
 	"dependencies": {
+		"@ckeditor/ckeditor5-build-classic": "^11.1.1",
+		"@ckeditor/ckeditor5-react": "^1.0.0",
 		"apexcharts": "^2.2.1",
 		"prop-types": "^15.6.2",
 		"react": "^16.6.0",
@@ -54,6 +56,7 @@
 		"file-loader": "^2.0.0",
 		"flow": "^0.2.3",
 		"flow-bin": "^0.85.0",
+		"open-browser-webpack-plugin": "0.0.5",
 		"react-hot-loader": "^4.3.12",
 		"style-loader": "^0.23.1",
 		"uglifyjs-webpack-plugin": "^2.0.1",
