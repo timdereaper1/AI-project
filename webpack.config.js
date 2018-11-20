@@ -14,7 +14,8 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname, './src/server/static/'),
-		filename: '[name].entry.js'
+		filename: '[name].entry.js',
+		publicPath: '/static/'
 	},
 	module: {
 		rules: [

@@ -1,23 +1,15 @@
 import React from 'react';
-import { Container, Grid, Header, Button } from 'semantic-ui-react';
-import EssayAnalysis from './EssayAnalysis';
-import POSAnalysis from './POSAnalysis';
-import result from './result.json';
-import pos from './pos.json';
-import { filterEssayResults, merge, posList } from './_helpers';
-import AnalysisTable from './AnalysisTable';
+import { Sidebar, Dimmer, Header, Button } from 'semantic-ui-react';
+import result from './_data/result.json';
+import { filterEssayResults } from './_helpers';
+import AnalysisView from './AnalysisView';
 import './css/analysis.css';
 
 export default class Analysis extends React.Component<{}> {
 	state = {
-		pos: {
-			series: null,
-			labels: null
-		},
-		essay: {
-			series: null,
-			labels: null
-		}
+		pos: null,
+		essay: null,
+		showSidePane: false
 	};
 
 	componentWillMount() {
@@ -30,64 +22,53 @@ export default class Analysis extends React.Component<{}> {
 
 	render(): React.ReactNode {
 		return (
-			<Container>
-				<Header as="h1" size="huge" textAlign="center">
-					Essay Analysis
-				</Header>
-				<Grid>
-					<Grid.Row>
-						<Grid.Column width={7}>
-							<div className="analysis-widget-block">
-								<EssayAnalysis
-									title="Chart for Essay "
-									series={this.state.essay.series}
-									labels={this.state.essay.labels}
-									width="340"
-								/>
-							</div>
-						</Grid.Column>
-						<Grid.Column width={9}>
-							<div className="analysis-widget-block">
-								<POSAnalysis
-									title="Chart for Essay "
-									series={this.state.pos.series}
-									labels={this.state.pos.labels}
-									width={540}
-								/>
-							</div>
-						</Grid.Column>
-					</Grid.Row>
-					<Grid.Row>
-						<Grid.Column width={7}>
-							<div className="analysis-widget-block">
-								<Header>Table Showing Basic Essay Elements</Header>
-								<AnalysisTable
-									values={merge(this.state.essay.labels, this.state.essay.series)}
-								/>
-							</div>
-						</Grid.Column>
-						<Grid.Column width={9}>
-							<div className="analysis-widget-block">
-								<Header>
-									Table Showing Parts Of Speech Of The Essay
-									<Button size="mini" circular floated="right" compact positive>
-										View
-									</Button>
-								</Header>
-								<AnalysisTable
-									values={posList(
-										pos,
-										this.state.pos.labels,
-										this.state.pos.series
-									)}
-									extend
-									endValue={6}
-								/>
-							</div>
-						</Grid.Column>
-					</Grid.Row>
-				</Grid>
-			</Container>
+			<Sidebar.Pushable>
+				<Sidebar
+					direction="right"
+					animation="push"
+					width="very wide"
+					visible={this.state.showSidePane}
+				>
+					<div className="analysis-sidebar">
+						<Button
+							className="analysis-sidebar-close-btn"
+							icon="close"
+							floated="right"
+							basic
+							color="red"
+							compact
+							onClick={this.handleSideBarClose}
+						/>
+						<Header>Parts of Speech</Header>
+					</div>
+				</Sidebar>
+				<Sidebar.Pusher>
+					<Dimmer.Dimmable dimmed={this.state.showSidePane}>
+						<Dimmer
+							inverted
+							onClick={this.handleSideBarClose}
+							active={this.state.showSidePane}
+						>
+							<Header as="h2" icon inverted style={{ color: 'black' }}>
+								Side Bar
+							</Header>
+						</Dimmer>
+						<AnalysisView
+							pos={this.state.pos}
+							essay={this.state.essay}
+							onSideBarView={this.handleSideBar}
+						/>
+					</Dimmer.Dimmable>
+				</Sidebar.Pusher>
+			</Sidebar.Pushable>
 		);
 	}
+
+	handleSideBar = (): void => {
+		this.setState({ showSidePane: true });
+	};
+
+	handleSideBarClose = (): void => {
+		this.setState({ showSidePane: false });
+	};
 }
