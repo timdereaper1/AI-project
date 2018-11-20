@@ -16,7 +16,7 @@ const AnalysisTable: React.FunctionComponent<AnalysisTableProps> = props => (
 				{props.extend && (
 					<React.Fragment>
 						<Table.HeaderCell>Abbreviation</Table.HeaderCell>
-						<Table.HeaderCell>Description</Table.HeaderCell>
+						{/* <Table.HeaderCell>Description</Table.HeaderCell> */}
 					</React.Fragment>
 				)}
 				<Table.HeaderCell>Value</Table.HeaderCell>
@@ -30,7 +30,7 @@ const AnalysisTable: React.FunctionComponent<AnalysisTableProps> = props => (
 						{props.extend && (
 							<React.Fragment>
 								<Table.Cell>{val.abbr}</Table.Cell>
-								<Table.Cell>{val.desc}</Table.Cell>
+								{/* <Table.Cell>{val.desc}</Table.Cell> */}
 							</React.Fragment>
 						)}
 						<Table.Cell>{val.value}</Table.Cell>

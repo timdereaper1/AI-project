@@ -5,3 +5,16 @@ export interface ChartProps {
 	title?: string;
 	labels?: Array<string>;
 }
+
+export interface Analysis {
+	series: Array<number>;
+	labels: Array<string>;
+}
+
+export interface POSDetails {
+	abbr: string;
+	key: string;
+	desc: string;
+	value: number;
+	index: number;
+}

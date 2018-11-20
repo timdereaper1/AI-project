@@ -1,11 +1,11 @@
 .analysis-widget-block {
 	width: 100%;
 	background: white;
-	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.125);
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 	padding: 1.25rem 1.5rem;
 	border-radius: 8px;
 }
-
-.apexcharts-canvas {
-	margin: auto;
+.ui.large.header.analysis-view-header {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
 }
