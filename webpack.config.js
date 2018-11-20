@@ -7,6 +7,7 @@ const webpackLoggerPlugin = require('webpack-logger-plugin');
 const openBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
+	devtool: 'cheap-module-source-map',
 	target: 'web',
 	entry: {
 		main: path.join(__dirname, './src/client/index.js')

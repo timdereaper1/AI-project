@@ -79,7 +79,7 @@ class Extract():
             'characters': self.chars,
             'misspelt_words': self.misspelt,
             'punctuations': self.puncs,
-            'vocabulary': vocab(self.tokens),
+            'pos': vocab(self.tokens),
             'analysis': self.coherence
         }
 
