@@ -1,22 +1,22 @@
 .home-page-wrapper {
-	background-repeat: 'no-repeat';
-	background-position: 'center';
-	background-size: 'cover';
-	min-height: '100vh';
-	width: '100%';
-	display: 'flex';
-	flex-direction: 'column';
-	justify-content: 'center';
-	align-items: 'center';
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	min-height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .home-page-title {
-	color: 'white';
+	color: white;
 	font-family: 'Lucida Calligraphy';
 	font-size: 50px;
 }
 .home-page-desc {
 	font-family: 'Lucida';
 	font-size: 25;
-	color: 'white';
-	text-align: 'center';
+	color: white;
+	text-align: center;
 }

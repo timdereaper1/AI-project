@@ -66,7 +66,7 @@ class EssayContent extends React.Component<RouteComponentProps> {
 
 	handleEditorChange = (event: any, editor: any): void => {
 		const data = editor.getData();
-		console.log({ event, editor, data });
+		console.log(data);
 	};
 
 	handleProceedClick = (): void => {
