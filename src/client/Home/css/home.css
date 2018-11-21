@@ -9,14 +9,13 @@
 	justify-content: center;
 	align-items: center;
 }
-.home-page-title {
+.ui.header.home-page-title {
 	color: white;
-	font-family: 'Lucida Calligraphy';
-	font-size: 50px;
+	font-size: 5rem;
 }
-.home-page-desc {
-	font-family: 'Lucida';
-	font-size: 25;
+.ui.header .sub.header.home-page-desc {
 	color: white;
-	text-align: center;
+	font-size: 1.5rem;
+	/* font-family: 'Lucida';
+	text-align: center; */
 }

@@ -5,8 +5,8 @@
 	"description": "an AI project for scoring essays",
 	"main": "src/index.js",
 	"scripts": {
-		"dev": "webpack --mode development --watch --config webpack.config.js ",
-		"build": "webpack --mode production --config webpack.config.js",
+		"dev": "rm -rf src/server/static && webpack --mode development --watch",
+		"build": "rm -rf src/server/static && webpack --mode production",
 		"serve-linux": "python3 app.py | npm run dev",
 		"serve-win": "python app.py | npm run dev"
 	},

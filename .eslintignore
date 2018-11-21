@@ -35,8 +35,8 @@ flow-typed/npm/*
 !flow-typed/npm/module_vx.x.x.js
 
 # App packaged
-app/static
-app/static/main.entry.js
+src/server/static
+src/server/static/main.entry.js
 webpack.config.js
 
 
