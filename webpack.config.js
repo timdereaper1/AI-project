@@ -7,13 +7,15 @@ const webpackLoggerPlugin = require('webpack-logger-plugin');
 const openBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
+	devtool: 'cheap-module-source-map',
 	target: 'web',
 	entry: {
 		main: path.join(__dirname, './src/client/index.js')
 	},
 	output: {
 		path: path.join(__dirname, './src/server/static/'),
-		filename: '[name].entry.js'
+		filename: '[name].entry.js',
+		publicPath: '/static/'
 	},
 	module: {
 		rules: [
@@ -68,7 +70,8 @@ module.exports = {
 			{
 				test: /\.jsx?$/,
 				exclude: /(node_modules)/,
-				loader: 'babel-loader'
+				loader: 'babel-loader',
+				options: { cacheDirectory: true }
 			}
 		]
 	},

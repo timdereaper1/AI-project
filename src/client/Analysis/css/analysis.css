@@ -1,0 +1,7 @@
+.analysis-sidebar {
+	padding: 2rem 0.85rem;
+	box-sizing: border-box;
+}
+.analysis-sidebar-close-btn {
+	border: none !important;
+}
