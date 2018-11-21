@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { hot, setConfig } from 'react-hot-loader';
+import { hot } from 'react-hot-loader';
 import { routes } from './routes';
 
 class App extends Component<{}> {
@@ -19,11 +19,5 @@ class App extends Component<{}> {
 		);
 	}
 }
-
-// https://github.com/gaearon/react-hot-loader/blob/master/README.md
-setConfig({
-	ignoreSFC: true, // RHL will be __completely__ disabled for SFC
-	pureRender: true // RHL will not change render method
-});
 
 export default hot(module)(App);

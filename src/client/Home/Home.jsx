@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Header } from 'semantic-ui-react';
 import { RouteComponentProps } from 'react-router-dom';
 import './css/home.css';
 import image from '../_shared/assets/imgs/firs.jpg';
@@ -13,11 +13,13 @@ class Home extends React.Component<RouteComponentProps> {
 	render(): React.ReactNode {
 		return (
 			<div className="home-page-wrapper" style={styles.wrapper}>
-				<h1 className="home-page-title">Welcome</h1>
-				<p className="home-page-desc">
-					Welcome to the new and improved Essay Grading System. An innovative solution to
-					grading essays
-				</p>
+				<Header className="home-page-title" textAlign="center">
+					Welcome
+					<Header.Subheader className="home-page-desc">
+						Welcome to the new and improved Essay Grading System. An innovative solution
+						to grading essays
+					</Header.Subheader>
+				</Header>
 				<Button style={styles.button} onClick={this.handleProceedClick}>
 					Click to Proceed
 				</Button>
