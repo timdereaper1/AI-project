@@ -1,12 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { hot } from 'react-hot-loader';
 import 'semantic-ui-css/semantic.min.css';
-import { Analysis } from './Analysis';
-// import App from './App';
-// import HomePage from './HomePage';
-// import Results from './Results';
+import App from './App';
 
-const ReloadApp = hot(module)(Analysis);
-
-ReactDom.render(<ReloadApp />, document.getElementById('app'));
+ReactDom.render(<App />, document.getElementById('app'));
