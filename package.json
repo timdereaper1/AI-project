@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"private": true,
 	"description": "an AI project for scoring essays",
-	"main": "src/index.js",
+	"main": "src/client/index.js",
 	"scripts": {
 		"dev": "rm -rf src/server/static && webpack --mode development --watch",
 		"build": "rm -rf src/server/static && webpack --mode production",

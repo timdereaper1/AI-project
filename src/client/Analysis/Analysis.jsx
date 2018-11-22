@@ -1,12 +1,13 @@
 import React from 'react';
 import { Sidebar, Dimmer, Header } from 'semantic-ui-react';
+import { RouteComponentProps } from 'react-router-dom';
 import result from './_data/result.json';
 import pos from './_data/pos.json';
 import { filterEssayResults, getPOSResultDetails } from './_helpers';
 import AnalysisView from './AnalysisView';
 import AnalysisDetailView from './AnalysisDetailView';
 
-export default class Analysis extends React.Component<{}> {
+export default class Analysis extends React.Component<RouteComponentProps> {
 	state = {
 		pos: null,
 		essay: null,
@@ -52,6 +53,7 @@ export default class Analysis extends React.Component<{}> {
 							</Header>
 						</Dimmer>
 						<AnalysisView
+							{...this.props}
 							pos={this.state.pos}
 							essay={this.state.essay}
 							onSideBarView={this.handleSideBar}

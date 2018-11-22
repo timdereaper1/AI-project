@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Header, Grid, Button } from 'semantic-ui-react';
+import { RouteComponentProps } from 'react-router-dom';
 import AnalysisTable from './AnalysisTable';
 import AnalysisChart from './AnalysisChart';
 import { merge, Analysis, POSDetails } from './_helpers';
 import './css/view.css';
 
-interface AnalysisViewProps {
+interface AnalysisViewProps extends RouteComponentProps {
 	essay: Analysis;
 	pos: Analysis;
 	onSideBarView: Function;
