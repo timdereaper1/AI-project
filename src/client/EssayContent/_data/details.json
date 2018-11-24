@@ -1,0 +1,12 @@
+{
+	"details": [
+		{
+			"name": "Detail One",
+			"desc": "Description for detail one"
+		},
+		{
+			"name": "Detail Two",
+			"desc": "Description for detail two"
+		}
+	]
+}

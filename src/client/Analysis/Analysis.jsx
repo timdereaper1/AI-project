@@ -1,7 +1,6 @@
 import React from 'react';
 import { Sidebar, Dimmer, Header } from 'semantic-ui-react';
 import { RouteComponentProps } from 'react-router-dom';
-import result from './_data/result.json';
 import pos from './_data/pos.json';
 import { filterEssayResults, getPOSResultDetails } from './_helpers';
 import AnalysisView from './AnalysisView';
@@ -17,14 +16,19 @@ export default class Analysis extends React.Component<RouteComponentProps> {
 	};
 
 	componentWillMount() {
-		const { pos: resultPOS, essay } = filterEssayResults(result);
-		const list = getPOSResultDetails(pos, resultPOS.labels, resultPOS.series);
-		this.setState({
-			pos: resultPOS,
-			essay,
-			list,
-			score: result.score
-		});
+		const { state } = this.props.location;
+		if (state) {
+			const { pos: resultPOS, essay } = filterEssayResults(state);
+			const list = getPOSResultDetails(pos, resultPOS.labels, resultPOS.series);
+			this.setState({
+				pos: resultPOS,
+				essay,
+				list,
+				score: state.score
+			});
+		} else {
+			this.props.history.replace('/content');
+		}
 	}
 
 	render(): React.ReactNode {

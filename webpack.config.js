@@ -15,7 +15,9 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, './src/server/static/'),
 		filename: '[name].entry.js',
-		publicPath: '/static/'
+		publicPath: '/static/',
+		hotUpdateChunkFilename: '.hot/[id].[hash].hot-update.js',
+		hotUpdateMainFilename: '.hot/[hash].hot-update.json'
 	},
 	module: {
 		rules: [
