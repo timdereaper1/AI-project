@@ -1,16 +1,77 @@
-.essay-content-wrapper {
+.essay-content.wrapper {
 	display: flex;
 	flex-direction: row;
-	align-content: left;
+	/* align-content: left; */
 	width: 100%;
+	box-sizing: border-box;
+	align-items: flex-start;
 }
-.essay-content-profile-img {
+.essay-content .profile,
+.essay-content .form {
+	box-sizing: border-box;
+	padding: 1rem;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.125);
+	margin: 0 1rem;
+	border-radius: 4px;
+	margin-bottom: 1rem;
+}
+/* student profile section styles */
+.essay-content .profile {
+	flex: 1;
+}
+.essay-content .profile-img {
 	width: 100%;
-	height: 50%;
-	padding: 25px;
+	height: 200px;
 }
-.essay-content-profile-card {
-	border: 1px solid #aeaeae;
-	margin: 25px;
-	height: 100%;
+.essay-content .profile-card {
+	/* border: 1px solid aeaeae; */
+	border-radius: 4px;
+	padding: 0.75rem 1rem;
+	box-sizing: border-box;
+	/* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.125); */
+	margin-top: 1rem;
+}
+/* text content form styles */
+.essay-content .form {
+	flex: 3;
+}
+/* essay heading form styles */
+.essay-content .title-form {
+	display: flex;
+	height: auto;
+}
+.essay-content .title-form .submit-button {
+	color: white;
+	background: #fe26f4;
+	border-radius: 1px;
+	margin-left: 5px;
+	font-weight: normal;
+}
+.essay-content .title-form .ui.input.title-input,
+.essay-content .title-form .ui.input.title-input > input {
+	flex: 1;
+	/* transition: box-shadow 0.35s; */
+	box-sizing: border-box;
+}
+/* .essay-content .title-form .ui.input.title-input > input:hover,
+.essay-content .title-form .ui.input.title-input > input:focus {
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.125);
+	border: none;
+} */
+/* editor section styles */
+.essay-content .editor-wrapper {
+	margin-top: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.essay-content .ck.ck-content.ck-editor__editable {
+	height: 340px;
+}
+/* styles to modal button */
+.essay-content .ui.button.modal-trigger-btn {
+	color: white;
+	background-color: #458cd0;
+	align-self: flex-end;
+	margin-top: 10px;
 }

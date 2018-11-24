@@ -1,98 +1,105 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Input, Container, Header, List } from 'semantic-ui-react';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { RouteComponentProps } from 'react-router-dom';
-import image1 from '../_shared/assets/imgs/firs.jpg';
+import image1 from '../_shared/assets/imgs/11.jpg';
 import './css/content.css';
-
-interface Styles {
-	button: React.CSSProperties;
-	button2: React.CSSProperties;
-}
+import ResultModal from './ResultModal';
+import details from './_data/details.json';
+import { AppHeader } from '../_shared/components';
+import { submitEssay } from '../_shared/services';
 
 class EssayContent extends React.Component<RouteComponentProps> {
 	state = {
-		data: '<p>Content</p>'
+		data: '',
+		details: [],
+		open: false,
+		result: null
 	};
+
+	componentWillMount() {
+		this.setState({ details: [...this.state.details, ...details.details] });
+	}
 
 	render(): React.ReactNode {
 		return (
-			<div className="essay-content-wrapper">
-				<div style={{ display: 'flex', flexDirection: 'column', width: '30%' }}>
-					<img src={image1} alt="" className="essay-content-profile-img" />
-					<div className="essay-content-profile-card">
-						<h1 stlye={{ textAlign: 'center' }}>AMA</h1>
-						<h3 style={{ fontFamily: 'Segoe UI', fontWeight: 'normal' }}>
-							New and Improved Automated Essay Marker
-						</h3>
-						<ul>
-							<li>Detail one</li>
-							<li>Detail two</li>
-							<li>Detail three</li>
-							<li>Detail four</li>
-							<li>Detail five</li>
-						</ul>
+			<Container>
+				<AppHeader />
+				<p style={{ padding: '0 1rem' }}>
+					AMA is an AI agent trained to access and score english essays with selected
+					criteria standards for essay scoring. Click here to view criteria. <br />
+					The title of the essay is required and must be entered in the input field below,
+					else AMA cannot fully access the essay. Type in your essay in the provided text
+					editor, then click on submit button to submit the essay for marking.
+				</p>
+				<div className="essay-content wrapper">
+					<div className="profile">
+						<img src={image1} alt="" className="profile-img" />
+						<div className="profile-card">
+							<Header size="medium">Grading Scale</Header>
+							<List divided animated>
+								{this.state.details.map((detail, _i) => (
+									/* eslint-disable-next-line react/no-array-index-key */
+									<List.Item key={_i}>
+										<List.Content>{detail.name}</List.Content>
+									</List.Item>
+								))}
+							</List>
+						</div>
+					</div>
+					<div className="form">
+						<div className="title-form">
+							<Input
+								type="text"
+								placeholder="Enter the title of the essay..."
+								className="title-input"
+							/>
+							<Button onClick={this.handleEssaySubmission} className="submit-button">
+								Submit
+							</Button>
+						</div>
+						<div className="editor-wrapper">
+							<CKEditor
+								style={{ height: '100vh' }}
+								editor={ClassicEditor}
+								data={this.state.data}
+								onChange={this.handleEditorChange}
+							/>
+							<ResultModal
+								result={this.state.result}
+								open={this.state.open}
+								onClick={this.handleProceedClick}
+							/>
+						</div>
 					</div>
 				</div>
-				<div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
-					<div style={{ display: 'flex', flexDirection: 'row', height: '20%' }}>
-						<input
-							type="text"
-							placeholder="Title.."
-							style={{ marginTop: '75px', marginLeft: '2%', width: '100%' }}
-						/>
-						<Button style={styles.button2}>Here</Button>
-					</div>
-					<div style={{ marginTop: '55px' }}>
-						<CKEditor
-							editor={ClassicEditor}
-							data={this.state.data}
-							onInit={this.handleEditorLoad}
-							onChange={this.handleEditorChange}
-						/>
-						<Button style={styles.button} onClick={this.handleProceedClick}>
-							Click to Proceed
-						</Button>
-					</div>
-				</div>
-			</div>
+			</Container>
 		);
 	}
 
-	handleEditorLoad = (editor: any): void => {
-		console.log('Editor is ready to use', editor);
-	};
-
 	handleEditorChange = (event: any, editor: any): void => {
 		const data = editor.getData();
-		console.log(data);
+		this.setState({ data });
 	};
 
 	handleProceedClick = (): void => {
-		this.props.history.push('/');
+		this.props.history.push('/analysis', this.state.result);
+	};
+
+	handleEssaySubmission = async (): void => {
+		const html = this.state.data
+			.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, '\n')
+			.replace(/<\/?[^>]+(>|$)/g, '')
+			.trim();
+		const result = await submitEssay(html);
+		if (result) {
+			this.setState({
+				result,
+				open: true
+			});
+		}
 	};
 }
-
-const styles: Styles = {
-	button: {
-		color: ' white',
-		background: '#173994',
-		borderRadius: '1px',
-		align: 'right',
-		marginTop: '10px',
-		height: '35px',
-		weight: '10%'
-	},
-	button2: {
-		weight: '40%',
-		color: 'white',
-		background: '#FE26F4',
-		marginTop: '75px',
-		borderRadius: '1px',
-		marginLeft: '5px',
-		fontWeight: 'normal'
-	}
-};
 
 export default EssayContent;

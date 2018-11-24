@@ -1,12 +1,12 @@
 import React from 'react';
 import { Sidebar, Dimmer, Header } from 'semantic-ui-react';
-import result from './_data/result.json';
+import { RouteComponentProps } from 'react-router-dom';
 import pos from './_data/pos.json';
 import { filterEssayResults, getPOSResultDetails } from './_helpers';
 import AnalysisView from './AnalysisView';
 import AnalysisDetailView from './AnalysisDetailView';
 
-export default class Analysis extends React.Component<{}> {
+export default class Analysis extends React.Component<RouteComponentProps> {
 	state = {
 		pos: null,
 		essay: null,
@@ -16,14 +16,19 @@ export default class Analysis extends React.Component<{}> {
 	};
 
 	componentWillMount() {
-		const { pos: resultPOS, essay } = filterEssayResults(result);
-		const list = getPOSResultDetails(pos, resultPOS.labels, resultPOS.series);
-		this.setState({
-			pos: resultPOS,
-			essay,
-			list,
-			score: result.score
-		});
+		const { state } = this.props.location;
+		if (state) {
+			const { pos: resultPOS, essay } = filterEssayResults(state);
+			const list = getPOSResultDetails(pos, resultPOS.labels, resultPOS.series);
+			this.setState({
+				pos: resultPOS,
+				essay,
+				list,
+				score: state.score
+			});
+		} else {
+			this.props.history.replace('/content');
+		}
 	}
 
 	render(): React.ReactNode {
@@ -52,6 +57,7 @@ export default class Analysis extends React.Component<{}> {
 							</Header>
 						</Dimmer>
 						<AnalysisView
+							{...this.props}
 							pos={this.state.pos}
 							essay={this.state.essay}
 							onSideBarView={this.handleSideBar}

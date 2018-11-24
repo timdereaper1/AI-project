@@ -1,0 +1,10 @@
+/* page header */
+.ui.header.main-app-header {
+	padding: 0.75rem 0;
+	box-sizing: border-box;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.125);
+	margin-top: 0.55rem;
+	border-radius: 4px;
+	background-color: #b4d4f1;
+	margin-bottom: 1.4rem;
+}

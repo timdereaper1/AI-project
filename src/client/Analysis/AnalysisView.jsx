@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Header, Grid, Button } from 'semantic-ui-react';
+import { RouteComponentProps } from 'react-router-dom';
 import AnalysisTable from './AnalysisTable';
 import AnalysisChart from './AnalysisChart';
 import { merge, Analysis, POSDetails } from './_helpers';
 import './css/view.css';
+import { AppHeader } from '../_shared/components';
+import { score } from '../_shared/services';
 
-interface AnalysisViewProps {
+interface AnalysisViewProps extends RouteComponentProps {
 	essay: Analysis;
 	pos: Analysis;
 	onSideBarView: Function;
@@ -16,9 +19,9 @@ interface AnalysisViewProps {
 
 const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => (
 	<Container>
-		<Header size="large" className="analysis-view-header">
-			Name: Atnix2018
-			<Header.Subheader>Score: {Math.floor(props.score)}</Header.Subheader>
+		<AppHeader />
+		<Header size="small" className="analysis-view-header">
+			Score: {score(props.score)}
 		</Header>
 		<Grid>
 			<Grid.Row>
