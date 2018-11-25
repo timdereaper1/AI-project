@@ -2,6 +2,7 @@ import React from 'react';
 import { Sidebar, Dimmer, Header } from 'semantic-ui-react';
 import { RouteComponentProps } from 'react-router-dom';
 import pos from './_data/pos.json';
+import res from './_data/result.json';
 import { filterEssayResults, getPOSResultDetails } from './_helpers';
 import AnalysisView from './AnalysisView';
 import AnalysisDetailView from './AnalysisDetailView';
@@ -16,19 +17,19 @@ export default class Analysis extends React.Component<RouteComponentProps> {
 	};
 
 	componentWillMount() {
-		const { state } = this.props.location;
-		if (state) {
-			const { pos: resultPOS, essay } = filterEssayResults(state);
-			const list = getPOSResultDetails(pos, resultPOS.labels, resultPOS.series);
-			this.setState({
-				pos: resultPOS,
-				essay,
-				list,
-				score: state.score
-			});
-		} else {
-			this.props.history.replace('/content');
-		}
+		// const { state } = this.props.location;
+		const { pos: resultPOS, essay } = filterEssayResults(res);
+		const list = getPOSResultDetails(pos, resultPOS.labels, resultPOS.series);
+		this.setState({
+			pos: resultPOS,
+			essay,
+			list,
+			score: res.score
+		});
+		// if (state) {
+		// } else {
+		// 	this.props.history.replace('/content');
+		// }
 	}
 
 	render(): React.ReactNode {

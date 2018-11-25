@@ -16,12 +16,9 @@ const AnalysisDetailView: React.FunctionComponent<AnalysisDetailViewProps> = pro
 			<Header>
 				Parts of Speech
 				<Button
-					className="analysis-sidebar-close-btn"
+					className="close-btn"
 					icon="close"
 					floated="right"
-					basic
-					color="red"
-					compact
 					onClick={props.onClose}
 				/>
 			</Header>
