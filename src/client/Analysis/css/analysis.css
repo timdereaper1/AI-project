@@ -2,6 +2,10 @@
 	padding: 2rem 0.85rem;
 	box-sizing: border-box;
 }
-.analysis-sidebar-close-btn {
+.analysis-sidebar .ui.button.close-btn {
 	border: none !important;
+	background: none !important;
+	font-size: 1.2rem;
+	font-weight: 300;
+	color: rgb(131, 33, 16);
 }

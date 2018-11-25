@@ -1,21 +1,21 @@
 import React from 'react';
-import { Button, Input, Container, Header, List } from 'semantic-ui-react';
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Container } from 'semantic-ui-react';
 import { RouteComponentProps } from 'react-router-dom';
-import image1 from '../_shared/assets/imgs/11.jpg';
 import './css/content.css';
 import ResultModal from './ResultModal';
 import details from './_data/details.json';
-import { AppHeader } from '../_shared/components';
-import { submitEssay } from '../_shared/services';
+import { AppHeader, AppFooter } from '../_shared/components';
+import EssayForm from './EssayForm';
+import EssayProfile from './EsssayProfile';
+import { submitEssayForm } from './_helpers';
 
 class EssayContent extends React.Component<RouteComponentProps> {
 	state = {
 		data: '',
 		details: [],
 		open: false,
-		result: null
+		result: null,
+		title: ''
 	};
 
 	componentWillMount() {
@@ -24,57 +24,36 @@ class EssayContent extends React.Component<RouteComponentProps> {
 
 	render(): React.ReactNode {
 		return (
-			<Container>
+			<div className="essay-content">
 				<AppHeader />
-				<p style={{ padding: '0 1rem' }}>
-					AMA is an AI agent trained to access and score english essays with selected
-					criteria standards for essay scoring. Click here to view criteria. <br />
-					The title of the essay is required and must be entered in the input field below,
-					else AMA cannot fully access the essay. Type in your essay in the provided text
-					editor, then click on submit button to submit the essay for marking.
-				</p>
-				<div className="essay-content wrapper">
-					<div className="profile">
-						<img src={image1} alt="" className="profile-img" />
-						<div className="profile-card">
-							<Header size="medium">Grading Scale</Header>
-							<List divided animated>
-								{this.state.details.map((detail, _i) => (
-									/* eslint-disable-next-line react/no-array-index-key */
-									<List.Item key={_i}>
-										<List.Content>{detail.name}</List.Content>
-									</List.Item>
-								))}
-							</List>
-						</div>
+				<Container>
+					<p style={{ padding: '0 1rem' }}>
+						AMA is an AI agent trained to access and score english essays with selected
+						criteria standards for essay scoring. Click here to view criteria. <br />
+						The title of the essay is required and must be entered in the input field
+						below, else AMA cannot fully access the essay. Type in your essay in the
+						provided text editor, then click on submit button to submit the essay for
+						marking.
+					</p>
+					<div className="essay-content wrapper">
+						<EssayProfile details={this.state.details} />
+						<EssayForm
+							onSubmit={this.handleEssaySubmission}
+							onEditorChange={this.handleEditorChange}
+							editorValue={this.state.data}
+							title={this.state.title}
+							onTextChange={this.handleTitleInput}
+						/>
+						<ResultModal
+							result={this.state.result}
+							open={this.state.open}
+							onClick={this.handleProceedClick}
+							onClose={this.handleModalClose}
+						/>
 					</div>
-					<div className="form">
-						<div className="title-form">
-							<Input
-								type="text"
-								placeholder="Enter the title of the essay..."
-								className="title-input"
-							/>
-							<Button onClick={this.handleEssaySubmission} className="submit-button">
-								Submit
-							</Button>
-						</div>
-						<div className="editor-wrapper">
-							<CKEditor
-								style={{ height: '100vh' }}
-								editor={ClassicEditor}
-								data={this.state.data}
-								onChange={this.handleEditorChange}
-							/>
-							<ResultModal
-								result={this.state.result}
-								open={this.state.open}
-								onClick={this.handleProceedClick}
-							/>
-						</div>
-					</div>
-				</div>
-			</Container>
+				</Container>
+				<AppFooter />
+			</div>
 		);
 	}
 
@@ -84,21 +63,28 @@ class EssayContent extends React.Component<RouteComponentProps> {
 	};
 
 	handleProceedClick = (): void => {
-		this.props.history.push('/analysis', this.state.result);
+		if (this.state.result) {
+			this.props.history.push('/analysis', this.state.result);
+		}
 	};
 
 	handleEssaySubmission = async (): void => {
-		const html = this.state.data
-			.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, '\n')
-			.replace(/<\/?[^>]+(>|$)/g, '')
-			.trim();
-		const result = await submitEssay(html);
+		if (!this.state.data) return;
+		const result = await submitEssayForm(this.state.data, this.state.title);
 		if (result) {
 			this.setState({
 				result,
 				open: true
 			});
 		}
+	};
+
+	handleTitleInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		this.setState({ title: event.target.value });
+	};
+
+	handleModalClose = (): void => {
+		this.setState({ open: false });
 	};
 }
 

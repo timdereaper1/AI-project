@@ -1,0 +1,49 @@
+/* text content form styles */
+.essay-form {
+	flex: 3;
+	box-sizing: border-box;
+	padding: 1rem;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2), 0px 1px 3px rgba(0, 0, 0, 0.15);
+	margin: 0 1rem;
+	border-radius: 4px;
+	margin-bottom: 1rem;
+	background: white;
+}
+/* essay heading form styles */
+.essay-form .title {
+	display: flex;
+	height: auto;
+}
+.essay-form .title .submit-btn {
+	background: #b4d4f1;
+	border-radius: 4px;
+	margin-left: 5px;
+	font-weight: normal;
+	text-transform: uppercase;
+	padding: 0.45rem 1rem;
+	transition: box-shadow 0.25s linear;
+}
+.essay-form .title .submit-btn:hover {
+	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+}
+.essay-form .title .ui.input.input-field,
+.essay-form .title .ui.input.input-field > input {
+	flex: 1;
+	/* transition: box-shadow 0.35s; */
+	box-sizing: border-box;
+}
+/* .essay-form .title-form .ui.input.title-input > input:hover,
+.essay-form .title-form .ui.input.title-input > input:focus {
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.125);
+	border: none;
+} */
+/* editor section styles */
+.essay-form .editor {
+	margin-top: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.essay-form .ck.ck-content.ck-editor__editable {
+	height: 340px;
+}

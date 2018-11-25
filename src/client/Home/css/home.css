@@ -1,21 +1,60 @@
-.home-page-wrapper {
+.home {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
-	min-height: 100vh;
+	height: 100vh;
 	width: 100%;
+	position: relative;
+	box-sizing: border-box;
+}
+.home .ui.header.title {
+	color: #b4d4f1;
+	font-size: 3.8rem;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+.home .ui.header .sub.header.desc {
+	color: rgb(202, 202, 202);
+	font-size: 1.3rem;
+	margin-top: 0.55rem;
+	text-transform: none;
+}
+/* call to action button */
+.home .cta {
+	background-color: #b4d4f1 !important;
+	border-radius: 30px;
+	background-color: transparent;
+	font-size: 1.2rem;
+	display: inline-block;
+	color: black;
+	text-transform: uppercase;
+	padding: 0.75rem 1.25rem;
+	margin-top: 1rem;
+	transition: box-shadow 0.25s linear;
+}
+.home .cta:hover {
+	box-shadow: 0px 0px 20px rgba(230, 230, 230, 0.644), 0px 0px 12px rgba(230, 230, 230, 0.692);
+}
+/* overlay styles */
+.home .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: linear-gradient(rgba(23, 75, 95, 0.65), rgba(15, 71, 40, 0.65));
+}
+/* showcase content styles */
+.home .content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-}
-.ui.header.home-page-title {
-	color: white;
-	font-size: 5rem;
-}
-.ui.header .sub.header.home-page-desc {
-	color: white;
-	font-size: 1.5rem;
-	/* font-family: 'Lucida';
-	text-align: center; */
+	z-index: 10;
 }

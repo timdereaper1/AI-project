@@ -1,0 +1,24 @@
+/* fix styling for react-sweet-progress text color */
+.result .react-sweet-progress-symbol {
+	color: white;
+}
+/* styling for view button  */
+.result .ui.button.btn {
+	margin-top: 1rem;
+	font-size: 1rem;
+	text-transform: uppercase;
+	color: #e6a876 !important;
+	border: none;
+	display: inline-block;
+	box-sizing: border-box;
+}
+.result p.desc {
+	color: rgb(138, 138, 138);
+	max-width: 320px;
+	margin: 1.5rem auto 0;
+	font-size: 1rem;
+}
+.result .ui.button.btn:hover,
+.result .ui.button.btn:active {
+	background: none !important;
+}
