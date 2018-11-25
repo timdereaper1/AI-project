@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import './css/content.css';
 import ResultModal from './ResultModal';
 import details from './_data/details.json';
-import { AppHeader } from '../_shared/components';
+import { AppHeader, AppFooter } from '../_shared/components';
 import EssayForm from './EssayForm';
 import EssayProfile from './EsssayProfile';
 import { submitEssayForm } from './_helpers';
@@ -25,8 +25,8 @@ class EssayContent extends React.Component<RouteComponentProps> {
 	render(): React.ReactNode {
 		return (
 			<div className="essay-content">
+				<AppHeader />
 				<Container>
-					<AppHeader />
 					<p style={{ padding: '0 1rem' }}>
 						AMA is an AI agent trained to access and score english essays with selected
 						criteria standards for essay scoring. Click here to view criteria. <br />
@@ -52,6 +52,7 @@ class EssayContent extends React.Component<RouteComponentProps> {
 						/>
 					</div>
 				</Container>
+				<AppFooter />
 			</div>
 		);
 	}

@@ -14,7 +14,15 @@ interface ResultModalProps {
 }
 
 const ResultModal: React.FunctionComponent<ResultModalProps> = props => (
-	<Modal closeOnDocumentClick onClose={props.onClose} open={props.open} basic className="result">
+	<Modal
+		closeOnDimmerClick
+		closeOnEscape
+		closeOnDocumentClick
+		onClose={props.onClose}
+		open={props.open}
+		basic
+		className="result"
+	>
 		<Modal.Header style={styles.header}>Essay Score</Modal.Header>
 		<Modal.Content>
 			<Modal.Description style={{ textAlign: 'center' }}>

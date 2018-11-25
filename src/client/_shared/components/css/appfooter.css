@@ -1,0 +1,14 @@
+.app-footer {
+	margin-top: 1.2rem;
+	padding: 1rem 2rem;
+	box-sizing: border-box;
+	width: 100%;
+	display: block;
+	background: rgb(20, 20, 20);
+	color: rgb(235, 235, 235);
+}
+.app-footer .copyright {
+	display: block;
+	font-size: 0.75rem;
+	text-align: center;
+}

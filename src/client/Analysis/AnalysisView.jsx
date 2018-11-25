@@ -6,7 +6,7 @@ import AnalysisTable from './AnalysisTable';
 import AnalysisChart from './AnalysisChart';
 import { merge, Analysis, POSDetails } from './_helpers';
 import './css/view.css';
-import { AppHeader } from '../_shared/components';
+import { AppHeader, AppFooter } from '../_shared/components';
 import { score } from '../_shared/services';
 
 interface AnalysisViewProps extends RouteComponentProps {
@@ -19,8 +19,8 @@ interface AnalysisViewProps extends RouteComponentProps {
 
 const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => (
 	<div className="analysis">
+		<AppHeader />
 		<Container>
-			<AppHeader />
 			<p className="desc">
 				AMA shows you the results of your essay through charts and graphs. <br />
 				The pie chart shows the standard elements taken from scoring an essay such as number
@@ -85,6 +85,7 @@ const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => (
 				</Grid.Row>
 			</Grid>
 		</Container>
+		<AppFooter />
 	</div>
 );
 
