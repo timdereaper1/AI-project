@@ -1,15 +1,11 @@
-.essay-content.wrapper {
+.essay-content {
+	background: #f9f9f9;
+}
+.essay-content .wrapper {
 	display: flex;
 	flex-direction: row;
 	/* align-content: left; */
 	width: 100%;
 	box-sizing: border-box;
 	align-items: flex-start;
-}
-/* styles to modal button */
-.essay-content .ui.button.modal-trigger-btn {
-	color: white;
-	background-color: #458cd0;
-	align-self: flex-end;
-	margin-top: 10px;
 }

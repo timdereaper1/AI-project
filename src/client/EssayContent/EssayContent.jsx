@@ -24,31 +24,35 @@ class EssayContent extends React.Component<RouteComponentProps> {
 
 	render(): React.ReactNode {
 		return (
-			<Container>
-				<AppHeader />
-				<p style={{ padding: '0 1rem' }}>
-					AMA is an AI agent trained to access and score english essays with selected
-					criteria standards for essay scoring. Click here to view criteria. <br />
-					The title of the essay is required and must be entered in the input field below,
-					else AMA cannot fully access the essay. Type in your essay in the provided text
-					editor, then click on submit button to submit the essay for marking.
-				</p>
-				<div className="essay-content wrapper">
-					<EssayProfile details={this.state.details} />
-					<EssayForm
-						onSubmit={this.handleEssaySubmission}
-						onEditorChange={this.handleEditorChange}
-						editorValue={this.state.data}
-						title={this.state.title}
-						onTextChange={this.handleTitleInput}
-					/>
-					<ResultModal
-						result={this.state.result}
-						open={this.state.open}
-						onClick={this.handleProceedClick}
-					/>
-				</div>
-			</Container>
+			<div className="essay-content">
+				<Container>
+					<AppHeader />
+					<p style={{ padding: '0 1rem' }}>
+						AMA is an AI agent trained to access and score english essays with selected
+						criteria standards for essay scoring. Click here to view criteria. <br />
+						The title of the essay is required and must be entered in the input field
+						below, else AMA cannot fully access the essay. Type in your essay in the
+						provided text editor, then click on submit button to submit the essay for
+						marking.
+					</p>
+					<div className="essay-content wrapper">
+						<EssayProfile details={this.state.details} />
+						<EssayForm
+							onSubmit={this.handleEssaySubmission}
+							onEditorChange={this.handleEditorChange}
+							editorValue={this.state.data}
+							title={this.state.title}
+							onTextChange={this.handleTitleInput}
+						/>
+						<ResultModal
+							result={this.state.result}
+							open={this.state.open}
+							onClick={this.handleProceedClick}
+							onClose={this.handleModalClose}
+						/>
+					</div>
+				</Container>
+			</div>
 		);
 	}
 
@@ -58,10 +62,13 @@ class EssayContent extends React.Component<RouteComponentProps> {
 	};
 
 	handleProceedClick = (): void => {
-		this.props.history.push('/analysis', this.state.result);
+		if (this.state.result) {
+			this.props.history.push('/analysis', this.state.result);
+		}
 	};
 
 	handleEssaySubmission = async (): void => {
+		if (!this.state.data) return;
 		const result = await submitEssayForm(this.state.data, this.state.title);
 		if (result) {
 			this.setState({
@@ -73,6 +80,10 @@ class EssayContent extends React.Component<RouteComponentProps> {
 
 	handleTitleInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		this.setState({ title: event.target.value });
+	};
+
+	handleModalClose = (): void => {
+		this.setState({ open: false });
 	};
 }
 
