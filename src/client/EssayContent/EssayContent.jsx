@@ -15,7 +15,8 @@ class EssayContent extends React.Component<RouteComponentProps> {
 		details: [],
 		open: false,
 		result: null,
-		title: ''
+		title: '',
+		showResult: false
 	};
 
 	componentWillMount() {
@@ -36,7 +37,11 @@ class EssayContent extends React.Component<RouteComponentProps> {
 						marking.
 					</p>
 					<div className="essay-content wrapper">
-						<EssayProfile details={this.state.details} />
+						<EssayProfile
+							details={this.state.details}
+							onResultClick={this.handleResultView}
+							showResult={this.state.showResult}
+						/>
 						<EssayForm
 							onSubmit={this.handleEssaySubmission}
 							onEditorChange={this.handleEditorChange}
@@ -74,7 +79,8 @@ class EssayContent extends React.Component<RouteComponentProps> {
 		if (result) {
 			this.setState({
 				result,
-				open: true
+				open: true,
+				showResult: true
 			});
 		}
 	};
@@ -85,6 +91,10 @@ class EssayContent extends React.Component<RouteComponentProps> {
 
 	handleModalClose = (): void => {
 		this.setState({ open: false });
+	};
+
+	handleResultView = (): void => {
+		this.setState({ open: true });
 	};
 }
 
