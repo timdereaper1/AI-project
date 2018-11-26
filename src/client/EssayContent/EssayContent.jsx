@@ -63,7 +63,13 @@ class EssayContent extends React.Component<RouteComponentProps> {
 	}
 
 	handleEditorChange = (event: any, editor: any): void => {
-		const data = editor.getData();
+		const data: string = editor.getData();
+		// if (data.length > 10) {
+		// 	// if (data.startsWith(this.state.data)) {
+		// 	// 	console.log('cannot copy and paste the same content');
+		// 	// 	return;
+		// 	// }
+		// }
 		this.setState({ data });
 	};
 
