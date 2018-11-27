@@ -56,7 +56,10 @@ class Extract():
         self.chars_per_word = self.chars / self.words
 
         # average words per sentence
-        self.words_per_sentence = self.words / self.sentences
+        try:
+            self.words_per_sentence = self.words / self.sentences
+        except:
+            self.words_per_sentence = self.words
 
         # total number of paragraphs
         self.paragraphs = len(extract_paragraphs(self.doc))
