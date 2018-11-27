@@ -31,12 +31,13 @@ index = 0
 # domain1_score column in the xls sheet
 for essay in essays:
     # Extract the needed features from the essay
-    features = Extract(essay).get_features()
+    features = Extract(essay).get_features()  # [5,7,9,6,4,2]
 
     # add the features to the training data
-    train.append(features)
+    train.append(features)  # [[5,7,9,6,4,2], [9,8,6,2,3,4]]
 
     # raters resolved score value and the essay set for the essay
+    # labels = [[9, 1], [3,7], [9,2]]
     score, category = scores[index], sets[index]
     if math.isinf(score) or math.isnan(score):
         labels.append([0, category])

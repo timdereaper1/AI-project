@@ -4,7 +4,7 @@ import functools
 import math
 from enchant.checker import SpellChecker
 from src.utils.functions import tokenize_text, vocab
-from src.utils.latent import LatentSemanticAnalysis
+from src.utils.latent import LatentSemanticAnalysis, extract_paragraphs
 
 
 # using the UK and the US dictionaries for checking misspelt words
@@ -52,6 +52,25 @@ class Extract():
         self.coherence = LatentSemanticAnalysis(
             self.doc, stop=12).get_coherence()
 
+        # average character count per word
+        self.chars_per_word = self.chars / self.words
+
+        # average words per sentence
+        self.words_per_sentence = self.words / self.sentences
+
+        # total number of paragraphs
+        self.paragraphs = len(extract_paragraphs(self.doc))
+
+        # average sentence per paragraph
+        self.sentence_per_paragragh = self.sentences / self.paragraphs
+
+        # total number of short words
+        self.short_words = len(
+            [word for word in self.tokens if len(word) < 4])
+
+        # total number of long words
+        self.long_word = len([word for word in self.tokens if len(word) > 7])
+
     def get_features(self):
         # the method returns the numerical values of the features extracted from the essay
         # in a list
@@ -61,26 +80,37 @@ class Extract():
         features.append(self.chars)
         features.append(self.misspelt)
         features.append(self.puncs)
+        features.append(self.paragraphs)
+        features.append(self.chars_per_word)
+        features.append(self.words_per_sentence)
+        features.append(self.sentence_per_paragragh)
+        features.append(self.short_words)
+        features.append(self.long_word)
         features.append(self.coherence)
 
         index = 0
         for val in features:
             if math.isnan(val) or math.isinf(val):
                 features[index] = 0
-
             index += 1
         return features
 
     def get_raw_extract_values(self):
         # the method returns the raw extracted values used to mark the essay
         scores = {
-            'words': self.words,
-            'sentences': self.sentences,
-            'characters': self.chars,
-            'misspelt_words': self.misspelt,
-            'punctuations': self.puncs,
+            'total words': self.words,
+            'total sentences': self.sentences,
+            'total characters': self.chars,
+            'total misspelt_words': self.misspelt,
+            'total punctuations': self.puncs,
             'pos': vocab(self.tokens),
-            'analysis': self.coherence
+            'analysis': self.coherence,
+            'total paragraphs': self.paragraphs,
+            'characters per word': self.chars_per_word,
+            'words per sentence': self.words_per_sentence,
+            'sentence per paragraph': self.sentence_per_paragragh,
+            'total short words': self.short_words,
+            'total long words': self.long_word
         }
 
         return scores

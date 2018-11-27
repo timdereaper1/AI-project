@@ -1,5 +1,4 @@
 import pandas as pd
-from sklearn.linear_model import LinearRegression
 from sklearn.externals import joblib
 from src.utils.extract import Extract
 
@@ -11,7 +10,7 @@ df = pd.read_excel('dataset/valid_set.xls')
 essays = df['essay']
 
 # load the marker model
-model = joblib.load('models/marker.joblib')
+model = joblib.load('models/marker_svm.joblib')
 
 # an index counter to count the total number of essays whose scores
 # have been predicted
@@ -23,16 +22,11 @@ for essay in essays:
     features = Extract(essay)
 
     # predict score of the essay
-    score = model.predict([features.get_features()])[0]
-    result = {
-        'score': score[0],
-        'category': score[1]
-    }
-    print(features.get_raw_extract_values())
-    print(result)
+    score = model.predict([features.get_features()])
+    print(score)
 
     # predict the score of the first 11 essays
-    if index == 0:
+    if index == 5:
         break
 
     index += 1
