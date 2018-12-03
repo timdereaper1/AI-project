@@ -6,17 +6,20 @@ import { EssayContent } from '../EssayContent';
 export const routes: Array<RouteProps> = [
 	{
 		exact: true,
-		path: '/dashboard',
-		component: Overview
+		path: '/dashboard/',
+		component: Overview,
+		name: 'Overview'
 	},
 	{
 		exact: true,
 		path: '/dashboard/content',
-		component: EssayContent
+		component: EssayContent,
+		name: 'Essay Writing'
 	},
 	{
 		exact: true,
 		path: '/dashboard/analysis',
-		component: Analysis
+		component: Analysis,
+		name: 'Analysis'
 	}
 ];
