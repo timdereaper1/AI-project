@@ -1,0 +1,15 @@
+.dashboard {
+	width: 100%;
+	height: 100vh;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+.dashboard .content-wrapper {
+	flex: 1;
+	height: 100vh;
+	overflow-y: auto;
+	box-sizing: border-box;
+}

@@ -1,28 +1,16 @@
-import { Component, FunctionComponent } from 'react';
-import { Analysis } from './Analysis';
+import { RouteProps } from 'react-router-dom';
 import { Home } from './Home';
-import { EssayContent } from './EssayContent';
+import { Dashboard } from './Dashboard';
 
-interface Route {
-	exact?: boolean;
-	path: string;
-	component: Component | FunctionComponent;
-}
-
-export const routes: Array<Route> = [
+export const routes: Array<RouteProps> = [
 	{
 		exact: true,
 		path: '/',
 		component: Home
 	},
 	{
-		exact: true,
-		path: '/analysis',
-		component: Analysis
-	},
-	{
-		exact: true,
-		path: '/content',
-		component: EssayContent
+		exact: false,
+		path: '/dashboard',
+		component: Dashboard
 	}
 ];

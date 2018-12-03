@@ -20,7 +20,7 @@ const Home: React.FunctionComponent<RouteComponentProps> = () => {
 						to grading essays
 					</Header.Subheader>
 				</Header>
-				<Link to="/content" className="cta">
+				<Link to="/dashboard" className="cta">
 					Continue
 				</Link>
 			</div>
