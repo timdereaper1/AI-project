@@ -53,7 +53,7 @@ export default class Analysis extends React.Component<RouteComponentProps> {
 							active={this.state.showSidePane}
 						>
 							<Header as="h2" icon inverted style={{ color: 'black' }}>
-								Side Bar
+								Scores for parts of speech
 							</Header>
 						</Dimmer>
 						<AnalysisView
