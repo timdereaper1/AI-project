@@ -104,7 +104,7 @@ class Extract():
             'total words': self.words,
             'total sentences': self.sentences,
             'total characters': self.chars,
-            'total misspelt_words': self.misspelt,
+            'total misspelt words': self.misspelt,
             'total punctuations': self.puncs,
             'pos': vocab(self.tokens),
             'analysis': self.coherence,
