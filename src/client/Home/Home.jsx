@@ -1,11 +1,12 @@
 import React from 'react';
-import { Header, Segment, Grid } from 'semantic-ui-react';
+import { Header, Segment, Grid, Icon } from 'semantic-ui-react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import './css/home.css';
 import image from '../_shared/assets/imgs/firs.jpg';
+import Footer from './Footer';
 
 interface Styles {
-	wrapper: React.CSSProperties;
+	[key: string]: React.CSSProperties;
 }
 
 const Home: React.FunctionComponent<RouteComponentProps> = () => {
@@ -31,16 +32,32 @@ const Home: React.FunctionComponent<RouteComponentProps> = () => {
 					<Grid.Row columns="3">
 						<Grid.Column>
 							<Header>Scoring</Header>
+							<Icon name="check" className="service-icon" />
+							<p>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Exercitationem, minus hic error
+							</p>
 						</Grid.Column>
 						<Grid.Column>
 							<Header>Grading</Header>
+							<Icon name="file alternate outline" className="service-icon" />
+							<p>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Exercitationem, minus hic error
+							</p>
 						</Grid.Column>
 						<Grid.Column>
 							<Header>Analysis</Header>
+							<Icon name="area chart" className="service-icon" />
+							<p>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Exercitationem, minus hic error
+							</p>
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
 			</Segment>
+			<Footer />
 		</div>
 	);
 };

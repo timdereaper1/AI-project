@@ -26,7 +26,7 @@ export const routes: Array<Route> = [
 		path: '/dashboard/content',
 		component: EssayContent,
 		name: 'Essay Writing',
-		icon: 'file',
+		icon: 'file alternate outline',
 		desc: 'Write your essay and score',
 		info: 'Write your essay for the selected topic or write your own topic.'
 	},
