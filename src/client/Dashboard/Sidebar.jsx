@@ -6,7 +6,7 @@ import './css/sidebar.css';
 import profile from '../_shared/assets/imgs/11.jpg';
 
 interface SidebarProps {
-	links: Array<{ name: string, icon: string, path: string }>;
+	links: Array<{ name: string, icon: string, path: string, desc: string }>;
 	selectedPage: string;
 }
 
@@ -30,8 +30,11 @@ const Sidebar: React.FunctionComponent<SidebarProps> = props => (
 					to={link.path}
 					className={props.selectedPage === link.path ? 'nav active' : 'nav'}
 				>
-					<Icon name="user" inverted className="nav-icon" />
-					{link.name}
+					<Icon name={link.icon} inverted className="nav-icon" size="large" />
+					<div className="content">
+						<span className="header">{link.name}</span>
+						<span className="desc">{link.desc}</span>
+					</div>
 				</Link>
 			))}
 		</nav>
@@ -42,7 +45,8 @@ Sidebar.propTypes = {
 	links: PropTypes.arrayOf(
 		PropTypes.shape({
 			name: PropTypes.string,
-			path: PropTypes.string
+			path: PropTypes.string,
+			desc: PropTypes.string
 		})
 	).isRequired,
 	selectedPage: PropTypes.string.isRequired
