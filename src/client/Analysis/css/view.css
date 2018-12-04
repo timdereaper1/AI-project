@@ -1,5 +1,6 @@
 .analysis {
-	background: #f9f9f9;
+	padding: 0 1rem;
+	box-sizing: border-box;
 }
 .analysis .widget {
 	width: 100%;
