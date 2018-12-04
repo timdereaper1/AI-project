@@ -4,9 +4,8 @@ import { RouteComponentProps } from 'react-router-dom';
 import './css/content.css';
 import ResultModal from './ResultModal';
 import details from './_data/details.json';
-import { AppHeader, AppFooter } from '../_shared/components';
+import { AppFooter } from '../_shared/components';
 import EssayForm from './EssayForm';
-import EssayProfile from './EsssayProfile';
 import { submitEssayForm } from './_helpers';
 
 class EssayContent extends React.Component<RouteComponentProps> {
@@ -15,8 +14,7 @@ class EssayContent extends React.Component<RouteComponentProps> {
 		details: [],
 		open: false,
 		result: null,
-		title: '',
-		showResult: false
+		title: ''
 	};
 
 	componentWillMount() {
@@ -26,7 +24,6 @@ class EssayContent extends React.Component<RouteComponentProps> {
 	render(): React.ReactNode {
 		return (
 			<div className="essay-content">
-				<AppHeader />
 				<Container>
 					<p style={{ padding: '0 1rem' }}>
 						AMA is an AI agent trained to access and score english essays with selected
@@ -37,11 +34,6 @@ class EssayContent extends React.Component<RouteComponentProps> {
 						marking.
 					</p>
 					<div className="essay-content wrapper">
-						<EssayProfile
-							details={this.state.details}
-							onResultClick={this.handleResultView}
-							showResult={this.state.showResult}
-						/>
 						<EssayForm
 							onSubmit={this.handleEssaySubmission}
 							onEditorChange={this.handleEditorChange}
@@ -64,18 +56,12 @@ class EssayContent extends React.Component<RouteComponentProps> {
 
 	handleEditorChange = (event: any, editor: any): void => {
 		const data: string = editor.getData();
-		// if (data.length > 10) {
-		// 	// if (data.startsWith(this.state.data)) {
-		// 	// 	console.log('cannot copy and paste the same content');
-		// 	// 	return;
-		// 	// }
-		// }
 		this.setState({ data });
 	};
 
 	handleProceedClick = (): void => {
 		if (this.state.result) {
-			this.props.history.push('/analysis', this.state.result);
+			this.props.history.push('/dashboard/analysis', this.state.result);
 		}
 	};
 
@@ -85,8 +71,7 @@ class EssayContent extends React.Component<RouteComponentProps> {
 		if (result) {
 			this.setState({
 				result,
-				open: true,
-				showResult: true
+				open: true
 			});
 		}
 	};
