@@ -8,6 +8,7 @@ interface Route extends RouteProps {
 	name: string;
 	icon: SemanticICONS;
 	desc?: string;
+	info?: string;
 }
 
 export const routes: Array<Route> = [
@@ -17,7 +18,8 @@ export const routes: Array<Route> = [
 		component: Overview,
 		name: 'Overview',
 		icon: 'home',
-		desc: 'List of essays and scores'
+		desc: 'List of essays and scores',
+		info: 'Overiew shows the various essay written by people and the scores for the essay.'
 	},
 	{
 		exact: true,
@@ -25,7 +27,8 @@ export const routes: Array<Route> = [
 		component: EssayContent,
 		name: 'Essay Writing',
 		icon: 'file',
-		desc: 'Write your essay and score'
+		desc: 'Write your essay and score',
+		info: 'Write your essay for the selected topic or write your own topic.'
 	},
 	{
 		exact: true,
@@ -33,6 +36,8 @@ export const routes: Array<Route> = [
 		component: Analysis,
 		name: 'Analysis',
 		icon: 'area chart',
-		desc: 'Visualize your essay score'
+		desc: 'Visualize your essay score',
+		info:
+			'Analysis shows you the graphs and charts on the various aspects of the essay use to score your writting.'
 	}
 ];

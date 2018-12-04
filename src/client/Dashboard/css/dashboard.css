@@ -20,3 +20,15 @@
 	padding: 0.65rem 1rem;
 	margin-bottom: 0.55rem;
 }
+.dashboard .content-wrapper .ui.header.title .page-info-icon {
+	font-size: 1.11rem;
+	float: right;
+	margin-top: 0.2rem;
+	cursor: pointer;
+}
+.ui.button.borderless-btn {
+	background: none;
+	font-weight: 300;
+	text-transform: uppercase;
+	color: rgb(197, 18, 18);
+}
