@@ -13,3 +13,10 @@
 	overflow-y: auto;
 	box-sizing: border-box;
 }
+.dashboard .content-wrapper .ui.header.title {
+	font-weight: 200;
+	font-size: 1.25rem;
+	background: #b4d4f1;
+	padding: 0.65rem 1rem;
+	margin-bottom: 0.55rem;
+}
