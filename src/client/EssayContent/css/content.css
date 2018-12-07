@@ -1,11 +1,10 @@
-.essay-content {
-	background: #f9f9f9;
-}
 .essay-content .wrapper {
-	display: flex;
-	flex-direction: row;
-	/* align-content: left; */
-	width: 100%;
+	width: 90%;
 	box-sizing: border-box;
-	align-items: flex-start;
+	margin: auto;
+}
+
+.essay-content .wrapper p.desc {
+	color: rgb(151, 151, 151);
+	padding: 0 1rem;
 }

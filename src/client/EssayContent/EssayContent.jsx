@@ -24,31 +24,24 @@ class EssayContent extends React.Component<RouteComponentProps> {
 	render(): React.ReactNode {
 		return (
 			<div className="essay-content">
-				<Container>
-					<p style={{ padding: '0 1rem' }}>
-						AMA is an AI agent trained to access and score english essays with selected
-						criteria standards for essay scoring. Click here to view criteria. <br />
-						The title of the essay is required and must be entered in the input field
-						below, else AMA cannot fully access the essay. Type in your essay in the
-						provided text editor, then click on submit button to submit the essay for
-						marking.
+				<div className="wrapper">
+					<p className="desc">
+						You can write your own essay or select an essay from the essay list.
 					</p>
-					<div className="essay-content wrapper">
-						<EssayForm
-							onSubmit={this.handleEssaySubmission}
-							onEditorChange={this.handleEditorChange}
-							editorValue={this.state.data}
-							title={this.state.title}
-							onTextChange={this.handleTitleInput}
-						/>
-						<ResultModal
-							result={this.state.result}
-							open={this.state.open}
-							onClick={this.handleProceedClick}
-							onClose={this.handleModalClose}
-						/>
-					</div>
-				</Container>
+					<EssayForm
+						onSubmit={this.handleEssaySubmission}
+						onEditorChange={this.handleEditorChange}
+						editorValue={this.state.data}
+						title={this.state.title}
+						onTextChange={this.handleTitleInput}
+					/>
+					<ResultModal
+						result={this.state.result}
+						open={this.state.open}
+						onClick={this.handleProceedClick}
+						onClose={this.handleModalClose}
+					/>
+				</div>
 				<AppFooter />
 			</div>
 		);

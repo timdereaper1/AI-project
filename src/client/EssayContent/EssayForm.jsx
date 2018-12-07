@@ -22,9 +22,9 @@ const EssayForm: React.FunctionComponent<EssayFormProps> = props => (
 				className="input-field"
 				onChange={props.onTextChange}
 			/>
-			<Button onClick={props.onSubmit} className="submit-btn">
-				Submit
-			</Button>
+			<small className="help-blk">
+				The title of the essay is used to categorize the essay.
+			</small>
 		</div>
 		<div className="editor">
 			<CKEditor
@@ -33,6 +33,15 @@ const EssayForm: React.FunctionComponent<EssayFormProps> = props => (
 				data={props.editorValue}
 				onChange={props.onEditorChange}
 			/>
+			<small className="help-blk">
+				Write your essay in the editor above. Please ensure that you have throughly gone
+				through the essay before submitting.
+			</small>
+		</div>
+		<div style={{ textAlign: 'right' }}>
+			<Button onClick={props.onSubmit} className="submit-btn">
+				Submit
+			</Button>
 		</div>
 	</div>
 );
