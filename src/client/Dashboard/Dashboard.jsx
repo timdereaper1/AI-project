@@ -1,14 +1,12 @@
 import React from 'react';
 import { RouteComponentProps, Route, Switch } from 'react-router-dom';
-import { Header, Icon, Modal, Button } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
 import Sidebar from './Sidebar';
 import './css/dashboard.css';
 import { routes } from './routes';
 
 class Dashboard extends React.Component<RouteComponentProps> {
-	state = {
-		open: false
-	};
+	state = {};
 
 	render(): React.ReactNode {
 		const selectedRoute = routes.find(value => value.path === this.props.location.pathname);
@@ -19,13 +17,10 @@ class Dashboard extends React.Component<RouteComponentProps> {
 					<div style={{ width: '100%' }}>
 						<Header className="title" inverted>
 							{selectedRoute.name}
-							<Icon
-								name="info"
-								size="small"
-								inverted
-								className="page-info-icon"
-								onClick={this.openDescription}
-							/>
+							<Header.Subheader>{selectedRoute.desc}</Header.Subheader>
+							<div className="details">
+								<span>Welcome,</span> AI-project
+							</div>
 						</Header>
 						<Switch>
 							{routes.map((route, _i) => (
@@ -35,25 +30,9 @@ class Dashboard extends React.Component<RouteComponentProps> {
 						</Switch>
 					</div>
 				</div>
-				<Modal basic closeOnDimmerClick closeOnDocumentClick open={this.state.open}>
-					<Modal.Content>{selectedRoute.info}</Modal.Content>
-					<Modal.Actions>
-						<Button className="borderless-btn" onClick={this.closeDescription}>
-							Close
-						</Button>
-					</Modal.Actions>
-				</Modal>
 			</div>
 		);
 	}
-
-	openDescription = (): void => {
-		this.setState({ open: true });
-	};
-
-	closeDescription = (): void => {
-		this.setState({ open: false });
-	};
 }
 
 export default Dashboard;

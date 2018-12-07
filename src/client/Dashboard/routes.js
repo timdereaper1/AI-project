@@ -18,8 +18,7 @@ export const routes: Array<Route> = [
 		component: Overview,
 		name: 'Overview',
 		icon: 'home',
-		desc: 'List of essays and scores',
-		info: 'Overiew shows the various essay written by people and the scores for the essay.'
+		desc: 'List of essays and scores'
 	},
 	{
 		exact: true,
@@ -27,8 +26,7 @@ export const routes: Array<Route> = [
 		component: EssayContent,
 		name: 'Essay Writing',
 		icon: 'file alternate outline',
-		desc: 'Write your essay and score',
-		info: 'Write your essay for the selected topic or write your own topic.'
+		desc: 'Write your essay and score'
 	},
 	{
 		exact: true,
@@ -36,8 +34,6 @@ export const routes: Array<Route> = [
 		component: Analysis,
 		name: 'Analysis',
 		icon: 'area chart',
-		desc: 'Visualize your essay score',
-		info:
-			'Analysis shows you the graphs and charts on the various aspects of the essay use to score your writting.'
+		desc: 'Visualize your essay score'
 	}
 ];

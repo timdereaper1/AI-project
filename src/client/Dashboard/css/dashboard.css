@@ -15,10 +15,31 @@
 }
 .dashboard .content-wrapper .ui.header.title {
 	font-weight: 200;
-	font-size: 1.25rem;
-	background: #b4d4f1;
-	padding: 0.65rem 1rem;
+	font-size: 1.12rem;
+	background: rgb(31, 31, 31);
+	padding: 0.75rem 2.2rem;
 	margin-bottom: 0.55rem;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	word-spacing: 10px;
+	position: relative;
+}
+.dashboard .content-wrapper .ui.header.title .sub.header {
+	letter-spacing: normal;
+	word-spacing: normal;
+	margin-top: 0.25rem;
+	letter-spacing: 3px;
+}
+.dashboard .content-wrapper .ui.header.title .details {
+	color: #b4d4f1;
+	position: absolute;
+	right: 2rem;
+	top: 17px;
+	font-size: 0.85rem;
+	letter-spacing: 2px;
+}
+.dashboard .content-wrapper .ui.header.title .details span {
+	color: rgb(85, 85, 85);
 }
 .dashboard .content-wrapper .ui.header.title .page-info-icon {
 	font-size: 1.11rem;
