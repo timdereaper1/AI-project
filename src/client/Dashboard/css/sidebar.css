@@ -14,6 +14,9 @@
 	margin-bottom: 0;
 	letter-spacing: 10px;
 }
+.dashboard .sidebar .ui.header a {
+	color: #b4d4f1;
+}
 .dashboard .ui.header .sub.header {
 	font-size: 0.65rem;
 	text-transform: none;

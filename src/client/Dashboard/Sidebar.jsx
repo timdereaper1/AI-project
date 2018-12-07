@@ -13,7 +13,7 @@ interface SidebarProps {
 const Sidebar: React.FunctionComponent<SidebarProps> = props => (
 	<div className="sidebar">
 		<Header inverted textAlign="center" className="header" size="large">
-			ama
+			<Link to="/">ama</Link>
 			<Header.Subheader>New and Improved Automated Essay Marker</Header.Subheader>
 		</Header>
 		<div className="profile">

@@ -57,6 +57,13 @@ const Home: React.FunctionComponent<RouteComponentProps> = () => {
 					</Grid.Row>
 				</Grid>
 			</Segment>
+			<p style={{ padding: '0 1rem' }}>
+				AMA is an AI agent trained to access and score english essays with selected criteria
+				standards for essay scoring. Click here to view criteria. <br />
+				The title of the essay is required and must be entered in the input field below,
+				else AMA cannot fully access the essay. Type in your essay in the provided text
+				editor, then click on submit button to submit the essay for marking.
+			</p>
 			<Footer />
 		</div>
 	);
