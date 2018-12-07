@@ -53,3 +53,24 @@ export const getPOSResultDetails = (
 		index
 	}));
 };
+
+const keys = {
+	words: ['total long words', 'total short words', 'total words'],
+	senc: ['total sentences', 'words per sentence'],
+	para: ['total paragraphs', 'sentence per paragraph']
+};
+
+type key = 'words' | 'senc' | 'para';
+
+export const dataAnalysis = (data: any, t?: key = 'words'): {} => {
+	return Object.keys(data).reduce((acc, val) => {
+		if (keys[t].includes(val)) {
+			acc[val] = data[val];
+		}
+		return acc;
+	}, {});
+};
+
+export const getDataValues = (data: {}): Array<any> => Object.keys(data).map(val => data[val]);
+
+export const getDataKeys = (data: {}): Array<string> => Object.keys(data).map(val => val);

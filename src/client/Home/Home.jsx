@@ -64,6 +64,14 @@ const Home: React.FunctionComponent<RouteComponentProps> = () => {
 				else AMA cannot fully access the essay. Type in your essay in the provided text
 				editor, then click on submit button to submit the essay for marking.
 			</p>
+			<p className="desc">
+				AMA shows you the results of your essay through charts and graphs. <br />
+				The pie chart shows the standard elements taken from scoring an essay such as number
+				of misspelt words and others <br />
+				The line chart shows the total score given to various parts of speech written in the
+				essay such as nouns, verbs and others. Click on the view button to see all the
+				scores on parts of speech for the essay.
+			</p>
 			<Footer />
 		</div>
 	);

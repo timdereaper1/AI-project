@@ -4,9 +4,9 @@ import { Container, Header, Grid, Button } from 'semantic-ui-react';
 import { RouteComponentProps } from 'react-router-dom';
 import AnalysisTable from './AnalysisTable';
 import AnalysisChart from './AnalysisChart';
-import { merge, Analysis, POSDetails } from './_helpers';
+import { merge, Analysis, POSDetails, dataAnalysis, getDataValues, getDataKeys } from './_helpers';
 import './css/view.css';
-import { AppHeader, AppFooter } from '../_shared/components';
+import { AppFooter } from '../_shared/components';
 import { score } from '../_shared/services';
 
 interface AnalysisViewProps extends RouteComponentProps {
@@ -15,27 +15,24 @@ interface AnalysisViewProps extends RouteComponentProps {
 	onSideBarView: Function;
 	details: Array<POSDetails>;
 	score: number;
+	data: {};
 }
 
 const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => {
 	const totalScores = merge(props.essay.labels, props.essay.series);
+	const wordVals = dataAnalysis(props.data, 'words');
+	const sentsVals = dataAnalysis(props.data, 'senc');
+	const parasVals = dataAnalysis(props.data, 'para');
+	console.log(props.data);
 	return (
 		<React.Fragment>
 			<div className="analysis">
-				<p className="desc">
-					AMA shows you the results of your essay through charts and graphs. <br />
-					The pie chart shows the standard elements taken from scoring an essay such as
-					number of misspelt words and others <br />
-					The line chart shows the total score given to various parts of speech written in
-					the essay such as nouns, verbs and others. Click on the view button to see all
-					the scores on parts of speech for the essay.
-				</p>
 				<Header size="medium" className="main-header">
 					Score: {score(props.score)}
 				</Header>
 				<Grid>
 					<Grid.Row>
-						<Grid.Column width={7}>
+						<Grid.Column width={8}>
 							<div className="widget">
 								<AnalysisChart
 									type="pie"
@@ -46,7 +43,44 @@ const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => {
 								/>
 							</div>
 						</Grid.Column>
-						<Grid.Column width={9}>
+						<Grid.Column width={8}>
+							<div className="widget">
+								<AnalysisChart
+									type="pie"
+									title="Analysis on Words"
+									data={getDataValues(wordVals)}
+									labels={getDataKeys(wordVals)}
+									width="340"
+								/>
+							</div>
+						</Grid.Column>
+					</Grid.Row>
+					<Grid.Row>
+						<Grid.Column width={8}>
+							<div className="widget">
+								<AnalysisChart
+									type="pie"
+									title="Analysis on Sentences"
+									data={getDataValues(sentsVals)}
+									labels={getDataKeys(sentsVals)}
+									width="340"
+								/>
+							</div>
+						</Grid.Column>
+						<Grid.Column width={8}>
+							<div className="widget">
+								<AnalysisChart
+									type="pie"
+									title="Analysis on Paragraphs"
+									data={getDataValues(parasVals)}
+									labels={getDataKeys(parasVals)}
+									width="340"
+								/>
+							</div>
+						</Grid.Column>
+					</Grid.Row>
+					<Grid.Row>
+						<Grid.Column width={10}>
 							<div className="widget">
 								<AnalysisChart
 									type="line"
@@ -57,9 +91,7 @@ const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => {
 								/>
 							</div>
 						</Grid.Column>
-					</Grid.Row>
-					<Grid.Row>
-						<Grid.Column width={7}>
+						{/* <Grid.Column width={7}>
 							<div className="widget">
 								<Header>Table Showing Basic Essay Elements</Header>
 								<AnalysisTable values={totalScores} />
@@ -86,7 +118,7 @@ const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => {
 									endValue={totalScores.length}
 								/>
 							</div>
-						</Grid.Column>
+						</Grid.Column> */}
 					</Grid.Row>
 				</Grid>
 			</div>

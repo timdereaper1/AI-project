@@ -12,7 +12,8 @@ export default class Analysis extends React.Component<RouteComponentProps> {
 		essay: null,
 		showSidePane: false,
 		list: null,
-		score: 0
+		score: 0,
+		data: null
 	};
 
 	componentWillMount() {
@@ -24,7 +25,8 @@ export default class Analysis extends React.Component<RouteComponentProps> {
 				pos: resultPOS,
 				essay,
 				list,
-				score: state.score
+				score: state.score,
+				data: state.values
 			});
 		} else {
 			this.props.history.replace('/content');
@@ -63,6 +65,7 @@ export default class Analysis extends React.Component<RouteComponentProps> {
 							onSideBarView={this.handleSideBar}
 							details={this.state.list}
 							score={this.state.score}
+							data={this.state.data}
 						/>
 					</Dimmer.Dimmable>
 				</Sidebar.Pusher>
