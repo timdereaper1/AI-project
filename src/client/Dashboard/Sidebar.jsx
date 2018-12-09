@@ -33,7 +33,6 @@ const Sidebar: React.FunctionComponent<SidebarProps> = props => (
 					<Icon name={link.icon} inverted className="nav-icon" size="large" />
 					<div className="content">
 						<span className="header">{link.name}</span>
-						<span className="desc">{link.desc}</span>
 					</div>
 				</Link>
 			))}
