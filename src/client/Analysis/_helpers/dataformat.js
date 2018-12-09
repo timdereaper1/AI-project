@@ -1,29 +1,36 @@
-import { Analysis, POSDetails } from './interface';
+import { Analysis, POSDetails, MergeRes } from './interface';
+import { Constants as K } from './constants';
 
-interface EssayResult {
-	values: {
-		pos: {}
+export const getDataValues = (data: {}): Array<any> => Object.keys(data).map(val => data[val]);
+
+export const getDataKeys = (data: {}): Array<string> => Object.keys(data).map(val => val);
+
+type key = 'words' | 'senc' | 'para';
+
+export const dataAnalysis = (data: any, t?: key = 'words'): {} => {
+	const vals = Object.keys(data).reduce((acc, val) => {
+		if (K.analysis[t].includes(val)) {
+			acc[val] = data[val];
+		}
+		return acc;
+	}, {});
+	vals.other = vals['total words'] - (vals['total long words'] + vals['total short words']);
+	return {
+		'total short words': vals['total short words'],
+		'total long words': vals['total long words'],
+		other: vals.other
 	};
-}
+};
 
-const POS_FILTER: Array<string> = ['FW', 'EX', 'LS', 'PDT', 'RP', 'TO', 'WDT', 'WP', 'WP$', 'WRB'];
-const ESSAY_FILTER: Array<string> = ['pos', 'analysis'];
-
-export const filterEssayResults = (result: EssayResult): { essay: Analysis, pos: Analysis } => {
-	const generalLabels: Array<string> = Object.keys(result.values).filter(
-		val => !ESSAY_FILTER.includes(val)
-	);
-	const generalValues: Array<number> = generalLabels.map(label => result.values[label]);
-
-	const posLabels: Array<string> = Object.keys(result.values.pos).filter(
-		val => !POS_FILTER.includes(val)
-	);
-	const posValues: Array<number> = posLabels.map(val => result.values.pos[val]);
-
+export const filterEssayResults = (result: any): { essay: Analysis, pos: Analysis } => {
+	const scoreLabels = Object.keys(result.values).filter(val => !K.filter.RES.includes(val));
+	const scoreValues = scoreLabels.map(label => result.values[label]);
+	const posLabels = Object.keys(result.values.pos).filter(val => !K.filter.POS.includes(val));
+	const posValues = posLabels.map(val => result.values.pos[val]);
 	return {
 		essay: {
-			series: [...generalValues, posValues.reduce((acc, val) => acc + val, 0)],
-			labels: [...generalLabels, 'pos']
+			series: [...scoreValues, posValues.reduce((acc, val) => acc + val, 0)],
+			labels: [...scoreLabels, 'pos']
 		},
 		pos: {
 			series: posValues,
@@ -32,19 +39,12 @@ export const filterEssayResults = (result: EssayResult): { essay: Analysis, pos:
 	};
 };
 
-export const merge = (
-	labels: Array<string>,
-	values: Array<number>
-): Array<{ key: string, index: number, value: number }> => {
+export const merge = (labels: string[], values: number[]): MergeRes[] => {
 	if (labels.length !== values.length) throw Error('Both arrays must have the same length');
 	return labels.map((label, index) => ({ key: label, index, value: values[index] }));
 };
 
-export const getPOSResultDetails = (
-	pos: {},
-	labels: string[],
-	values: number[]
-): Array<POSDetails> => {
+export const posScoreInfo = (pos: {}, labels: string[], values: number[]): POSDetails[] => {
 	return labels.map((label, index) => ({
 		abbr: label,
 		key: pos[label].name,
@@ -54,23 +54,36 @@ export const getPOSResultDetails = (
 	}));
 };
 
-const keys = {
-	words: ['total long words', 'total short words', 'total words'],
-	senc: ['total sentences', 'words per sentence'],
-	para: ['total paragraphs', 'sentence per paragraph']
+export const overallScores = (data: any): { label: string[], value: number[] } => {
+	return data.labels.reduce(
+		(acc, label, index) => {
+			if (K.overall.scores.includes(label)) {
+				acc.label.push(label);
+				acc.value.push(data.series[index]);
+			} else if (K.overall.misc.includes(label)) {
+				if (acc.label.includes('misc')) {
+					const _index = acc.label.findIndex(val => val === 'misc');
+					acc.value[_index] += data.series[index];
+				} else {
+					acc.label.push('misc');
+					acc.value.push(data.series[index]);
+				}
+			}
+			return acc;
+		},
+		{ label: [], value: [] }
+	);
 };
 
-type key = 'words' | 'senc' | 'para';
-
-export const dataAnalysis = (data: any, t?: key = 'words'): {} => {
-	return Object.keys(data).reduce((acc, val) => {
-		if (keys[t].includes(val)) {
-			acc[val] = data[val];
-		}
-		return acc;
-	}, {});
+export const miscScores = (data: {}): { label: string[], value: number[] } => {
+	return data.labels.reduce(
+		(acc, label, index) => {
+			if (K.overall.misc.includes(label)) {
+				acc.label.push(label);
+				acc.value.push(data.series[index]);
+			}
+			return acc;
+		},
+		{ label: [], value: [] }
+	);
 };
-
-export const getDataValues = (data: {}): Array<any> => Object.keys(data).map(val => data[val]);
-
-export const getDataKeys = (data: {}): Array<string> => Object.keys(data).map(val => val);

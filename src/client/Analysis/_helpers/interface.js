@@ -18,3 +18,9 @@ export interface POSDetails {
 	value: number;
 	index: number;
 }
+
+export interface MergeRes {
+	key: string;
+	index: number;
+	value: number;
+}

@@ -4,7 +4,16 @@ import { Container, Header, Grid, Button } from 'semantic-ui-react';
 import { RouteComponentProps } from 'react-router-dom';
 import AnalysisTable from './AnalysisTable';
 import AnalysisChart from './AnalysisChart';
-import { merge, Analysis, POSDetails, dataAnalysis, getDataValues, getDataKeys } from './_helpers';
+import {
+	merge,
+	Analysis,
+	POSDetails,
+	dataAnalysis,
+	getDataValues,
+	getDataKeys,
+	overallScores,
+	miscScores
+} from './_helpers';
 import './css/view.css';
 import { AppFooter } from '../_shared/components';
 import { score } from '../_shared/services';
@@ -19,104 +28,97 @@ interface AnalysisViewProps extends RouteComponentProps {
 }
 
 const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => {
-	const totalScores = merge(props.essay.labels, props.essay.series);
+	// const totalScores = merge(props.essay.labels, props.essay.series);
 	const wordVals = dataAnalysis(props.data, 'words');
-	const sentsVals = dataAnalysis(props.data, 'senc');
-	const parasVals = dataAnalysis(props.data, 'para');
-	console.log(props.data);
+	const overall = overallScores(props.essay);
+	const miscs = miscScores(props.essay);
 	return (
 		<React.Fragment>
 			<div className="analysis">
-				<Header size="medium" className="main-header">
-					Score: {score(props.score)}
+				<Header size="huge" className="main-header">
+					<span style={{ fontSize: 12 }}>Score :</span> {score(props.score)}
 				</Header>
+				<p className="analysis-desc">
+					In analyzing the content of the essay, irrelevant words and text were removed
+					such as of, is, etc. This ensures that the essay written is to the title chosen.
+				</p>
 				<Grid>
 					<Grid.Row>
-						<Grid.Column width={8}>
+						<Grid.Column width={5}>
 							<div className="widget">
 								<AnalysisChart
 									type="pie"
-									title="Chart showing General Essay Scores"
-									data={props.essay.series}
-									labels={props.essay.labels}
-									width="340"
+									title="Overall Scores"
+									data={overall.value}
+									labels={overall.label}
+									width="270"
 								/>
 							</div>
+							<small className="widget-info">
+								The overiew chart shows the percentage scores for each category in
+								the essay.
+							</small>
 						</Grid.Column>
-						<Grid.Column width={8}>
+						<Grid.Column width={5}>
 							<div className="widget">
 								<AnalysisChart
 									type="pie"
-									title="Analysis on Words"
+									title="Word Analysis"
 									data={getDataValues(wordVals)}
 									labels={getDataKeys(wordVals)}
-									width="340"
+									width="270"
 								/>
 							</div>
+							<small className="widget-info">
+								The chart shows the analysis on the words written in the essay.
+							</small>
 						</Grid.Column>
-					</Grid.Row>
-					<Grid.Row>
-						<Grid.Column width={8}>
+						<Grid.Column width={6}>
 							<div className="widget">
 								<AnalysisChart
 									type="pie"
-									title="Analysis on Sentences"
-									data={getDataValues(sentsVals)}
-									labels={getDataKeys(sentsVals)}
-									width="340"
+									title="Miscellaneous Scores"
+									data={miscs.value}
+									labels={miscs.label}
+									width="300"
 								/>
 							</div>
+							<small className="widget-info">
+								The miscellaneous chart shows the scores given to sentence, words
+								and charater relations.
+							</small>
 						</Grid.Column>
-						<Grid.Column width={8}>
-							<div className="widget">
-								<AnalysisChart
-									type="pie"
-									title="Analysis on Paragraphs"
-									data={getDataValues(parasVals)}
-									labels={getDataKeys(parasVals)}
-									width="340"
-								/>
-							</div>
-						</Grid.Column>
-					</Grid.Row>
-					<Grid.Row>
 						<Grid.Column width={10}>
 							<div className="widget">
 								<AnalysisChart
 									type="line"
-									title="Chart Showing Parts Of Speech In Essay"
+									title="Parts Of Speech"
 									data={[{ name: 'POS', data: props.pos.series }]}
 									labels={props.pos.labels}
 									width={540}
 								/>
 							</div>
+							<small className="widget-info">
+								The chart shows the various scores on the parts of speech in the
+								essay.
+							</small>
 						</Grid.Column>
+						<Grid.Column width={6}>
+							<div className="responsive-col">
+								<div className="widget widget--table">
+									<AnalysisTable values={props.details} extend />
+								</div>
+							</div>
+							<small className="widget-info">
+								Table shows the scores and description for the part of speech.
+							</small>
+						</Grid.Column>
+					</Grid.Row>
+					<Grid.Row>
 						{/* <Grid.Column width={7}>
 							<div className="widget">
 								<Header>Table Showing Basic Essay Elements</Header>
 								<AnalysisTable values={totalScores} />
-							</div>
-						</Grid.Column>
-						<Grid.Column width={9}>
-							<div className="widget">
-								<Header>
-									Table Showing Parts Of Speech Of The Essay
-									<Button
-										size="mini"
-										circular
-										floated="right"
-										compact
-										positive
-										onClick={props.onSideBarView}
-									>
-										View
-									</Button>
-								</Header>
-								<AnalysisTable
-									values={props.details}
-									extend
-									endValue={totalScores.length}
-								/>
 							</div>
 						</Grid.Column> */}
 					</Grid.Row>
@@ -138,7 +140,8 @@ AnalysisView.propTypes = {
 	}),
 	onSideBarView: PropTypes.func.isRequired,
 	details: PropTypes.arrayOf(PropTypes.object),
-	score: PropTypes.number.isRequired
+	score: PropTypes.number.isRequired,
+	data: PropTypes.shape({}).isRequired
 };
 
 AnalysisView.defaultProps = {
