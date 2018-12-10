@@ -6,6 +6,7 @@
 	width: 100%;
 	position: relative;
 	box-sizing: border-box;
+	background-attachment: fixed;
 }
 .home .banner .ui.header.title {
 	color: #b4d4f1;

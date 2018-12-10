@@ -1,0 +1,12 @@
+.ui.table.ovw-table th,
+.ui.table.ovw-table td {
+	padding-top: 0.55rem !important;
+	padding-bottom: 0.55rem !important;
+}
+.ui.table.ovw-table .ui.header.essay-title {
+	font-weight: normal;
+}
+.ui.table.ovw-table .ui.header.essay-title .sub.header {
+	margin-top: 0.25rem;
+	color: rgb(151, 151, 151);
+}

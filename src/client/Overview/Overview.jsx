@@ -1,12 +1,26 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import './css/overview.css';
+import { data } from './_data/list.json';
+import { OverviewList } from './OverviewList';
 
 class Overview extends React.Component<RouteComponentProps> {
-	state = {};
+	state = {
+		data: null
+	};
+
+	componentWillMount() {
+		this.setState({
+			data
+		});
+	}
 
 	render(): React.ReactNode {
-		return <div className="overview">Overview</div>;
+		return (
+			<div className="ovw-wrapper">
+				<OverviewList data={this.state.data} />
+			</div>
+		);
 	}
 }
 
