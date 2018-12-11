@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Header, Icon } from 'semantic-ui-react';
+import { Header, Icon, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import './css/sidebar.css';
 import profile from '../_shared/assets/imgs/11.jpg';
@@ -8,10 +8,12 @@ import profile from '../_shared/assets/imgs/11.jpg';
 interface SidebarProps {
 	links: Array<{ name: string, icon: string, path: string, desc: string }>;
 	selectedPage: string;
+	onCollapse: Function;
+	collapse: boolean;
 }
 
 const Sidebar: React.FunctionComponent<SidebarProps> = props => (
-	<div className="sidebar">
+	<div className={props.collapse ? 'sidebar collapse' : 'sidebar'}>
 		<Header inverted textAlign="center" className="header" size="large">
 			<Link to="/">ama</Link>
 			<Header.Subheader>New and Improved Automated Essay Marker</Header.Subheader>
@@ -37,6 +39,14 @@ const Sidebar: React.FunctionComponent<SidebarProps> = props => (
 				</Link>
 			))}
 		</nav>
+		<Button onClick={props.onCollapse} size="small" className="resize-btn">
+			<Icon
+				size="small"
+				name={props.collapse ? 'angle double right' : 'angle double left'}
+				inverted
+			/>
+			<span>Collapse</span>
+		</Button>
 	</div>
 );
 
@@ -48,7 +58,9 @@ Sidebar.propTypes = {
 			desc: PropTypes.string
 		})
 	).isRequired,
-	selectedPage: PropTypes.string.isRequired
+	selectedPage: PropTypes.string.isRequired,
+	onCollapse: PropTypes.func.isRequired,
+	collapse: PropTypes.bool.isRequired
 };
 
 export default Sidebar;

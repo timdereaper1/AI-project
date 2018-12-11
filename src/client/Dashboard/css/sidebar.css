@@ -6,6 +6,7 @@
 	height: 100vh;
 	background: rgb(10, 10, 10);
 	color: white;
+	position: relative;
 }
 .dashboard .sidebar .ui.header {
 	font-weight: 200;
@@ -110,4 +111,71 @@
 }
 .dashboard .sidebar .navs .nav.active .content span.desc {
 	display: block;
+}
+.dashboard .sidebar.collapse {
+	width: 55px;
+	min-width: 55px;
+	max-width: 55px;
+}
+.dashboard .sidebar.collapse .ui.header {
+	letter-spacing: 5px;
+	font-size: 1rem;
+}
+.dashboard .sidebar.collapse .ui.header .sub.header {
+	display: none;
+}
+.dashboard .sidebar.collapse .profile {
+	margin: 0;
+}
+.dashboard .sidebar.collapse .profile .profile-img {
+	width: 45px;
+	height: 45px;
+}
+.dashboard .sidebar.collapse .profile small {
+	display: none;
+}
+.dashboard .sidebar.collapse .navs .nav {
+	padding-left: 0;
+	padding-right: 0;
+}
+.dashboard .sidebar.collapse .navs .nav .content {
+	display: none;
+}
+.dashboard .sidebar .ui.button.resize-btn {
+	padding: 0.65rem 0.85rem;
+	margin: 0;
+	display: flex;
+	width: 100%;
+	background: none;
+	border: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	align-items: center;
+	box-sizing: border-box;
+}
+.dashboard .sidebar.collapse .ui.button.resize-btn {
+	padding-left: 0;
+	padding-right: 0;
+}
+.dashboard .sidebar .ui.button.resize-btn .icon {
+	font-size: 1.58rem;
+	display: block;
+	text-align: center;
+	margin: 0 1.2rem;
+}
+.dashboard .sidebar.collapse .ui.button.resize-btn .icon {
+	flex: 1;
+	margin-left: 0;
+}
+.dashboard .sidebar .ui.button.resize-btn span {
+	font-size: 1rem;
+	font-weight: normal;
+	color: white;
+	display: block;
+	flex: 1;
+	text-align: left;
+}
+.dashboard .sidebar.collapse .ui.button.resize-btn span {
+	display: none;
 }
