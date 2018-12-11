@@ -5,6 +5,7 @@ import { Overall } from './_helpers';
 
 interface OverviewListProps {
 	data: Array<Overall>;
+	onSelect: Function;
 }
 
 export const OverviewList: FunctionComponent<OverviewListProps> = props => {

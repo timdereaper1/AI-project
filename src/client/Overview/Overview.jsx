@@ -18,7 +18,7 @@ class Overview extends React.Component<RouteComponentProps> {
 	render(): React.ReactNode {
 		return (
 			<div className="ovw-wrapper">
-				<OverviewList data={this.state.data} />
+				<OverviewList onSelect={this.onSelectItem} data={this.state.data} />
 			</div>
 		);
 	}
