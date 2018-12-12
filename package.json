@@ -5,10 +5,11 @@
 	"description": "an AI project for scoring essays",
 	"main": "src/client/index.js",
 	"scripts": {
-		"dev": "rm -rf src/server/static && webpack --mode development --watch",
-		"build": "rm -rf src/server/static && webpack --mode production",
-		"serve-linux": "python3 app.py | npm run dev",
-		"serve-win": "python app.py | npm run dev"
+		"wpack:dev": "rm -rf src/server/static && webpack --mode development --watch",
+		"wpack:prod": "rm -rf src/server/static && webpack --mode production",
+		"dev:linux": "python3 app.py | npm run wpack:dev",
+		"dev:win": "python app.py | npm run wpack:dev",
+		"start": "python3 app.py | npm run wpack:prod"
 	},
 	"repository": {
 		"type": "git",
