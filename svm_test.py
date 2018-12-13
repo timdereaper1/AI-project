@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.externals import joblib
-from src.utils.extract import Extract
+from src.server.utils.extract import Extract
 
 # load the validation set from the dataset valic_set.xls file using
 # pandas

@@ -3,7 +3,7 @@ import math
 import pandas as pd
 from sklearn import svm
 from sklearn.externals import joblib
-from src.utils.extract import Extract
+from src.server.utils.extract import Extract
 
 df = pd.read_excel('dataset/training_set_rel3.xls')
 essays, scores = df['essay'], df['domain1_score']

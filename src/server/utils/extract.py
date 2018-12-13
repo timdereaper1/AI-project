@@ -3,8 +3,8 @@ import operator
 import functools
 import math
 from enchant.checker import SpellChecker
-from src.utils.functions import tokenize_text, vocab
-from src.utils.latent import LatentSemanticAnalysis, extract_paragraphs
+from src.server.utils.functions import tokenize_text, vocab
+from src.server.utils.latent import LatentSemanticAnalysis, extract_paragraphs
 
 
 # using the UK and the US dictionaries for checking misspelt words

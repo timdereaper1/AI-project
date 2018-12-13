@@ -3,7 +3,7 @@ from flask import jsonify, request
 from flask_restful import Resource
 from sklearn.externals import joblib
 from sklearn.linear_model import LinearRegression
-from src.utils.extract import Extract
+from src.server.utils.extract import Extract
 
 # load the trained model
 dirname = os.path.dirname(__file__)

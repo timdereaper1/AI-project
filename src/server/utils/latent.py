@@ -2,7 +2,7 @@ import io
 from gensim import corpora
 from gensim.models import LsiModel
 from gensim.models.coherencemodel import CoherenceModel
-from src.utils.functions import tokenize_text
+from src.server.utils.functions import tokenize_text
 
 
 def extract_paragraphs(doc):
