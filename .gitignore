@@ -8,3 +8,4 @@ test.txt
 /src/server/static
 *.py[code]
 pycache
+/docs/essay.txt

@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Header, Grid, Button } from 'semantic-ui-react';
+import { Header, Grid } from 'semantic-ui-react';
 import { RouteComponentProps } from 'react-router-dom';
 import AnalysisTable from './AnalysisTable';
 import AnalysisChart from './AnalysisChart';
 import {
-	merge,
 	Analysis,
 	POSDetails,
 	dataAnalysis,
@@ -114,14 +113,6 @@ const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => {
 							</small>
 						</Grid.Column>
 					</Grid.Row>
-					<Grid.Row>
-						{/* <Grid.Column width={7}>
-							<div className="widget">
-								<Header>Table Showing Basic Essay Elements</Header>
-								<AnalysisTable values={totalScores} />
-							</div>
-						</Grid.Column> */}
-					</Grid.Row>
 				</Grid>
 			</div>
 			<AppFooter />
@@ -138,7 +129,6 @@ AnalysisView.propTypes = {
 		series: PropTypes.arrayOf(PropTypes.number),
 		labels: PropTypes.arrayOf(PropTypes.string)
 	}),
-	onSideBarView: PropTypes.func.isRequired,
 	details: PropTypes.arrayOf(PropTypes.object),
 	score: PropTypes.number.isRequired,
 	data: PropTypes.shape({}).isRequired

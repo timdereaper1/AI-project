@@ -1,11 +1,13 @@
-.analysis-sidebar {
-	padding: 2rem 0.85rem;
-	box-sizing: border-box;
-}
-.analysis-sidebar .ui.button.close-btn {
-	border: none !important;
-	background: none !important;
-	font-size: 1.2rem;
+.analysis .ui.header.error {
+	margin: auto;
+	font-size: 3.3rem;
 	font-weight: 300;
-	color: rgb(131, 33, 16);
+	color: rgb(165, 36, 36);
+	text-transform: uppercase;
+	letter-spacing: 7px;
+	margin-top: 2rem;
+}
+.analysis .ui.header.error .sub.header {
+	font-size: 1.12rem;
+	color: rgb(151, 151, 151);
 }
