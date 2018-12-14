@@ -3,6 +3,7 @@ import { SemanticICONS } from 'semantic-ui-react';
 import { Overview } from '../Overview';
 import { Analysis } from '../Analysis';
 import { EssayContent } from '../EssayContent';
+import { Settings } from '../Settings';
 
 interface Route extends RouteProps {
 	name: string;
@@ -35,5 +36,13 @@ export const routes: Array<Route> = [
 		name: 'Analysis',
 		icon: 'area chart',
 		desc: 'Visualize your essay score'
+	},
+	{
+		exact: true,
+		path: '/dashboard/settings',
+		component: Settings,
+		name: 'Settings',
+		icon: 'settings',
+		desc: 'Manage your essay profile'
 	}
 ];
