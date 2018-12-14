@@ -1,0 +1,33 @@
+.scheme {
+	margin: 1.8rem 0;
+	box-sizing: border-box;
+}
+.scheme .ui.header.scheme-title {
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	margin-bottom: 0.65rem;
+}
+.scheme p.text {
+	color: rgb(151, 151, 151);
+	margin: 0 0 0.25rem;
+	font-size: 0.867rem;
+}
+.scheme .table-wrap {
+	max-width: 768px;
+	margin: 1.12rem auto;
+}
+.scheme .table-wrap .ui.table.scheme-table tr,
+.scheme .table-wrap .ui.table.scheme-table td,
+.scheme .table-wrap .ui.table.scheme-table th {
+	border: none;
+}
+/* .scheme .table-wrap .ui.table.scheme-table th,
+.scheme .table-wrap .ui.table.scheme-table td {
+	padding: 0;
+} */
+.scheme .table-wrap .ui.table.scheme-table th {
+	font-weight: 200;
+	font-size: 1.34rem;
+	padding: 0.75rem 0;
+}
