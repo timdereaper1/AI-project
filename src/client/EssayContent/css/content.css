@@ -1,7 +1,7 @@
 .essay-content .wrapper {
-	width: 90%;
+	max-width: 976px;
 	box-sizing: border-box;
-	margin: auto;
+	margin: 1.55rem auto;
 }
 
 .essay-content .wrapper p.desc {

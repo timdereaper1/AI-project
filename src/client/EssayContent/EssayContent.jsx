@@ -5,7 +5,6 @@ import { RouteComponentProps } from 'react-router-dom';
 import './css/content.css';
 import ResultModal from './ResultModal';
 import details from './_data/details.json';
-import { AppFooter } from '../_shared/components';
 import EssayForm from './EssayForm';
 import { submitEssayForm, getGrade } from './_helpers';
 import { setResults } from './_redux/actions';
@@ -66,7 +65,6 @@ class EssayContent extends React.Component<EssayContentProps> {
 						grade={this.state.grade}
 					/>
 				</div>
-				<AppFooter />
 			</div>
 		);
 	}

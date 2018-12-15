@@ -8,9 +8,9 @@
 }
 .dashboard .content-wrapper {
 	flex: 1;
-	height: 100vh;
 	overflow-y: auto;
 	box-sizing: border-box;
+	min-height: 100vh;
 }
 .dashboard .content-wrapper .header-wrapper {
 	position: fixed;
@@ -64,6 +64,6 @@
 	color: rgb(197, 18, 18);
 }
 .dashboard .content-wrapper .main-content {
-	height: 100vh;
+	min-height: 100vh;
 	padding-top: 4rem;
 }

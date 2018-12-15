@@ -8,6 +8,7 @@
 	text-transform: uppercase;
 	letter-spacing: 5px;
 	margin-bottom: 0.65rem;
+	color: #1b5b97;
 }
 .scheme p.text {
 	color: rgb(151, 151, 151);
@@ -23,10 +24,9 @@
 	border: none;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-/* .scheme .table-wrap .ui.table.scheme-table th,
-.scheme .table-wrap .ui.table.scheme-table td {
-	padding: 0;
-} */
+.scheme .table-wrap .ui.table.scheme-table th {
+	color: #1b5b97;
+}
 .scheme .table-wrap .ui.table.scheme-table th {
 	font-weight: 200;
 	font-size: 1rem;

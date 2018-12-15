@@ -7,6 +7,7 @@ import Sidebar from './Sidebar';
 import './css/dashboard.css';
 import { routes } from './routes';
 import { setSchemeState } from './_redux/action';
+import { AppFooter } from '../_shared/components';
 
 interface DashboardProps extends RouteComponentProps {
 	setSchemeState: Function;
@@ -57,6 +58,7 @@ class Dashboard extends React.Component<DashboardProps> {
 							</Switch>
 						</main>
 					</div>
+					<AppFooter />
 				</div>
 			</div>
 		);

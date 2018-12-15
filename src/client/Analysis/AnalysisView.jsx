@@ -14,7 +14,6 @@ import {
 	miscScores
 } from './_helpers';
 import './css/view.css';
-import { AppFooter } from '../_shared/components';
 import { score } from '../_shared/services';
 
 interface AnalysisViewProps extends RouteComponentProps {
@@ -117,7 +116,6 @@ const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => {
 					</Grid.Row>
 				</Grid>
 			</div>
-			<AppFooter />
 		</React.Fragment>
 	);
 };

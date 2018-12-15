@@ -9,31 +9,47 @@ interface OverviewListViewProps {
 }
 
 export const OverviewListView: React.FunctionComponent<OverviewListViewProps> = props => (
-	<Table basic="very" selectable celled className="ovw-table">
-		<Table.Header>
-			<Table.Row>
-				<Table.HeaderCell style={styles.col}>#</Table.HeaderCell>
-				<Table.HeaderCell style={styles.title}>Title</Table.HeaderCell>
-				<Table.HeaderCell style={styles.users}>Users</Table.HeaderCell>
-				<Table.HeaderCell style={styles.users}>Max Score</Table.HeaderCell>
-			</Table.Row>
-		</Table.Header>
-		<Table.Body>
-			{props.data.map((val, _i) => (
-				<Table.Row key={val.id}>
-					<Table.Cell style={styles.col}>{_i + 1}</Table.Cell>
-					<Table.Cell style={styles.title}>
-						<Header size="small" className="essay-title">
-							{val.title}
-							<Header.Subheader>{val.desc}</Header.Subheader>
-						</Header>
-					</Table.Cell>
-					<Table.Cell style={styles.users}>{val.users}</Table.Cell>
-					<Table.Cell style={styles.users}>{val.score}</Table.Cell>
+	<div className="ovw-wrap">
+		<Header className="ovw-title" size="large">
+			Written Essays
+		</Header>
+		<p className="desc">
+			A list of written essays by other people. Click on an essay to see the leaderboard.
+		</p>
+		<Table basic="very" selectable celled className="ovw-table">
+			<Table.Header>
+				<Table.Row>
+					<Table.HeaderCell style={styles.col}>#</Table.HeaderCell>
+					<Table.HeaderCell style={styles.title}>Title</Table.HeaderCell>
+					<Table.HeaderCell style={styles.users} textAlign="center">
+						Written
+					</Table.HeaderCell>
+					<Table.HeaderCell style={styles.users} textAlign="center">
+						Score
+					</Table.HeaderCell>
 				</Table.Row>
-			))}
-		</Table.Body>
-	</Table>
+			</Table.Header>
+			<Table.Body>
+				{props.data.map((val, _i) => (
+					<Table.Row key={val.id}>
+						<Table.Cell style={styles.col}>{_i + 1}</Table.Cell>
+						<Table.Cell style={styles.title}>
+							<Header size="medium" className="essay-title">
+								{val.title}
+								<Header.Subheader>{val.desc}</Header.Subheader>
+							</Header>
+						</Table.Cell>
+						<Table.Cell style={styles.users} textAlign="center">
+							{val.users}
+						</Table.Cell>
+						<Table.Cell style={styles.users} textAlign="center">
+							{val.score}
+						</Table.Cell>
+					</Table.Row>
+				))}
+			</Table.Body>
+		</Table>
+	</div>
 );
 
 const styles: { [key: string]: React.CSSProperties } = {
@@ -47,7 +63,7 @@ const styles: { [key: string]: React.CSSProperties } = {
 		paddingRight: '0.95rem'
 	},
 	users: {
-		width: '6.5rem'
+		width: '7.5rem'
 	}
 };
 
