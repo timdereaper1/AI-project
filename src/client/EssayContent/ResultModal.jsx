@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Button } from 'semantic-ui-react';
+import { Modal, Button, Header } from 'semantic-ui-react';
 import { Progress } from 'react-sweet-progress';
 import 'react-sweet-progress/lib/style.css';
 import { score } from '../_shared/services';
@@ -11,6 +11,7 @@ interface ResultModalProps {
 	open?: boolean;
 	result?: { score: number };
 	onClose: Function;
+	grade: string;
 }
 
 const ResultModal: React.FunctionComponent<ResultModalProps> = props => (
@@ -33,6 +34,11 @@ const ResultModal: React.FunctionComponent<ResultModalProps> = props => (
 						percent={props.result ? score(props.result.score) : 0}
 					/>
 				</div>
+				{props.grade && (
+					<Header className="grade" size="large" inverted textAlign="center">
+						<span style={styles.headerLabel}>grade: </span> {props.grade}
+					</Header>
+				)}
 				<p className="desc">
 					Your total score on your written essay. Click the link below to view the
 					analysis on the essay
@@ -51,7 +57,8 @@ ResultModal.propTypes = {
 	result: PropTypes.shape({
 		score: PropTypes.number
 	}),
-	onClose: PropTypes.func.isRequired
+	onClose: PropTypes.func.isRequired,
+	grade: PropTypes.string.isRequired
 };
 
 ResultModal.defaultProps = {
@@ -59,13 +66,17 @@ ResultModal.defaultProps = {
 	result: null
 };
 
-const styles: { header: React.CSSProperties } = {
+const styles: { [key: string]: React.CSSProperties } = {
 	header: {
 		textAlign: 'center',
 		fontWeight: 400,
 		textTransform: 'uppercase',
 		fontSize: '2.1rem',
 		color: '#b4d4f1'
+	},
+	headerLabel: {
+		textTransfrm: 'uppercase',
+		fontSize: '1rem'
 	}
 };
 

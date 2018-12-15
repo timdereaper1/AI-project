@@ -7,10 +7,10 @@ const webpackLoggerPlugin = require('webpack-logger-plugin');
 const openBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
-	devtool: 'cheap-module-source-map',
+	devtool: 'eval-source-map',
 	target: 'web',
 	entry: {
-		main: path.join(__dirname, './src/client/index.js')
+		main: ['react-hot-loader/patch', path.join(__dirname, './src/client/index.js')]
 	},
 	output: {
 		path: path.join(__dirname, './src/server/static/'),

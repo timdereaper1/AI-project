@@ -1,0 +1,181 @@
+.dashboard .sidebar {
+	width: 230px;
+	min-width: 230px;
+	max-width: 230px;
+	box-sizing: border-box;
+	height: 100vh;
+	background: rgb(10, 10, 10);
+	color: white;
+	position: relative;
+}
+.dashboard .sidebar .ui.header {
+	font-weight: 200;
+	padding: 1.12rem 0;
+	text-transform: uppercase;
+	margin-bottom: 0;
+	letter-spacing: 10px;
+}
+.dashboard .sidebar .ui.header a {
+	color: #b4d4f1;
+}
+.dashboard .ui.header .sub.header {
+	font-size: 0.65rem;
+	text-transform: none;
+	color: rgb(85, 85, 85);
+	letter-spacing: normal;
+	margin-top: 0.55rem;
+}
+.dashboard .sidebar .profile {
+	margin: 0 1rem 0;
+	box-sizing: border-box;
+	border-top: 1px solid rgba(255, 255, 255, 0.048);
+	/* border-bottom: 1px solid rgba(255, 255, 255, 0.048); */
+	padding: 1.5rem 0;
+}
+.dashboard .sidebar .profile .profile-img {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	display: block;
+	margin: 0 auto 1.12rem;
+}
+.dashboard .sidebar .profile small {
+	font-size: 0.85rem;
+	font-weight: normal;
+	text-transform: uppercase;
+	display: block;
+}
+.dashboard .sidebar .profile small span.label {
+	color: rgb(85, 85, 85);
+	margin-left: 1rem;
+	margin-right: 0.75rem;
+	text-transform: none;
+	font-size: 0.75rem;
+}
+.dashboard .sidebar .navs .nav {
+	display: flex;
+	padding: 0.65rem 0.85rem;
+	font-size: 11px;
+	color: white;
+	text-decoration: none;
+	text-transform: uppercase;
+	box-sizing: border-box;
+	position: relative;
+	align-items: center;
+	transition: 0.35s;
+}
+.dashboard .sidebar .navs .nav.active::after,
+.dashboard .sidebar .navs .nav.active::before {
+	content: '';
+	position: absolute;
+	right: -4px;
+	width: 8px;
+	height: 8px;
+	top: 43%;
+}
+.dashboard .sidebar .navs .nav.active::after {
+	background: white;
+	transform: translateY(50%) skew(45deg);
+}
+.dashboard .sidebar .navs .nav.active::before {
+	background: white;
+	transform: translateY(-50%) skew(-45deg);
+}
+.dashboard .sidebar .navs .nav:hover,
+.dashboard .sidebar .navs .nav.active {
+	background: rgba(255, 255, 255, 0.04);
+	color: #b4d4f1;
+}
+.dashboard .sidebar .navs .nav .content {
+	flex: 1;
+}
+.dashboard .sidebar .navs .nav .content span {
+	display: block;
+}
+.dashboard .sidebar .navs .nav.active .content span.header {
+	margin-bottom: 0.35rem;
+}
+.dashboard .sidebar .navs .nav .content span.desc {
+	font-size: 0.75rem;
+	color: rgb(85, 85, 85);
+	text-transform: none;
+	padding-top: 0.35rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.048);
+	display: none;
+}
+.dashboard .sidebar .navs .nav .nav-icon {
+	margin: 0 1.2rem;
+}
+.dashboard .sidebar .navs .nav.active .nav-icon {
+	color: #b4d4f1;
+}
+.dashboard .sidebar .navs .nav.active .content span.desc {
+	display: block;
+}
+.dashboard .sidebar.collapse {
+	width: 55px;
+	min-width: 55px;
+	max-width: 55px;
+}
+.dashboard .sidebar.collapse .ui.header {
+	letter-spacing: 5px;
+	font-size: 1rem;
+}
+.dashboard .sidebar.collapse .ui.header .sub.header {
+	display: none;
+}
+.dashboard .sidebar.collapse .profile {
+	margin: 0;
+}
+.dashboard .sidebar.collapse .profile .profile-img {
+	width: 45px;
+	height: 45px;
+}
+.dashboard .sidebar.collapse .profile small {
+	display: none;
+}
+.dashboard .sidebar.collapse .navs .nav {
+	padding-left: 0;
+	padding-right: 0;
+}
+.dashboard .sidebar.collapse .navs .nav .content {
+	display: none;
+}
+.dashboard .sidebar .ui.button.resize-btn {
+	padding: 0.65rem 0.85rem;
+	margin: 0;
+	display: flex;
+	width: 100%;
+	background: none;
+	border: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	align-items: center;
+	box-sizing: border-box;
+}
+.dashboard .sidebar.collapse .ui.button.resize-btn {
+	padding-left: 0;
+	padding-right: 0;
+}
+.dashboard .sidebar .ui.button.resize-btn .icon {
+	font-size: 1.58rem;
+	display: block;
+	text-align: center;
+	margin: 0 1.2rem;
+}
+.dashboard .sidebar.collapse .ui.button.resize-btn .icon {
+	flex: 1;
+	margin-left: 0;
+}
+.dashboard .sidebar .ui.button.resize-btn span {
+	font-size: 1rem;
+	font-weight: normal;
+	color: white;
+	display: block;
+	flex: 1;
+	text-align: left;
+}
+.dashboard .sidebar.collapse .ui.button.resize-btn span {
+	display: none;
+}
