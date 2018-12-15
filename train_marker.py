@@ -5,6 +5,10 @@ from sklearn.linear_model import LinearRegression
 # from sklearn.preprocessing import StandardScaler
 from sklearn.externals import joblib
 from src.utils.extract import Extract
+# KFold library
+from sklearn.model_selection import KFold
+# mean square error library
+from sklearn.metrics import mean_squared_error
 
 df = pd.read_excel('dataset/training_set_rel3.xls')
 sets, essays, scores = df['essay_set'], df['essay'], df['domain1_score']
@@ -51,10 +55,34 @@ for essay in essays:
 # normalize the training data with sklearn StandardScaler
 # train_normalize = StandardScaler().fit_transform(train)
 
-# train the model with the X and Y data by fitting the data into the model using the
-# fit method provided by the LinearRegression class
-model = LinearRegression().fit(train, labels)
+# list for storing model and error pair for Kfold
+models = []
+model_errors = []
+
+# list of predicted scores from train_index in Kfold
+predicted_scores = []
+
+kf = KFold(n_splits=5)
+for train_index, test_index in kf.split(train):
+
+    # train the model with the X and Y data by fitting the data into the model using the
+    # fit method provided by the LinearRegression class
+    model = LinearRegression().fit(train[train_index], labels[train_index])
+    
+    for features in train[test_index]:
+        predicted_values = model.predict([features])[0]
+        # score actually found in predicted_values[0]
+        predicted_scores.append(predicted_values[0])
+    
+    models.append(model)
+    model_errors.append(mean_squared_error(scores, predicted_scores))
+
+min_error = min(model_errors)
+min_error_index, = model_errors.index(min_error)
+
+print(model_errors)
+print(min_error)
 
 # save the trained model in a joblib file for faster loading of the model during
 # testing or using it in an application
-joblib.dump(model, 'models/marker.joblib')
+joblib.dump(models[min_error_index], 'models/marker.joblib')
