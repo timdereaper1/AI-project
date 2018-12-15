@@ -97,7 +97,7 @@ const GradingScheme: React.FunctionComponent<GradingSchemeProps> = props => (
 			range difference between adjacent scheme is 1
 		</p>
 		<div style={{ textAlign: 'right' }}>
-			{props.scheme.length === 0 && (
+			{(!props.scheme || props.scheme.length === 0) && (
 				<Button className="save-btn create" onClick={props.onCreateScheme}>
 					Add Scheme
 				</Button>
@@ -112,8 +112,8 @@ const GradingScheme: React.FunctionComponent<GradingSchemeProps> = props => (
 GradingScheme.propTypes = {
 	scheme: PropTypes.arrayOf(
 		PropTypes.shape({
-			max: PropTypes.number,
-			min: PropTypes.number,
+			max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+			min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 			grade: PropTypes.string
 		})
 	),

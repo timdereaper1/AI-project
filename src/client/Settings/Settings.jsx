@@ -1,8 +1,7 @@
 import React from 'react';
 import GradingScheme from './GradingScheme';
 import './css/settings.css';
-import { Scheme } from './_helpers';
-import { Constants } from '../_shared/constants';
+import { Scheme, Constants, getGradeChar } from './_helpers';
 
 class Settings extends React.Component<{}> {
 	state = {
@@ -50,10 +49,11 @@ class Settings extends React.Component<{}> {
 	onSchemeAdd = (): void => {
 		const { scheme: schemes } = this.state;
 		const last = schemes[schemes.length - 1];
-		const max = last.min - 1;
-		const min = max - (last.max - last.min);
+		const max = parseInt(last.min) - 1;
+		const min = max - (parseInt(last.max) - parseInt(last.min));
+		const grade = getGradeChar(last.grade);
 		const next: Scheme = {
-			grade: '',
+			grade,
 			max,
 			min
 		};
@@ -77,7 +77,7 @@ class Settings extends React.Component<{}> {
 			max: 100
 		};
 		this.setState({
-			scheme: [...this.state.scheme, newScheme],
+			scheme: [newScheme],
 			isSaved: false
 		});
 	};
