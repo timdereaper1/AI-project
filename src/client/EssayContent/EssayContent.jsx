@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import './css/content.css';
 import ResultModal from './ResultModal';
@@ -7,6 +8,7 @@ import details from './_data/details.json';
 import { AppFooter } from '../_shared/components';
 import EssayForm from './EssayForm';
 import { submitEssayForm } from './_helpers';
+import { setResults } from './_redux/actions';
 
 class EssayContent extends React.Component<RouteComponentProps> {
 	state = {
@@ -15,6 +17,10 @@ class EssayContent extends React.Component<RouteComponentProps> {
 		open: false,
 		result: null,
 		title: ''
+	};
+
+	static propTypes = {
+		setResults: PropTypes.func.isRequired
 	};
 
 	componentWillMount() {
@@ -54,7 +60,8 @@ class EssayContent extends React.Component<RouteComponentProps> {
 
 	handleProceedClick = (): void => {
 		if (this.state.result) {
-			this.props.history.push('/dashboard/analysis', this.state.result);
+			this.props.setResults(this.state.result);
+			this.props.history.push('/dashboard/analysis');
 		}
 	};
 
@@ -82,4 +89,9 @@ class EssayContent extends React.Component<RouteComponentProps> {
 	};
 }
 
-export default EssayContent;
+export default connect(
+	null,
+	{
+		setResults
+	}
+)(EssayContent);

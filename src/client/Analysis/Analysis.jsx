@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import { Header } from 'semantic-ui-react';
 import pos from './_data/pos.json';
@@ -6,7 +8,7 @@ import { filterEssayResults, posScoreInfo } from './_helpers';
 import AnalysisView from './AnalysisView';
 import './css/analysis.css';
 
-export default class Analysis extends React.Component<RouteComponentProps> {
+class Analysis extends React.Component<RouteComponentProps> {
 	state = {
 		pos: null,
 		essay: null,
@@ -15,8 +17,16 @@ export default class Analysis extends React.Component<RouteComponentProps> {
 		data: null
 	};
 
+	static propTypes = {
+		state: PropTypes.shape({})
+	};
+
+	static defaultProps = {
+		state: null
+	};
+
 	componentWillMount() {
-		const { state } = this.props.location;
+		const { state } = this.props;
 		if (state) {
 			const { pos: resultPOS, essay } = filterEssayResults(state);
 			const list = posScoreInfo(pos, resultPOS.labels, resultPOS.series);
@@ -55,3 +65,9 @@ export default class Analysis extends React.Component<RouteComponentProps> {
 		);
 	}
 }
+
+const mapStateToProps = state => ({
+	state: state.analysis.state
+});
+
+export default connect(mapStateToProps)(Analysis);
