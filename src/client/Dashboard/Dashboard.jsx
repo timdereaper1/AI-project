@@ -1,14 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { RouteComponentProps, Route, Switch } from 'react-router-dom';
 import { Header } from 'semantic-ui-react';
 import Sidebar from './Sidebar';
 import './css/dashboard.css';
 import { routes } from './routes';
+import { setSchemeState } from './_redux/action';
 
-class Dashboard extends React.Component<RouteComponentProps> {
+interface DashboardProps extends RouteComponentProps {
+	setSchemeState: Function;
+}
+
+class Dashboard extends React.Component<DashboardProps> {
 	state = {
 		collapse: true
 	};
+
+	static propTypes = {
+		setSchemeState: PropTypes.func.isRequired
+	};
+
+	componentWillMount() {
+		this.props.setSchemeState();
+	}
 
 	render(): React.ReactNode {
 		const selectedRoute = routes.find(value => value.path === this.props.location.pathname);
@@ -54,4 +69,7 @@ class Dashboard extends React.Component<RouteComponentProps> {
 	};
 }
 
-export default Dashboard;
+export default connect(
+	null,
+	{ setSchemeState }
+)(Dashboard);

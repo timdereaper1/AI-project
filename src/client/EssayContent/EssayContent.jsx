@@ -7,7 +7,7 @@ import ResultModal from './ResultModal';
 import details from './_data/details.json';
 import { AppFooter } from '../_shared/components';
 import EssayForm from './EssayForm';
-import { submitEssayForm } from './_helpers';
+import { submitEssayForm, getGrade } from './_helpers';
 import { setResults } from './_redux/actions';
 
 class EssayContent extends React.Component<RouteComponentProps> {
@@ -16,7 +16,8 @@ class EssayContent extends React.Component<RouteComponentProps> {
 		details: [],
 		open: false,
 		result: null,
-		title: ''
+		title: '',
+		grade: ''
 	};
 
 	static propTypes = {
@@ -46,6 +47,7 @@ class EssayContent extends React.Component<RouteComponentProps> {
 						open={this.state.open}
 						onClick={this.handleProceedClick}
 						onClose={this.handleModalClose}
+						grade={this.state.grade}
 					/>
 				</div>
 				<AppFooter />
@@ -71,7 +73,8 @@ class EssayContent extends React.Component<RouteComponentProps> {
 		if (result) {
 			this.setState({
 				result,
-				open: true
+				open: true,
+				grade: getGrade(result.score, this.props.scheme)
 			});
 		}
 	};
@@ -89,8 +92,12 @@ class EssayContent extends React.Component<RouteComponentProps> {
 	};
 }
 
+const mapStateToProps = state => ({
+	scheme: state.dashboard.scheme
+});
+
 export default connect(
-	null,
+	mapStateToProps,
 	{
 		setResults
 	}
