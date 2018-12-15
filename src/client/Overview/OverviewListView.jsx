@@ -6,6 +6,7 @@ import './css/listview.css';
 
 interface OverviewListViewProps {
 	data: Array<Overall>;
+	onSelect: Function;
 }
 
 export const OverviewListView: React.FunctionComponent<OverviewListViewProps> = props => (
@@ -31,7 +32,7 @@ export const OverviewListView: React.FunctionComponent<OverviewListViewProps> = 
 			</Table.Header>
 			<Table.Body>
 				{props.data.map((val, _i) => (
-					<Table.Row key={val.id}>
+					<Table.Row key={val.id} onClick={() => props.onSelect(val)}>
 						<Table.Cell style={styles.col}>{_i + 1}</Table.Cell>
 						<Table.Cell style={styles.title}>
 							<Header size="medium" className="essay-title">
@@ -75,5 +76,6 @@ OverviewListView.propTypes = {
 			users: PropTypes.number,
 			score: PropTypes.number
 		})
-	).isRequired
+	).isRequired,
+	onSelect: PropTypes.func.isRequired
 };

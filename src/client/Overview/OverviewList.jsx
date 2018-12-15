@@ -13,11 +13,12 @@ export const OverviewList: FunctionComponent<OverviewListProps> = props => {
 		return <div>No data</div>;
 	}
 
-	return <OverviewListView data={props.data} />;
+	return <OverviewListView data={props.data} onSelect={props.onSelect} />;
 };
 
 OverviewList.propTypes = {
-	data: PropTypes.arrayOf(PropTypes.object)
+	data: PropTypes.arrayOf(PropTypes.object),
+	onSelect: PropTypes.func.isRequired
 };
 
 OverviewList.defaultProps = {

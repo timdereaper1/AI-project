@@ -15,11 +15,12 @@ model = joblib.load('models/marker_svm.joblib')
 # an index counter to count the total number of essays whose scores
 # have been predicted
 index = 0
-
 done = 0
+results = []
+total = 100
 
 # validate the model with the validation set of essays
-for essay in essays[:10]:
+for essay in essays[:total]:
     # extract the features needed by the model from the essay
     features = Extract(essay)
 
@@ -28,7 +29,15 @@ for essay in essays[:10]:
     if score == scores[index]:
         done += 1
 
+    result = {
+        'examiner': scores[index],
+        'predict': score
+    }
+
+    results.append(result)
+
     index += 1
 
-accuracy = done / 10 * 100
+accuracy = done / total * 100
 print(accuracy)
+print(results)
