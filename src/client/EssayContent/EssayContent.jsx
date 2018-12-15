@@ -1,21 +1,42 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import './css/content.css';
 import ResultModal from './ResultModal';
 import details from './_data/details.json';
-import { AppHeader, AppFooter } from '../_shared/components';
 import EssayForm from './EssayForm';
-import EssayProfile from './EsssayProfile';
-import { submitEssayForm } from './_helpers';
+import { submitEssayForm, getGrade } from './_helpers';
+import { setResults } from './_redux/actions';
 
-class EssayContent extends React.Component<RouteComponentProps> {
+interface EssayContentProps extends RouteComponentProps {
+	setResults: Function;
+	scheme?: Array<{}>;
+}
+
+class EssayContent extends React.Component<EssayContentProps> {
 	state = {
 		data: '',
 		details: [],
 		open: false,
 		result: null,
-		title: ''
+		title: '',
+		grade: ''
+	};
+
+	static propTypes = {
+		setResults: PropTypes.func.isRequired,
+		scheme: PropTypes.arrayOf(
+			PropTypes.shape({
+				min: PropTypes.number,
+				max: PropTypes.number,
+				grade: PropTypes.string
+			})
+		)
+	};
+
+	static defaultProps = {
+		scheme: null
 	};
 
 	componentWillMount() {
@@ -25,46 +46,39 @@ class EssayContent extends React.Component<RouteComponentProps> {
 	render(): React.ReactNode {
 		return (
 			<div className="essay-content">
-				<AppHeader />
-				<Container>
-					<p style={{ padding: '0 1rem' }}>
-						AMA is an AI agent trained to access and score english essays with selected
-						criteria standards for essay scoring. Click here to view criteria. <br />
-						The title of the essay is required and must be entered in the input field
-						below, else AMA cannot fully access the essay. Type in your essay in the
-						provided text editor, then click on submit button to submit the essay for
-						marking.
+				<div className="wrapper">
+					<p className="desc">
+						You can write your own essay or select an essay from the essay list.
 					</p>
-					<div className="essay-content wrapper">
-						<EssayProfile details={this.state.details} />
-						<EssayForm
-							onSubmit={this.handleEssaySubmission}
-							onEditorChange={this.handleEditorChange}
-							editorValue={this.state.data}
-							title={this.state.title}
-							onTextChange={this.handleTitleInput}
-						/>
-						<ResultModal
-							result={this.state.result}
-							open={this.state.open}
-							onClick={this.handleProceedClick}
-							onClose={this.handleModalClose}
-						/>
-					</div>
-				</Container>
-				<AppFooter />
+					<EssayForm
+						onSubmit={this.handleEssaySubmission}
+						onEditorChange={this.handleEditorChange}
+						editorValue={this.state.data}
+						title={this.state.title}
+						onTextChange={this.handleTitleInput}
+					/>
+					<ResultModal
+						result={this.state.result}
+						open={this.state.open}
+						onClick={this.handleProceedClick}
+						onClose={this.handleModalClose}
+						grade={this.state.grade}
+					/>
+				</div>
 			</div>
 		);
 	}
 
 	handleEditorChange = (event: any, editor: any): void => {
-		const data = editor.getData();
+		const data: string = editor.getData();
 		this.setState({ data });
 	};
 
 	handleProceedClick = (): void => {
 		if (this.state.result) {
-			this.props.history.push('/analysis', this.state.result);
+			const { result, grade } = this.state;
+			this.props.setResults({ ...result, grade });
+			this.props.history.push('/dashboard/analysis');
 		}
 	};
 
@@ -74,7 +88,8 @@ class EssayContent extends React.Component<RouteComponentProps> {
 		if (result) {
 			this.setState({
 				result,
-				open: true
+				open: true,
+				grade: getGrade(result.score, this.props.scheme)
 			});
 		}
 	};
@@ -86,6 +101,19 @@ class EssayContent extends React.Component<RouteComponentProps> {
 	handleModalClose = (): void => {
 		this.setState({ open: false });
 	};
+
+	handleResultView = (): void => {
+		this.setState({ open: true });
+	};
 }
 
-export default EssayContent;
+const mapStateToProps = state => ({
+	scheme: state.dashboard.scheme
+});
+
+export default connect(
+	mapStateToProps,
+	{
+		setResults
+	}
+)(EssayContent);

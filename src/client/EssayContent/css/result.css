@@ -22,3 +22,7 @@
 .result .ui.button.btn:active {
 	background: none !important;
 }
+.result .ui.header.grade {
+	color: rgb(138, 138, 138);
+	font-weight: 300;
+}

@@ -1,0 +1,13 @@
+.ovw-wrapper {
+	width: 90%;
+	box-sizing: border-box;
+	margin: auto;
+}
+.ovw-section {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.086);
+	box-sizing: border-box;
+	padding: 2rem 0;
+}
+.ovw-section:last-child {
+	border: none;
+}

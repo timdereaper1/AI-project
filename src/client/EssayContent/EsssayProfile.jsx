@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Header, List } from 'semantic-ui-react';
+import { Header, List, Button } from 'semantic-ui-react';
 import './css/profile.css';
 import image1 from '../_shared/assets/imgs/11.jpg';
 
 interface EssayProfileProps {
 	details: Array<{ name: string }>;
+	onResultClick: Function;
+	showResult: boolean;
 }
 
 const EssayProfile: React.FunctionComponent<EssayProfileProps> = props => (
@@ -22,12 +24,23 @@ const EssayProfile: React.FunctionComponent<EssayProfileProps> = props => (
 						</List.Item>
 					))}
 			</List>
+			<Button
+				style={{ display: props.showResult ? 'inline-block' : 'none' }}
+				onClick={props.onResultClick}
+				className="result-btn"
+				compact
+				floated="right"
+			>
+				Result
+			</Button>
 		</div>
 	</div>
 );
 
 EssayProfile.propTypes = {
-	details: PropTypes.arrayOf(PropTypes.object)
+	details: PropTypes.arrayOf(PropTypes.object),
+	onResultClick: PropTypes.func.isRequired,
+	showResult: PropTypes.bool.isRequired
 };
 
 EssayProfile.defaultProps = {

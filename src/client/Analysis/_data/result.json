@@ -4,7 +4,7 @@
 	"values": {
 		"analysis": 0.15521475525046322,
 		"characters": 170,
-		"misspelt_words": 6,
+		"misspelt words": 6,
 		"pos": {
 			"CC": 1,
 			"CD": 1,
