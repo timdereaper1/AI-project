@@ -14,7 +14,7 @@ labels = []  # list stores the actual scored values by examiners
 data = []   # list stores the extracted features from the essay
 
 counter = 0  # counter for the total essay dataset
-for essay in essays[:10]:
+for essay in essays:
     extract = Extract(essay)    # extract the essay features
     score = scores[counter]     # get the examiners score for the essay
 
