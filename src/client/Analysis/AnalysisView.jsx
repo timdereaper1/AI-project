@@ -24,10 +24,10 @@ interface AnalysisViewProps extends RouteComponentProps {
 	details: Array<POSDetails>;
 	score: number;
 	data: {};
+	grade: string;
 }
 
 const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => {
-	// const totalScores = merge(props.essay.labels, props.essay.series);
 	const wordVals = dataAnalysis(props.data, 'words');
 	const overall = overallScores(props.essay);
 	const miscs = miscScores(props.essay);
@@ -36,6 +36,8 @@ const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => {
 			<div className="analysis">
 				<Header size="huge" className="main-header">
 					<span style={{ fontSize: 12 }}>Score :</span> {score(props.score)}
+					<span style={{ fontSize: 12, marginLeft: '1.25rem' }}>Grade :</span>{' '}
+					{props.grade}
 				</Header>
 				<p className="analysis-desc">
 					In analyzing the content of the essay, irrelevant words and text were removed
@@ -131,7 +133,8 @@ AnalysisView.propTypes = {
 	}),
 	details: PropTypes.arrayOf(PropTypes.object),
 	score: PropTypes.number.isRequired,
-	data: PropTypes.shape({}).isRequired
+	data: PropTypes.shape({}).isRequired,
+	grade: PropTypes.string.isRequired
 };
 
 AnalysisView.defaultProps = {

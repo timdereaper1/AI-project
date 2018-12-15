@@ -4,7 +4,8 @@ import { Constants as Type } from './types';
 
 export const setSchemeState = (): Action => {
 	if (localStorage.getItem(Constants.keys.store.GRADE_SCHEME)) {
-		const data: Array<{}> = JSON.parse(localStorage.getItem(Constants.keys.store.GRADE_SCHEME));
+		let data: Array<{}> = JSON.parse(localStorage.getItem(Constants.keys.store.GRADE_SCHEME));
+		data = data.map(val => ({ ...val, min: parseInt(val.min), max: parseInt(val.max) }));
 		return {
 			type: Type.HAS_SCHEME,
 			payload: data

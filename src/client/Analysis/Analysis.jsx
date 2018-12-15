@@ -14,7 +14,8 @@ class Analysis extends React.Component<RouteComponentProps> {
 		essay: null,
 		list: null,
 		score: 0,
-		data: null
+		data: null,
+		grade: ''
 	};
 
 	static propTypes = {
@@ -35,7 +36,8 @@ class Analysis extends React.Component<RouteComponentProps> {
 				essay,
 				list,
 				score: state.score,
-				data: state.values
+				data: state.values,
+				grade: state.grade
 			});
 		}
 	}
@@ -61,6 +63,7 @@ class Analysis extends React.Component<RouteComponentProps> {
 				details={this.state.list}
 				score={this.state.score}
 				data={this.state.data}
+				grade={this.state.grade}
 			/>
 		);
 	}

@@ -10,7 +10,12 @@ import EssayForm from './EssayForm';
 import { submitEssayForm, getGrade } from './_helpers';
 import { setResults } from './_redux/actions';
 
-class EssayContent extends React.Component<RouteComponentProps> {
+interface EssayContentProps extends RouteComponentProps {
+	setResults: Function;
+	scheme?: Array<{}>;
+}
+
+class EssayContent extends React.Component<EssayContentProps> {
 	state = {
 		data: '',
 		details: [],
@@ -21,7 +26,18 @@ class EssayContent extends React.Component<RouteComponentProps> {
 	};
 
 	static propTypes = {
-		setResults: PropTypes.func.isRequired
+		setResults: PropTypes.func.isRequired,
+		scheme: PropTypes.arrayOf(
+			PropTypes.shape({
+				min: PropTypes.number,
+				max: PropTypes.number,
+				grade: PropTypes.string
+			})
+		)
+	};
+
+	static defaultProps = {
+		scheme: null
 	};
 
 	componentWillMount() {
@@ -62,7 +78,8 @@ class EssayContent extends React.Component<RouteComponentProps> {
 
 	handleProceedClick = (): void => {
 		if (this.state.result) {
-			this.props.setResults(this.state.result);
+			const { result, grade } = this.state;
+			this.props.setResults({ ...result, grade });
 			this.props.history.push('/dashboard/analysis');
 		}
 	};

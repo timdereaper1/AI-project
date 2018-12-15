@@ -16,5 +16,6 @@ export const submitEssayForm = async (html: string, title?: string): Promise<any
 };
 
 export const getGrade = (score: number, scheme: Array<Scheme>): string => {
-	return scheme ? scheme.filter(val => score >= val.min && score <= val.max)[0].grade : null;
+	const grades = scheme.filter(val => score >= val.min && score <= val.max);
+	return scheme ? grades[0].grade : null;
 };
