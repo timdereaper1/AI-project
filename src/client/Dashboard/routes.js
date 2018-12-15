@@ -42,7 +42,7 @@ export const routes: Array<Route> = [
 		path: '/dashboard/settings',
 		component: Settings,
 		name: 'Settings',
-		icon: 'settings',
+		icon: 'setting',
 		desc: 'Manage your essay profile'
 	}
 ];
