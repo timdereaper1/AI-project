@@ -49,8 +49,8 @@ class Extract():
         self.voca = [val for val in vocab(self.tokens).values()]
 
         # evaluating coherence
-        self.coherence = LatentSemanticAnalysis(
-            self.doc, stop=12).get_coherence()
+        # self.coherence = LatentSemanticAnalysis(
+        #     self.doc, stop=12).get_coherence()
 
         # average character count per word
         self.chars_per_word = self.chars / self.words
@@ -89,7 +89,7 @@ class Extract():
         features.append(self.sentence_per_paragragh)
         features.append(self.short_words)
         features.append(self.long_word)
-        features.append(self.coherence)
+        # features.append(self.coherence)
 
         index = 0
         for val in features:
