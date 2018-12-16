@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Header, Grid } from 'semantic-ui-react';
-import { RouteComponentProps } from 'react-router-dom';
 import AnalysisTable from './AnalysisTable';
 import AnalysisChart from './AnalysisChart';
 import {
@@ -16,7 +15,7 @@ import {
 import './css/view.css';
 import { score } from '../_shared/services';
 
-interface AnalysisViewProps extends RouteComponentProps {
+interface Props {
 	essay: Analysis;
 	pos: Analysis;
 	onSideBarView: Function;
@@ -26,7 +25,7 @@ interface AnalysisViewProps extends RouteComponentProps {
 	grade: string;
 }
 
-const AnalysisView: React.FunctionComponent<AnalysisViewProps> = props => {
+const AnalysisView = (props: Props) => {
 	const wordVals = dataAnalysis(props.data, 'words');
 	const overall = overallScores(props.essay);
 	const miscs = miscScores(props.essay);

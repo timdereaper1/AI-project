@@ -24,3 +24,11 @@ export interface MergeRes {
 	index: number;
 	value: number;
 }
+
+export interface AnalysisData {
+	key: string;
+	index: number;
+	value: number;
+	abbr?: string;
+	desc?: string;
+}

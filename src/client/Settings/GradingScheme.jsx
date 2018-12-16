@@ -5,8 +5,8 @@ import './css/scheme.css';
 import SchemeInput from './SchemeInput';
 import { Scheme } from './_helpers';
 
-type GradingSchemeProps = {
-	scheme: Array<Scheme>,
+type Props = {
+	scheme?: Array<Scheme>,
 	onSchemeChange: Function,
 	onSchemeDelete: Function,
 	onSchemeAdd: Function,
@@ -15,7 +15,7 @@ type GradingSchemeProps = {
 	onCreateScheme: Function
 };
 
-const GradingScheme: React.FunctionComponent<GradingSchemeProps> = props => (
+const GradingScheme = (props: Props) => (
 	<div className="scheme">
 		<Header size="large" textAlign="center" className="scheme-title">
 			Grading Scheme

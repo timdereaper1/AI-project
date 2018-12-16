@@ -4,13 +4,13 @@ import { Header, List, Button } from 'semantic-ui-react';
 import './css/profile.css';
 import image1 from '../_shared/assets/imgs/11.jpg';
 
-interface EssayProfileProps {
+interface Props {
 	details: Array<{ name: string }>;
 	onResultClick: Function;
 	showResult: boolean;
 }
 
-const EssayProfile: React.FunctionComponent<EssayProfileProps> = props => (
+const EssayProfile = (props: Props) => (
 	<div className="essay-profile">
 		<img src={image1} alt="" className="img" />
 		<div className="card">

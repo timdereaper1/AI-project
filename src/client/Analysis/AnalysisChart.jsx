@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ApexCharts from 'react-apexcharts';
 import './css/chart.css';
 
-interface AnalysisChartProps {
+interface Props {
 	type: 'pie' | 'line' | 'bar';
 	options?: {};
 	data?: Array<number> | Array<{ name: string, data: Array<number> }>;
@@ -12,7 +12,7 @@ interface AnalysisChartProps {
 	width?: number | string;
 }
 
-const AnalysisChart: React.FunctionComponent<AnalysisChartProps> = props => {
+const AnalysisChart = (props: Props) => {
 	const options = {
 		labels: props.labels,
 		title: {

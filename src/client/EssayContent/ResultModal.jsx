@@ -6,7 +6,7 @@ import 'react-sweet-progress/lib/style.css';
 import { score } from '../_shared/services';
 import './css/result.css';
 
-interface ResultModalProps {
+interface Props {
 	onClick: Function;
 	open?: boolean;
 	result?: { score: number };
@@ -14,7 +14,7 @@ interface ResultModalProps {
 	grade: string;
 }
 
-const ResultModal: React.FunctionComponent<ResultModalProps> = props => (
+const ResultModal = (props: Props) => (
 	<Modal
 		closeOnDimmerClick
 		closeOnEscape

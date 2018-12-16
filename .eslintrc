@@ -81,6 +81,7 @@
 		"space-before-blocks": "warn",
 		"space-before-function-paren": "off",
 		"object-curly-newline": "off",
-		"import/no-useless-path-segments": "off"
+		"import/no-useless-path-segments": "off",
+		"lines-between-class-members": "off"
 	}
 }

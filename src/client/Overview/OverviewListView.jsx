@@ -4,12 +4,12 @@ import { Table, Header } from 'semantic-ui-react';
 import { Overall } from './_helpers';
 import './css/listview.css';
 
-interface OverviewListViewProps {
-	data: Array<Overall>;
-	onSelect: Function;
-}
+type Props = {
+	data: Array<Overall>,
+	onSelect: Function
+};
 
-export const OverviewListView: React.FunctionComponent<OverviewListViewProps> = props => (
+export const OverviewListView = (props: Props) => (
 	<div className="ovw-wrap">
 		<Header className="ovw-title" size="large">
 			Written Essays
@@ -53,7 +53,7 @@ export const OverviewListView: React.FunctionComponent<OverviewListViewProps> = 
 	</div>
 );
 
-const styles: { [key: string]: React.CSSProperties } = {
+const styles = {
 	col: {
 		width: '2.5rem',
 		paddingLeft: '0.885rem',

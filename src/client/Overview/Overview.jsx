@@ -1,14 +1,19 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import { Sidebar, Dimmer } from 'semantic-ui-react';
 import './css/overview.css';
 import { data } from './_data/list.json';
 import { OverviewList } from './OverviewList';
 import model from './_data/model.json';
 import PerformanceChart from './PerformanceChart';
-import { Overall } from './_helpers';
+import { Overall, Essay, Performance } from './_helpers';
 
-class Overview extends React.Component<RouteComponentProps> {
+type State = {
+	data: null | Array<Essay>,
+	perf: null | Array<Performance>,
+	showSidePane: boolean
+};
+
+class Overview extends React.Component<{}, State> {
 	state = {
 		data: null,
 		perf: null,
@@ -29,7 +34,7 @@ class Overview extends React.Component<RouteComponentProps> {
 		});
 	}
 
-	render(): React.ReactNode {
+	render() {
 		return (
 			<Sidebar.Pushable as="div">
 				<Sidebar animation="push" direction="right" visible={this.state.showSidePane}>

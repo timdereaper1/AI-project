@@ -2,7 +2,7 @@ import React from 'react';
 import { Segment, Header, Icon, Grid } from 'semantic-ui-react';
 import './css/home.css';
 
-const Features: React.FunctionComponent<{}> = () => (
+const Features = () => (
 	<Segment className="services" padded>
 		<Grid>
 			<Grid.Row columns="3">

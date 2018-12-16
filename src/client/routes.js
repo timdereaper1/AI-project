@@ -1,8 +1,7 @@
-import { RouteProps } from 'react-router-dom';
 import { Home } from './Home';
 import { Dashboard } from './Dashboard';
 
-export const routes: Array<RouteProps> = [
+export const routes: Array<{ exact: boolean, path: string, component: any }> = [
 	{
 		exact: true,
 		path: '/',

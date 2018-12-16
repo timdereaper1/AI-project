@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
+import { AnalysisData } from './_helpers';
 
-interface AnalysisTableProps {
-	values: Array<{ key: string, index: number, value: number, abbr?: string, desc?: string }>;
+interface Props {
+	values: Array<AnalysisData>;
 	extend?: boolean;
 	endValue?: number;
 }
 
-const AnalysisTable: React.FunctionComponent<AnalysisTableProps> = props => (
+const AnalysisTable = (props: Props) => (
 	<Table basic="very">
 		<Table.Header>
 			<Table.Row>
