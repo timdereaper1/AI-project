@@ -7,7 +7,7 @@ from src.server.utils.extract import Extract
 
 # load the trained model
 dirname = os.path.dirname(__file__)
-filename = os.path.join(dirname, '../../../models/marker_svm.joblib')
+filename = os.path.join(dirname, '../../../models/kFold_svm_model.joblib')
 marker = joblib.load(filename)
 
 

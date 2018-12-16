@@ -1,0 +1,32 @@
+[ignore]
+<PROJECT_ROOT>/node_modules/.*
+<PROJECT_ROOT>/git/.*
+<PROJECT_ROOT>/webpack.config.js
+<PROJECT_ROOT>/public/.*
+<PROJECT_ROOT>/models/.*
+<PROJECT_ROOT>/docs/.*
+<PROJECT_ROOT>/dataset/.*
+<PROJECT_ROOT>/.vscode/.*
+<PROJECT_ROOT>/src/server/.*
+
+[include]
+
+[libs]
+flow-typed
+
+[lints]
+
+[options]
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+esproposal.export_star_as=enable
+module.name_mapper.extension='css' -> '<PROJECT_ROOT>/shell/flow/cssModule.js.flow'
+module.name_mapper.extension='styl' -> '<PROJECT_ROOT>/shell/flow/cssModule.js.flow'
+module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/shell/flow/cssModule.js.flow'
+module.name_mapper.extension='png' -> '<PROJECT_ROOT>/shell/flow/webpackAsset.js.flow'
+module.name_mapper.extension='jpg' -> '<PROJECT_ROOT>/shell/flow/webpackAsset.js.flow'
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue
+all=true
+
+[strict]

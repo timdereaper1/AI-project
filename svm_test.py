@@ -10,7 +10,7 @@ df = pd.read_excel('dataset/training_set_rel3.xls')
 essays, scores = df['essay'], df['domain1_score']
 
 # load the marker model
-model = joblib.load('models/marker_svm.joblib')
+model = joblib.load('models/kFold_svm_model.joblib')
 
 # an index counter to count the total number of essays whose scores
 # have been predicted

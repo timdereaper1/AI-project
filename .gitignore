@@ -9,3 +9,4 @@ test.txt
 *.py[code]
 pycache
 /docs/essay.txt
+/flow-typed
