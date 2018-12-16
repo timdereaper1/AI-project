@@ -1,5 +1,5 @@
 const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const webpackLiveReloadPlugin = require('webpack-livereload-plugin');
 const webpackBar = require('webpackbar');
@@ -7,7 +7,7 @@ const webpackLoggerPlugin = require('webpack-logger-plugin');
 const openBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
-	devtool: 'eval-source-map',
+	devtool: 'cheap-module-source-map',
 	target: 'web',
 	entry: {
 		main: ['react-hot-loader/patch', path.join(__dirname, './src/client/index.js')]
@@ -79,24 +79,9 @@ module.exports = {
 	},
 	optimization: {
 		minimizer: [
-			new UglifyJSPlugin({
-				uglifyOptions: {
-					compress: {
-						warnings: false,
-						// Disabled because of an issue with Uglify breaking seemingly valid code:
-						// https://github.com/facebookincubator/create-react-app/issues/2376
-						// Pending further investigation:
-						// https://github.com/mishoo/UglifyJS2/issues/2011
-						comparisons: false
-						// drop_console: true
-					},
-					output: {
-						comments: false,
-						// Turned on because emoji and regex is not minified properly using default
-						// https://github.com/facebookincubator/create-react-app/issues/2488
-						ascii_only: true
-					}
-				}
+			new TerserPlugin({
+				sourceMap: true,
+				parallel: true
 			})
 		]
 	},
