@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import './css/sidebar.css';
 import profile from '../_shared/assets/imgs/11.jpg';
 
-interface SidebarProps {
+interface Props {
 	links: Array<{ name: string, icon: string, path: string, desc: string }>;
 	selectedPage: string;
 	onCollapse: Function;
 	collapse: boolean;
 }
 
-const Sidebar: React.FunctionComponent<SidebarProps> = props => (
+const Sidebar = (props: Props) => (
 	<div className={props.collapse ? 'sidebar collapse' : 'sidebar'}>
 		<Header inverted textAlign="center" className="header" size="large">
 			<Link to="/">ama</Link>

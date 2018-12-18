@@ -1,17 +1,18 @@
 import React from 'react';
 import { Header } from 'semantic-ui-react';
-import { RouteComponentProps, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './css/home.css';
 import image from '../_shared/assets/imgs/firs.jpg';
-import Footer from './Footer';
 import Features from './Features';
+import { AppFooter } from '../_shared/components';
 
-interface Styles {
-	[key: string]: React.CSSProperties;
-}
+type Props = {};
 
-class Home extends React.Component<RouteComponentProps> {
-	constructor(props) {
+class Home extends React.Component<Props, void> {
+	bannerRef: React.RefObject<any>;
+	event: any = null;
+
+	constructor(props: Props) {
 		super(props);
 		this.bannerRef = React.createRef();
 	}
@@ -28,7 +29,7 @@ class Home extends React.Component<RouteComponentProps> {
 		);
 	}
 
-	render(): React.ReactNode {
+	render() {
 		return (
 			<div className="home">
 				<div className="banner" style={styles.wrapper} ref={this.bannerRef}>
@@ -47,7 +48,7 @@ class Home extends React.Component<RouteComponentProps> {
 					</div>
 				</div>
 				<Features />
-				<Footer />
+				<AppFooter />
 			</div>
 		);
 	}
@@ -57,7 +58,7 @@ class Home extends React.Component<RouteComponentProps> {
 	}
 }
 
-const styles: Styles = {
+const styles = {
 	wrapper: {
 		backgroundImage: `url(${image})`
 	}

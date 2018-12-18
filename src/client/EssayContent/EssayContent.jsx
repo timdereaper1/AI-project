@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { RouteComponentProps } from 'react-router-dom';
 import './css/content.css';
 import ResultModal from './ResultModal';
 import details from './_data/details.json';
@@ -9,12 +8,22 @@ import EssayForm from './EssayForm';
 import { submitEssayForm, getGrade } from './_helpers';
 import { setResults } from './_redux/actions';
 
-interface EssayContentProps extends RouteComponentProps {
+interface Props {
 	setResults: Function;
 	scheme?: Array<{}>;
+	history: any;
 }
 
-class EssayContent extends React.Component<EssayContentProps> {
+interface State {
+	data: string;
+	details: Array<{}>;
+	open: boolean;
+	grade: string;
+	title: string;
+	result: any;
+}
+
+class EssayContent extends React.Component<Props, State> {
 	state = {
 		data: '',
 		details: [],
@@ -43,7 +52,7 @@ class EssayContent extends React.Component<EssayContentProps> {
 		this.setState({ details: [...this.state.details, ...details.details] });
 	}
 
-	render(): React.ReactNode {
+	render() {
 		return (
 			<div className="essay-content">
 				<div className="wrapper">
@@ -82,7 +91,7 @@ class EssayContent extends React.Component<EssayContentProps> {
 		}
 	};
 
-	handleEssaySubmission = async (): void => {
+	handleEssaySubmission = async () => {
 		if (!this.state.data) return;
 		const result = await submitEssayForm(this.state.data, this.state.title);
 		if (result) {
@@ -94,7 +103,7 @@ class EssayContent extends React.Component<EssayContentProps> {
 		}
 	};
 
-	handleTitleInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
+	handleTitleInput = (event): void => {
 		this.setState({ title: event.target.value });
 	};
 

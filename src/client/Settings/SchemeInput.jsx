@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'semantic-ui-react';
 
-type SchemeInputProps = {
-	disabled: boolean,
+type Props = {
+	disabled?: boolean,
 	onChange: Function,
-	value: string | number,
+	value?: string | number,
 	name: string,
 	index: number
 };
 
-const SchemeInput: React.FunctionComponent<SchemeInputProps> = props => (
+const SchemeInput = (props: Props) => (
 	<Input
 		type="text"
 		className="scheme-input"

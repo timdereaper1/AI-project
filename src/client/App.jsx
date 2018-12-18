@@ -5,10 +5,9 @@ import { hot } from 'react-hot-loader';
 import { routes } from './routes';
 import store from './_shared/redux';
 
-class App extends Component<{}> {
-	state = {};
-
-	render(): React.ReactNode {
+/* eslint-disable react/prefer-stateless-function */
+class App extends Component<{}, void> {
+	render() {
 		return (
 			<Provider store={store}>
 				<BrowserRouter>

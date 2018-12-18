@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import ApexCharts from 'react-apexcharts';
 import { Header } from 'semantic-ui-react';
 import './css/chart.css';
+import { Performance } from './_helpers';
 
-type PerformanceChartProps = {
-	data: Array<{ name: string, data: Array<number> }>
+type Props = {
+	data: Array<Performance>
 };
 
-const PerformanceChart: React.FunctionComponent<PerformanceChartProps> = props => {
+const PerformanceChart = (props: Props) => {
 	const options = {};
 	return props.data ? (
 		<section className="ovw-section">

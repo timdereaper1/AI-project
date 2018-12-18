@@ -3,21 +3,26 @@ import GradingScheme from './GradingScheme';
 import './css/settings.css';
 import { Scheme, Constants, getGradeChar } from './_helpers';
 
-class Settings extends React.Component<{}> {
+type State = {
+	scheme: Array<Scheme>,
+	isSaved: boolean
+};
+
+class Settings extends React.Component<{}, State> {
 	state = {
-		scheme: null,
+		scheme: [],
 		isSaved: true
 	};
 
 	componentWillMount() {
-		if (localStorage.getItem(Constants.keys.store.GRADE_SCHEME)) {
+		if (window.localStorage.getItem(Constants.keys.store.GRADE_SCHEME)) {
 			this.setState({
-				scheme: JSON.parse(localStorage.getItem(Constants.keys.store.GRADE_SCHEME))
+				scheme: JSON.parse(window.localStorage.getItem(Constants.keys.store.GRADE_SCHEME))
 			});
 		}
 	}
 
-	render(): React.ReactNode {
+	render() {
 		return (
 			<div className="settings wrapper">
 				<GradingScheme

@@ -1,16 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { RouteComponentProps, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Header } from 'semantic-ui-react';
 import pos from './_data/pos.json';
-import { filterEssayResults, posScoreInfo } from './_helpers';
+import { filterEssayResults, posScoreInfo, POSDetails } from './_helpers';
 import AnalysisView from './AnalysisView';
 import './css/analysis.css';
 
-class Analysis extends React.Component<RouteComponentProps> {
+interface Props {
+	state?: any;
+}
+
+interface State {
+	pos: Array<POSDetails>;
+	essay: any;
+	list: any;
+	score: number;
+	data: any;
+	grade: string;
+}
+
+class Analysis extends React.Component<Props, State> {
 	state = {
-		pos: null,
+		pos: [],
 		essay: null,
 		list: null,
 		score: 0,
@@ -42,7 +55,7 @@ class Analysis extends React.Component<RouteComponentProps> {
 		}
 	}
 
-	render(): React.ReactNode {
+	render() {
 		if (!this.state.data) {
 			return (
 				<div className="analysis">

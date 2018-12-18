@@ -5,7 +5,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import './css/form.css';
 
-interface EssayFormProps {
+interface Props {
 	onSubmit: Function;
 	onTextChange: Function;
 	title: string;
@@ -13,7 +13,7 @@ interface EssayFormProps {
 	editorValue: string;
 }
 
-const EssayForm: React.FunctionComponent<EssayFormProps> = props => (
+const EssayForm = (props: Props) => (
 	<div className="essay-form">
 		<div className="title">
 			<Input
