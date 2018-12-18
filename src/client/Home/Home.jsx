@@ -3,8 +3,8 @@ import { Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import './css/home.css';
 import image from '../_shared/assets/imgs/firs.jpg';
-import Footer from './Footer';
 import Features from './Features';
+import { AppFooter } from '../_shared/components';
 
 type Props = {};
 
@@ -48,7 +48,7 @@ class Home extends React.Component<Props, void> {
 					</div>
 				</div>
 				<Features />
-				<Footer />
+				<AppFooter />
 			</div>
 		);
 	}
