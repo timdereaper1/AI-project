@@ -16,28 +16,27 @@ model = joblib.load('models/kFold_svm_model.joblib')
 # have been predicted
 index = 0
 done = 0
-results = []
-total = 100
+# results = []
+total = len(essays)
 
 # validate the model with the validation set of essays
 for essay in essays[:total]:
     # extract the features needed by the model from the essay
     features = Extract(essay)
-
+    # print(model.score([features.get_features()], [scores[index]]))
     # predict score of the essay
     score = model.predict([features.get_features()])[0]
-    if score == scores[index]:
+    if score >= scores[index] - 3 and score <= scores[index] + 3:
         done += 1
 
-    result = {
-        'examiner': scores[index],
-        'predict': score
-    }
+    # result = {
+    #     'examiner': scores[index],
+    #     'predict': score
+    # }
 
-    results.append(result)
+    # results.append(result)
 
     index += 1
 
 accuracy = done / total * 100
 print(accuracy)
-print(results)
