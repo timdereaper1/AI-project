@@ -5,9 +5,9 @@
 	"description": "an AI project for scoring essays",
 	"main": "src/client/index.js",
 	"scripts": {
-		"watch": "rm -rf src/server/static && webpack --mode development --watch",
-		"dev": "rm -rf src/server/static && webpack --mode development",
-		"build": "rm -rf src/server/static && webpack --mode production",
+		"watch": "rm -rf src/server/static/.hot && webpack --mode development --watch",
+		"dev": "rm -rf src/server/static/.hot && webpack --mode development",
+		"build": "rm -rf src/server/static/.hot && webpack --mode production",
 		"serve": "python3 app.py | npm run watch",
 		"serve:win": "python app.py | npm run watch",
 		"start": "npm run build && python3 app.py",

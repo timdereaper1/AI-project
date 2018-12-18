@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Header, Icon, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import './css/sidebar.css';
-import profile from '../_shared/assets/imgs/11.jpg';
 
 interface Props {
 	links: Array<{ name: string, icon: string, path: string, desc: string }>;
@@ -19,7 +18,7 @@ const Sidebar = (props: Props) => (
 			<Header.Subheader>New and Improved Automated Essay Marker</Header.Subheader>
 		</Header>
 		<div className="profile">
-			<img src={profile} alt="profile" className="profile-img" />
+			<img src="/static/images/11.jpg" alt="profile" className="profile-img" />
 			<small>
 				<span className="label">Name</span> AI-project
 			</small>
