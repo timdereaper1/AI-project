@@ -1,1 +1,1 @@
-web: gunicorn essaygraderapp.wsgi --log-file -
+web: python app.py
