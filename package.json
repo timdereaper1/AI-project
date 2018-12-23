@@ -13,7 +13,8 @@
 		"start": "npm run build && python3 app.py",
 		"flow": "flow",
 		"analyze": "source-map-explorer src/server/static/main.*",
-		"flow-type": "flow-typed install"
+		"flow-type": "flow-typed install",
+		"postinstall": "npm run build"
 	},
 	"repository": {
 		"type": "git",
@@ -25,6 +26,10 @@
 		"url": "https://github.com/timdereaper1/AI-project/issues"
 	},
 	"homepage": "https://github.com/timdereaper1/AI-project#readme",
+	"engines": {
+		"node": "11.4.0",
+		"npm": "6.5.0"
+	},
 	"dependencies": {
 		"@ckeditor/ckeditor5-build-classic": "^11.1.1",
 		"@ckeditor/ckeditor5-react": "^1.0.0",
