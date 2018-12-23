@@ -23,4 +23,4 @@ if __name__ == '__main__':
     server.jinja_env.auto_reload = True
     server.config['TEMPLATES_AUTO_RELOAD'] = True
 
-    server.run(debug=True, port=4000)
+    server.run()

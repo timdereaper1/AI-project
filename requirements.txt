@@ -9,3 +9,4 @@ scipy==1.1.0
 textmining==1.0
 xlrd==1.1.0
 pyspellchecker==0.3.0
+gunicorn==19.9.0
