@@ -2,11 +2,11 @@ from src.server import Server
 from flask import render_template
 
 # create a new instance of the Server
-server = Server().app
+app = Server().app
 
 
 # set the response headers
-@server.after_request
+@app.after_request
 def add_header(r):
     # Add headers to both force latest IE rendering engine or Chrome Frame,
     # and also to cache the rendered page for 10 minutes.
@@ -20,7 +20,7 @@ def add_header(r):
 
 # run the server if the app.py file is the main entry point
 if __name__ == '__main__':
-    server.jinja_env.auto_reload = True
-    server.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.jinja_env.auto_reload = True
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
 
-    server.run()
+    app.run()
