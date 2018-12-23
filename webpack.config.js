@@ -102,7 +102,7 @@ module.exports = {
 		new webpackLiveReloadPlugin(),
 		new webpackBar(),
 		new webpackLoggerPlugin(),
-		new openBrowserPlugin({ url: 'http://localhost:4000' }),
+		new openBrowserPlugin({ url: 'http://localhost:5000' }),
 		new MiniCssExtractPlugin({
 			// Options similar to the same options in webpackOptions.output
 			// both options are optional
