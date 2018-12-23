@@ -1,0 +1,1 @@
+web: gunicorn essaygraderapp.wsgi --log-file -
