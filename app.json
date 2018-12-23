@@ -1,0 +1,21 @@
+{
+	"name": "Essay Grader",
+	"description": "A web application using AI to score and grade essays",
+	"image": "heroku/python",
+	"repository": "https://github.com/timdereaper1/AI-project.git",
+	"keywords": ["python"],
+	"env": {
+		"SECRET_KEY": {
+			"description": "The secret key for the Django application.",
+			"generator": "secret"
+		}
+	},
+	"environments": {
+		"test": {
+			"scripts": {
+				"test-setup": "python app.py collectstatic --noinput",
+				"test": "python app.py test"
+			}
+		}
+	}
+}

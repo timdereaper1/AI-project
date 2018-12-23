@@ -2,7 +2,6 @@ import React from 'react';
 import { Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import './css/home.css';
-import image from '../_shared/assets/imgs/firs.jpg';
 import Features from './Features';
 import { AppFooter } from '../_shared/components';
 
@@ -60,7 +59,7 @@ class Home extends React.Component<Props, void> {
 
 const styles = {
 	wrapper: {
-		backgroundImage: `url(${image})`
+		backgroundImage: 'url(/static/images/firs.jpg)'
 	}
 };
 

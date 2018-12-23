@@ -5,6 +5,7 @@ const webpackLiveReloadPlugin = require('webpack-livereload-plugin');
 const webpackBar = require('webpackbar');
 const webpackLoggerPlugin = require('webpack-logger-plugin');
 const openBrowserPlugin = require('open-browser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 	devtool: 'cheap-module-source-map',
@@ -24,7 +25,15 @@ module.exports = {
 			{
 				test: /[A-Za-z0-9-_.]*\.css/,
 				use: [
-					{ loader: 'style-loader' },
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							// you can specify a publicPath here
+							// by default it use publicPath in webpackOptions.output
+							// https://webpack.js.org/plugins/mini-css-extract-plugin/
+							publicPath: '/static/'
+						}
+					},
 					{
 						loader: 'css-loader',
 						options: { sourceMap: true }
@@ -93,7 +102,13 @@ module.exports = {
 		new webpackLiveReloadPlugin(),
 		new webpackBar(),
 		new webpackLoggerPlugin(),
-		new openBrowserPlugin({ url: 'http://localhost:4000' })
+		new openBrowserPlugin({ url: 'http://localhost:4000' }),
+		new MiniCssExtractPlugin({
+			// Options similar to the same options in webpackOptions.output
+			// both options are optional
+			// https://webpack.js.org/plugins/mini-css-extract-plugin/
+			filename: 'styles.css'
+		})
 	],
 	stats: 'errors-only'
 };
