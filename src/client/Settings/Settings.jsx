@@ -1,17 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import GradingScheme from './GradingScheme';
 import './css/settings.css';
-import { Scheme, Constants, getGradeChar } from './_helpers';
+import { Scheme, Constants, getGradeChar, SettingsProps, SettingsState } from './_helpers';
+import { setSchemeState } from '../_shared/redux/actions';
 
-type State = {
-	scheme: Array<Scheme>,
-	isSaved: boolean
-};
-
-class Settings extends React.Component<{}, State> {
+class Settings extends React.Component<SettingsProps, SettingsState> {
 	state = {
 		scheme: [],
 		isSaved: true
+	};
+
+	static propTypes = {
+		setSchemeState: PropTypes.func.isRequired
 	};
 
 	componentWillMount() {
@@ -73,6 +75,8 @@ class Settings extends React.Component<{}, State> {
 		this.setState({
 			isSaved: true
 		});
+		// call app store action to reload the scheme state
+		this.props.setSchemeState();
 	};
 
 	onCreateScheme = (): void => {
@@ -88,4 +92,9 @@ class Settings extends React.Component<{}, State> {
 	};
 }
 
-export default Settings;
+export default connect(
+	null,
+	{
+		setSchemeState
+	}
+)(Settings);

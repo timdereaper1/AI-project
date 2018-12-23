@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
-import { routes } from './routes';
+import { routes } from './_shared/pages';
 import store from './_shared/redux';
 
 /* eslint-disable react/prefer-stateless-function */

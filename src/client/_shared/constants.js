@@ -8,6 +8,8 @@ export const Constants = {
 		}
 	},
 	types: {
-		ESSAY_RESULTS: '@types/essay-result'
+		ESSAY_RESULTS: '@types/essay-result',
+		HAS_SCHEME: '@types/has_scheme',
+		NO_SCHEME: '@types/no_scheme'
 	}
 };
