@@ -38,6 +38,7 @@ flow-typed/npm/*
 src/server/static
 src/server/static/main.entry.js
 webpack.config.js
+src/config
 
 
 .idea

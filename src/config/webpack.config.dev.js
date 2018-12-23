@@ -6,15 +6,17 @@ const webpackBar = require('webpackbar');
 const webpackLoggerPlugin = require('webpack-logger-plugin');
 const openBrowserPlugin = require('open-browser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	devtool: 'cheap-module-source-map',
+	mode: 'development',
 	target: 'web',
 	entry: {
-		main: ['react-hot-loader/patch', path.join(__dirname, './src/client/index.js')]
+		main: ['react-hot-loader/patch', path.join(__dirname, '../client/index.js')]
 	},
 	output: {
-		path: path.join(__dirname, './src/server/static/'),
+		path: path.join(__dirname, '../server/static/'),
 		filename: '[name].entry.js',
 		publicPath: '/static/',
 		hotUpdateChunkFilename: '.hot/[id].[hash].hot-update.js',
@@ -108,6 +110,10 @@ module.exports = {
 			// both options are optional
 			// https://webpack.js.org/plugins/mini-css-extract-plugin/
 			filename: 'styles.css'
+		}),
+		new HtmlWebpackPlugin({
+			template: path.join(__dirname, '/temps/dev.html'),
+			filename: path.join(__dirname, '../server/templates/index.html')
 		})
 	],
 	stats: 'errors-only'
