@@ -1,36 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import SweetAlert from 'sweetalert2-react';
 import './css/content.css';
 import ResultModal from './ResultModal';
 import details from './_data/details.json';
 import EssayForm from './EssayForm';
-import { submitEssayForm, getGrade } from './_helpers';
+import { submitEssayForm, getGrade, EssayContentProps, EssayContentState } from './_helpers';
 import { setResults } from './_redux/actions';
 
-interface Props {
-	setResults: Function;
-	scheme?: Array<{}>;
-	history: any;
-}
-
-interface State {
-	data: string;
-	details: Array<{}>;
-	open: boolean;
-	grade: string;
-	title: string;
-	result: any;
-}
-
-class EssayContent extends React.Component<Props, State> {
+class EssayContent extends React.Component<EssayContentProps, EssayContentState> {
 	state = {
 		data: '',
 		details: [],
 		open: false,
 		result: null,
 		title: '',
-		grade: ''
+		grade: '',
+		alert: false,
+		message: ''
 	};
 
 	static propTypes = {
@@ -55,6 +43,13 @@ class EssayContent extends React.Component<Props, State> {
 	render() {
 		return (
 			<div className="essay-content">
+				<SweetAlert
+					show={this.state.alert}
+					title="Error"
+					text={this.state.message}
+					onConfirm={this.handleAlert}
+					type="error"
+				/>
 				<div className="wrapper">
 					<p className="desc">
 						You can write your own essay or select an essay from the essay list.
@@ -92,7 +87,21 @@ class EssayContent extends React.Component<Props, State> {
 	};
 
 	handleEssaySubmission = async () => {
-		if (!this.state.data) return;
+		if (!this.props.scheme) {
+			this.setState({
+				alert: true,
+				message:
+					'Please set the grading scheme for the essay. Click the settings icon to add the grading scheme.'
+			});
+			return;
+		}
+		if (!this.state.data) {
+			this.setState({
+				alert: true,
+				message: 'Cannot submit an empty essay.'
+			});
+			return;
+		}
 		const result = await submitEssayForm(this.state.data, this.state.title);
 		if (result) {
 			this.setState({

@@ -10,3 +10,5 @@ test.txt
 pycache
 /docs/essay.txt
 /flow-typed
+/docs
+/src/server/templates

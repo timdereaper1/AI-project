@@ -2,13 +2,13 @@ import string
 import operator
 import functools
 import math
-from enchant.checker import SpellChecker
+from spellchecker import SpellChecker
 from src.server.utils.functions import tokenize_text, vocab
 from src.server.utils.latent import LatentSemanticAnalysis, extract_paragraphs
 
 
 # using the UK and the US dictionaries for checking misspelt words
-spell_checker = SpellChecker('en_UK', 'en_US')
+spell_checker = SpellChecker(language='en')
 
 
 class Extract():
@@ -37,8 +37,9 @@ class Extract():
 
         # using PyEnchant to extract the total number of mispelt words in the essay
         # to determine the orthography or command over the language
-        spell_checker.set_text(self.text)
-        self.misspelt = len([err.word for err in spell_checker])
+        # spell_checker.set_text(self.text)
+        # self.misspelt = len([err.word for err in spell_checker])
+        self.misspelt = len(list(spell_checker.unknown(self.tokens)))
 
         # extract punctuation features by counting the total number of punctuations used
         # in the essay

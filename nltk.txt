@@ -1,0 +1,15 @@
+wordnet
+pros_cons
+reuters
+stopwords
+punkt
+averaged_perceptron_tagger
+averaged_perceptron_tagger_ru
+maxent_treebank_pos_tagger
+universal_tagset
+snowball_data
+rslp
+porter_test
+vader_lexicon
+treebank
+dependency_treebank
