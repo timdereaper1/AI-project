@@ -18,7 +18,11 @@ const Sidebar = (props: Props) => (
 			<Header.Subheader>New and Improved Automated Essay Marker</Header.Subheader>
 		</Header>
 		<div className="profile">
-			<img src="/static/images/11.jpg" alt="profile" className="profile-img" />
+			<img
+				src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+				alt="profile"
+				className="profile-img"
+			/>
 			<small>
 				<span className="label">Name</span> AI-project
 			</small>

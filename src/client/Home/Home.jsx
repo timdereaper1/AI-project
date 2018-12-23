@@ -59,7 +59,8 @@ class Home extends React.Component<Props, void> {
 
 const styles = {
 	wrapper: {
-		backgroundImage: 'url(/static/images/firs.jpg)'
+		backgroundImage:
+			'url(https://images.pexels.com/photos/110473/pexels-photo-110473.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)'
 	}
 };
 
