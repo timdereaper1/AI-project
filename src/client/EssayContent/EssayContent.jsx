@@ -104,10 +104,19 @@ class EssayContent extends React.Component<EssayContentProps, EssayContentState>
 		}
 		const result = await submitEssayForm(this.state.data, this.state.title);
 		if (result) {
+			const grade = getGrade(result.score, this.props.scheme);
+			if (!grade) {
+				this.setState({
+					alert: true,
+					message:
+						"The score couldn't match the grading scheme. Please check your grading scheme."
+				});
+				return;
+			}
 			this.setState({
 				result,
 				open: true,
-				grade: getGrade(result.score, this.props.scheme)
+				grade
 			});
 		}
 	};
@@ -122,6 +131,10 @@ class EssayContent extends React.Component<EssayContentProps, EssayContentState>
 
 	handleResultView = (): void => {
 		this.setState({ open: true });
+	};
+
+	handleAlert = (): void => {
+		this.setState({ alert: false, message: '' });
 	};
 }
 

@@ -6,7 +6,7 @@ import { Header } from 'semantic-ui-react';
 import Sidebar from './Sidebar';
 import './css/dashboard.css';
 import { routes } from './routes';
-import { setSchemeState } from './_redux/action';
+import { setSchemeState } from '../_shared/redux/actions';
 import { AppFooter } from '../_shared/components';
 
 interface Props {

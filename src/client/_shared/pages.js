@@ -1,5 +1,5 @@
-import { Home } from './Home';
-import { Dashboard } from './Dashboard';
+import { Home } from '../Home';
+import { Dashboard } from '../Dashboard';
 
 export const routes: Array<{ exact: boolean, path: string, component: any }> = [
 	{
